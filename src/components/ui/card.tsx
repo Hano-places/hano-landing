@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Icon, type IconName } from "./icon";
+import type { IconName } from "@/lib/icons";
+import { Icon } from "./icon";
 import styles from "./card.module.css";
 
 type FeatureCardProps = {

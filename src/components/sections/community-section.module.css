@@ -1,0 +1,58 @@
+.section {
+  padding: var(--section-padding-y) 0;
+}
+
+.card {
+  padding: 3rem 2rem;
+  border-radius: var(--radius-card-lg);
+  background-color: var(--color-accent-mint);
+  text-align: center;
+}
+
+.headline {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.description {
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.benefit {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+  background: var(--color-bg);
+  border-radius: var(--radius-pill);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-cta-text);
+  background-color: var(--color-cta);
+  border-radius: var(--radius-pill);
+  transition: opacity var(--transition-fast);
+}
+
+.cta:hover {
+  opacity: 0.88;
+}

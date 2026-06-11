@@ -28,9 +28,9 @@
     #b8e8c8 100%
   );
 
-  /* Typography — set by layout.tsx via next/font */
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  /* Typography — overridden on <html> by next/font in layout.tsx */
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;

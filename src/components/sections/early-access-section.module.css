@@ -1,0 +1,78 @@
+.section {
+  padding: var(--section-padding-y) 0;
+}
+
+.grid {
+  display: grid;
+  gap: 3rem;
+  align-items: start;
+}
+
+.content {
+  max-width: 480px;
+}
+
+.headline {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 1.5rem;
+}
+
+.benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.benefit {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.benefit::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-brand-primary);
+  font-weight: 600;
+}
+
+.formCard {
+  position: relative;
+  padding: 2px;
+  border-radius: calc(var(--radius-card) + 2px);
+  background: var(--gradient-form-border);
+}
+
+.formInner {
+  padding: 2rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-card);
+}
+
+.formTitle {
+  text-align: center;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
