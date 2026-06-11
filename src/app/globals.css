@@ -29,6 +29,7 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
   line-height: var(--leading-normal);
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -43,8 +44,9 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-weight: 700;
+  font-weight: var(--font-weight-heading);
   line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
 }
 
 p {

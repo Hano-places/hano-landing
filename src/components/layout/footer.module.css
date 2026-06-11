@@ -21,7 +21,7 @@
 
 .column h3 {
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   margin-bottom: 1rem;
 }
 

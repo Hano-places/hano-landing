@@ -33,13 +33,15 @@
 }
 
 .outline {
-  background-color: transparent;
-  color: var(--color-text);
-  border-color: var(--color-text);
+  background-color: var(--color-bg);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-soft);
 }
 
 .outline:hover:not(:disabled) {
+  color: var(--color-text);
   background-color: var(--color-surface);
+  border-color: var(--color-border);
 }
 
 .sm {

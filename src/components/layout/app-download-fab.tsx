@@ -1,0 +1,28 @@
+import { site } from "@/content/landing";
+import { AppStoreLogo, PlayStoreLogo } from "@/components/ui/store-logos";
+import styles from "./app-download-fab.module.css";
+
+export function AppDownloadFab() {
+  return (
+    <div className={styles.fab} role="group" aria-label="Download the Hano app">
+      <a
+        href={site.appStoreUrl}
+        className={styles.storeBtn}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Download on the App Store"
+      >
+        <AppStoreLogo className={styles.logo} />
+      </a>
+      <a
+        href={site.playStoreUrl}
+        className={styles.storeBtn}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Get it on Google Play"
+      >
+        <PlayStoreLogo className={styles.playLogo} />
+      </a>
+    </div>
+  );
+}

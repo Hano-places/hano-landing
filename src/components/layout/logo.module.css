@@ -29,6 +29,6 @@
 
 .text {
   font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   letter-spacing: -0.02em;
 }

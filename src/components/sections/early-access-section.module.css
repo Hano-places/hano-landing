@@ -1,5 +1,11 @@
 .section {
+  position: relative;
   padding: var(--section-padding-y) 0;
+}
+
+.anchor {
+  position: absolute;
+  margin-top: calc(-1 * var(--header-height));
 }
 
 .grid {
@@ -8,46 +14,20 @@
   align-items: start;
 }
 
-.content {
-  max-width: 480px;
+.faqColumn {
+  min-width: 0;
 }
 
 .headline {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.description {
-  font-size: var(--text-base);
-  color: var(--color-text-secondary);
-  line-height: var(--leading-relaxed);
+  font-weight: var(--font-weight-display);
   margin-bottom: 1.5rem;
+  letter-spacing: -0.035em;
+  line-height: var(--leading-tight);
 }
 
-.benefits {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.benefit {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  padding-left: 1.25rem;
+.faqList {
   position: relative;
-}
-
-.benefit::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--color-brand-primary);
-  font-weight: 600;
 }
 
 .formCard {
@@ -55,6 +35,7 @@
   padding: 2px;
   border-radius: calc(var(--radius-card) + 2px);
   background: var(--gradient-form-border);
+  align-self: start;
 }
 
 .formInner {
@@ -66,13 +47,28 @@
 .formTitle {
   text-align: center;
   font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
 }
 
 @media (min-width: 900px) {
   .grid {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+  }
+
+  .headline {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+    z-index: 2;
+    margin-bottom: 0;
+    padding-bottom: 1.5rem;
+    background-color: var(--color-bg);
+  }
+
+  .formCard {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
   }
 }

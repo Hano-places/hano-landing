@@ -2,6 +2,8 @@ export const site = {
   name: "Hano",
   tagline: "Discover Restaurants Around You",
   email: "hello@hano.rw",
+  appStoreUrl: "https://apps.apple.com/",
+  playStoreUrl: "https://play.google.com/store",
   whatsappUrl: "https://wa.me/",
   social: {
     instagram: "https://instagram.com/",
@@ -15,7 +17,7 @@ export const navLinks = [
   { label: "Restaurants", href: "#restaurants" },
   { label: "Categories", href: "#categories" },
   { label: "Community", href: "#community" },
-  { label: "About", href: "#faq" },
+  { label: "About", href: "#early-access" },
 ] as const;
 
 export const hero = {

@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { navLinks } from "@/content/landing";
 import { useActiveSection } from "@/hooks/use-active-section";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { Logo } from "./logo";
@@ -69,10 +68,12 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <Link href="#early-access" onClick={() => setMenuOpen(false)}>
-            <Button variant="outline" fullWidth>
-              Join Early Access
-            </Button>
+          <Link
+            href="#early-access"
+            className={`${styles.ctaLink} ${styles.mobileCta}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Join Early Access
           </Link>
         </nav>
       )}

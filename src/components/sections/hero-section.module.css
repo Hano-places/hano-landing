@@ -16,14 +16,15 @@
 
 .headline {
   font-size: var(--text-hero);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.035em;
   line-height: var(--leading-tight);
 }
 
 .subheadline {
   max-width: 480px;
   font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
 }
@@ -62,7 +63,8 @@
 
 .metricValue {
   font-size: var(--text-2xl);
-  font-weight: 700;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.02em;
 }
 
 .metricLabel {
@@ -124,7 +126,7 @@
 }
 
 .glassTitle {
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   margin-bottom: 0.25rem;
 }
 
