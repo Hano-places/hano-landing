@@ -1,3 +1,4 @@
 .wrapper {
-  overflow-x: hidden;
+  /* clip — not hidden — so position:sticky works in child sections */
+  overflow-x: clip;
 }
