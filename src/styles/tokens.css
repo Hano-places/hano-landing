@@ -1,0 +1,76 @@
+:root {
+  /* Base */
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-text-secondary: #666666;
+  --color-text-muted: #888888;
+  --color-border: #e5e5e5;
+  --color-surface: #f5f5f5;
+
+  /* Accent surfaces (ISO-inspired) */
+  --color-accent-gray: #f4f4f5;
+  --color-accent-mint: #e8f8f0;
+  --color-accent-lavender: #f3f0ff;
+
+  /* Hano brand (swappable) */
+  --color-brand-primary: #001814;
+  --color-brand-secondary: #c8ff62;
+  --color-brand-accent: #eeffce;
+  --color-cta: #000000;
+  --color-cta-text: #ffffff;
+
+  /* Gradients */
+  --gradient-form-border: linear-gradient(
+    135deg,
+    #ffb4c8 0%,
+    #ffd4a8 35%,
+    #fff3b0 65%,
+    #b8e8c8 100%
+  );
+
+  /* Typography — set by layout.tsx via next/font */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+  --text-hero: clamp(2.25rem, 5vw, 3.75rem);
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Layout */
+  --container-max: 1180px;
+  --container-padding: 1.5rem;
+  --section-padding-y: 5rem;
+  --section-gap-top: 132px;
+  --header-height: 72px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-card: 24px;
+  --radius-card-lg: 40px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.08);
+  --shadow-toggle: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-blur: 12px;
+}
