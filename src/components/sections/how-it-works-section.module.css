@@ -1,88 +1,294 @@
 .section {
-  padding: var(--section-padding-y) 0;
+  padding: 3.5rem 0 4.5rem;
+  background-color: var(--color-surface-primary);
+}
+
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .header {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   max-width: 680px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .headline {
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   font-weight: var(--font-weight-display);
   letter-spacing: -0.035em;
-  margin-bottom: 0.75rem;
+  line-height: var(--leading-tight);
 }
 
 .supporting {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
-  margin-bottom: 2rem;
+  line-height: var(--leading-relaxed);
+}
+
+.tabPanel {
+  animation: panelIn 0.45s ease both;
 }
 
 .grid {
   display: grid;
+  grid-template-columns: repeat(12, 1fr);
   gap: 1.25rem;
 }
 
 .card {
-  padding: 2rem;
-  border-radius: var(--radius-card);
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  position: relative;
+  min-height: 28rem;
+  overflow: clip;
+  padding: 2rem 2.25rem;
+  border-radius: 1.5rem;
+  animation: cardIn 0.55s ease both;
 }
 
-.gray {
-  background-color: var(--color-accent-gray);
+.cardLarge {
+  grid-column: span 12;
 }
 
-.lavender {
-  background-color: var(--color-accent-lavender);
+.cardSmall {
+  grid-column: span 12;
 }
 
-.mint {
-  background-color: var(--color-accent-mint);
+.cardGray {
+  background-color: #f2f2f2;
+}
+
+.cardViolet {
+  background-image: linear-gradient(180deg, #f7f3ff 0%, #e5d7ff 100%);
+}
+
+.cardGreen {
+  background-image: linear-gradient(
+    170deg,
+    var(--foundation-primary-primary-50) 0%,
+    var(--foundation-primary-primary-200) 100%
+  );
+}
+
+.cardHeader {
+  position: relative;
+  z-index: 3;
+  max-width: 16rem;
+  color: rgba(0, 8, 6, 0.55);
 }
 
 .cardTitle {
-  font-size: var(--text-2xl);
+  margin-bottom: 0.35rem;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: var(--font-weight-medium);
   letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  color: var(--color-heading);
 }
 
 .cardDesc {
   font-size: var(--text-sm);
-  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
 }
 
-.phoneMock {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+.cardVisual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.phone {
-  width: 140px;
-  height: 280px;
-  background: var(--color-bg);
-  border-radius: 24px;
-  border: 3px solid var(--color-text);
-  box-shadow: var(--shadow-card);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+.layerPhoneMain {
+  position: absolute;
+  z-index: 4;
+  width: auto;
+  max-width: 46%;
+  height: auto;
+  inset: auto 8% 0 auto;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.18));
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+.layerCardHero {
+  position: absolute;
+  z-index: 3;
+  width: auto;
+  max-width: 58%;
+  height: auto;
+  inset: auto 6% 0 auto;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.14));
+}
+
+.layerCardOverlay {
+  position: absolute;
+  z-index: 6;
+  width: auto;
+  max-width: 42%;
+  height: auto;
+  inset: auto auto 12% 8%;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.16));
+}
+
+.cardSmall .layerCardHero {
+  max-width: 72%;
+  inset: auto 50% 8% auto;
+  transform: translateX(50%);
+}
+
+.cardSmall .layerPhoneMain {
+  max-width: 62%;
+  inset: auto 50% 6% auto;
+  transform: translateX(50%);
+}
+
+.cardSmall .layerCardOverlay {
+  max-width: 48%;
+  inset: auto 6% 10% auto;
+  left: auto;
+}
+
+.card:nth-child(2) .layerCardHero {
+  animation: driftRight 7s ease-in-out infinite;
+}
+
+.card:nth-child(3) .layerPhoneMain {
+  animation: driftLeft 6.5s ease-in-out infinite;
+}
+
+.card:nth-child(4) .layerCardHero {
+  inset: auto auto 0 10%;
+  max-width: 50%;
+}
+
+.card:nth-child(4) .layerCardOverlay {
+  inset: auto 10% 14% auto;
+  max-width: 38%;
+}
+
+.layerFloat {
+  animation: floatDrift 5.5s ease-in-out infinite;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatDrift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes driftRight {
+  0%,
+  100% {
+    transform: translateX(50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(50%) translateY(-8px);
+  }
+}
+
+@keyframes driftLeft {
+  0%,
+  100% {
+    transform: translateX(50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(50%) translateY(-6px);
+  }
+}
+
+@media (min-width: 900px) {
+  .cardLarge {
+    grid-column: span 7;
+  }
+
+  .cardSmall {
+    grid-column: span 5;
+  }
+
+  .card {
+    min-height: 30rem;
+    padding: 2.5rem 3rem;
+  }
+
+  .card:nth-child(1) .layerPhoneMain {
+    max-width: 42%;
+    right: 6%;
+  }
+
+  .card:nth-child(1) .layerCardOverlay {
+    max-width: 36%;
+    bottom: 10%;
+    left: 10%;
+  }
+
+  .card:nth-child(2) .layerCardHero {
+    max-width: 64%;
+    bottom: 6%;
+  }
+
+  .card:nth-child(3) .layerCardOverlay {
+    bottom: 14%;
+    right: 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabPanel,
+  .card,
+  .layerFloat,
+  .card:nth-child(2) .layerCardHero,
+  .card:nth-child(3) .layerPhoneMain {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    min-height: 22rem;
+    padding: 1.5rem;
+  }
+
+  .layerPhoneMain,
+  .layerCardHero {
+    max-width: 58%;
+    right: 4%;
+  }
+
+  .layerCardOverlay {
+    max-width: 46%;
+    left: 4%;
   }
 }

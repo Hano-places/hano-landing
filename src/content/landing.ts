@@ -1,3 +1,5 @@
+import { IMG } from "./images";
+
 export const site = {
   name: "Hano",
   tagline: "Discover Restaurants Around You",
@@ -40,24 +42,21 @@ export const hero = {
   ],
   carouselSlides: [
     {
-      image:
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+      image: IMG.joyfulScene,
       location: "Kiyovu, Kigali",
       date: "Open daily",
       tag: "Trending",
       tagDescription: "Popular spot for burgers and vibes",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      image: IMG.outdoorDining,
       location: "Kimihurura, Kigali",
       date: "Brunch weekends",
       tag: "Local favorite",
       tagDescription: "Social dining and local classics",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+      image: IMG.elegantTable,
       location: "Kiyovu, Kigali",
       date: "Reservations available",
       tag: "Fine dining",
@@ -118,76 +117,84 @@ export const solution = {
     {
       title: "Discover Restaurants",
       description: "Explore top spots across Kigali by neighborhood and popularity.",
-      image: "/restaurants-dishes-images/Joyful Restaurant Scene.png",
+      image: IMG.joyfulScene,
       metrics: [
         {
-          tag: "Trending",
-          name: "Boho",
-          detail: "Kiyovu · 4.9",
-          image: "/restaurants-dishes-images/Gourmet Burger Close-Up.png",
+          tag: "Open now",
+          name: "Garden brunch",
+          detail: "Nyamirambo · 4.7",
+          image: IMG.tropical,
+          placement: { bottom: "16%", right: "6%" },
         },
         {
-          tag: "Trending",
-          name: "Pili Pili",
-          detail: "Kimihurura · 4.8",
-          image: "/restaurants-dishes-images/Sophisticated Dining Setup.png",
+          tag: "Friends pick",
+          name: "Rooftop bites",
+          detail: "8 min away",
+          image: IMG.gourmetBurger,
+          placement: { top: "48%", left: "50%" },
         },
       ],
     },
     {
       title: "Search By Preference",
       description: "Match cuisine, budget, atmosphere, or the occasion.",
-      image: "/places-images/Modern Elegance Café Interior.png",
+      image: IMG.modernCafe,
       metrics: [
         {
           tag: "For you",
-          name: "Brunch spots",
-          detail: "12 places nearby",
-          image: "/restaurants-dishes-images/Creamy Beverage with Nut Garnish.png",
+          name: "Quiet cafés",
+          detail: "5 nearby",
+          image: IMG.creamyDrink,
+          placement: { bottom: "20%", left: "8%" },
         },
         {
-          tag: "For you",
-          name: "Fine dining",
-          detail: "Special occasions",
-          image: "/restaurants-dishes-images/Elegant Table Setting.png",
+          tag: "Mood match",
+          name: "Date night",
+          detail: "Soft jazz · $$$",
+          image: IMG.elegantTable,
+          placement: { top: "34%", right: "7%" },
         },
       ],
     },
     {
       title: "Trusted Recommendations",
       description: "See where locals and food lovers actually go.",
-      image: "/places-images/Outdoor Dining Scene.png",
+      image: IMG.outdoorDining,
       metrics: [
         {
-          tag: "Top rated",
-          name: "Heaven Restaurant",
-          detail: "Kiyovu · 4.8",
-          image: "/restaurants-dishes-images/Cozy Vintage Feast.png",
+          tag: "Local love",
+          name: "Weekly favorite",
+          detail: "42 saves this week",
+          image: IMG.cozy,
+          placement: { top: "26%", right: "5%" },
         },
         {
-          tag: "Top rated",
-          name: "Community pick",
-          detail: "Highly recommended",
-          image: "/restaurants-dishes-images/Appetizing Cheeseburgers on Board.png",
+          tag: "Chef's pick",
+          name: "Seasonal menu",
+          detail: "New this month",
+          image: IMG.sophisticated,
+          placement: { bottom: "14%", left: "9%" },
         },
       ],
     },
     {
       title: "Explore Categories",
       description: "Browse cafés, bars, bakeries, and hidden gems.",
-      image: "/places-images/Inviting Pizza Restaurant Interior.png",
+      image: IMG.pizzaInterior,
       metrics: [
         {
-          tag: "Trending",
-          name: "Burgers",
-          detail: "24 places",
-          image: "/restaurants-dishes-images/Appetizing Cheeseburgers on Board.png",
+          tag: "Hidden gem",
+          name: "Street food lane",
+          detail: "Try tonight",
+          image: IMG.burgers,
+          placement: { bottom: "18%", right: "10%" },
         },
         {
-          tag: "Trending",
-          name: "Cocktails",
-          detail: "Night out",
-          image: "/restaurants-dishes-images/Tropical Refreshments.png",
+          tag: "After work",
+          name: "Cocktail hour",
+          detail: "Trending near you",
+          image: IMG.beachDrink,
+          placement: { top: "40%", left: "6%" },
         },
       ],
     },
@@ -208,8 +215,7 @@ export const featuredRestaurants = {
       priceRange: "$$",
       description:
         "Known for great burgers, vibrant atmosphere, and consistent dining experiences.",
-      image:
-        "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80",
+      image: IMG.gourmetBurger,
     },
     {
       name: "Pili Pili",
@@ -219,8 +225,7 @@ export const featuredRestaurants = {
       priceRange: "$$$",
       description:
         "A Kigali favorite for social dining and local classics.",
-      image:
-        "https://images.unsplash.com/photo-1550966871-3ed3c47c2f62?w=600&q=80",
+      image: IMG.sophisticated,
     },
     {
       name: "Heaven Restaurant",
@@ -230,8 +235,7 @@ export const featuredRestaurants = {
       priceRange: "$$$",
       description:
         "Beautiful views, local flavors, and memorable dining experiences.",
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
+      image: IMG.elegantTable,
     },
   ],
 } as const;
@@ -245,56 +249,16 @@ export const categories = {
   supporting:
     "Whether you're planning a date night, brunch with friends, a quick lunch, or a special celebration, Hano helps you find the right place.",
   items: [
-    {
-      label: "Restaurants",
-      image:
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80",
-    },
-    {
-      label: "Cafés",
-      image:
-        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80",
-    },
-    {
-      label: "Bakeries",
-      image:
-        "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&q=80",
-    },
-    {
-      label: "Brunch Spots",
-      image:
-        "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&q=80",
-    },
-    {
-      label: "Bars",
-      image:
-        "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=200&q=80",
-    },
-    {
-      label: "Lounges",
-      image:
-        "https://images.unsplash.com/photo-1566417713940-7f63e822257d?w=200&q=80",
-    },
-    {
-      label: "Fast Food",
-      image:
-        "https://images.unsplash.com/photo-1561758033-d876a9aade81?w=200&q=80",
-    },
-    {
-      label: "Local Favorites",
-      image:
-        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&q=80",
-    },
-    {
-      label: "Fine Dining",
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=80",
-    },
-    {
-      label: "Hidden Gems",
-      image:
-        "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=200&q=80",
-    },
+    { label: "Restaurants", image: IMG.joyfulScene },
+    { label: "Cafés", image: IMG.modernCafe },
+    { label: "Bakeries", image: IMG.cozy },
+    { label: "Brunch Spots", image: IMG.creamyDrink },
+    { label: "Bars", image: IMG.tropical },
+    { label: "Lounges", image: IMG.sophisticated },
+    { label: "Fast Food", image: IMG.burgers },
+    { label: "Local Favorites", image: IMG.outdoorDining },
+    { label: "Fine Dining", image: IMG.elegantTable },
+    { label: "Hidden Gems", image: IMG.portrait },
   ],
 } as const;
 
@@ -324,6 +288,8 @@ export const testimonials = {
   ],
 } as const;
 
+import { MOCK } from "./images";
+
 export const howItWorks = {
   id: "how-it-works",
   headline: {
@@ -334,26 +300,96 @@ export const howItWorks = {
   },
   supporting:
     "Whether you're looking for your next meal or planning a special night out, everything is designed to flow effortlessly.",
-  steps: [
+  tabs: [
     {
-      title: "Discover",
-      description: "Browse restaurants, categories, and recommendations.",
-      bg: "gray" as const,
+      id: "discover",
+      label: "Discover",
+      cards: [
+        {
+          title: "Discover",
+          description: "Browse places, categories, and what's trending nearby.",
+          variant: "gray" as const,
+          size: "large" as const,
+          layers: [
+            { src: MOCK.iphone, layer: "phoneMain", alt: "Hano home screen" },
+            { src: MOCK.homePlaces, layer: "cardOverlay", alt: "" },
+          ],
+        },
+        {
+          title: "Explore",
+          description: "See details, ratings, and distance at a glance.",
+          variant: "violet" as const,
+          size: "small" as const,
+          layers: [
+            { src: MOCK.homeRecent, layer: "cardHero", alt: "Top places list" },
+          ],
+        },
+        {
+          title: "Save",
+          description: "Keep spots you love on your personal shortlist.",
+          variant: "green" as const,
+          size: "small" as const,
+          layers: [
+            { src: MOCK.previewMenu, layer: "phoneMain", alt: "Menu preview" },
+            { src: MOCK.notification, layer: "cardOverlay", alt: "" },
+          ],
+        },
+        {
+          title: "Share",
+          description: "Recommend gems and help friends decide faster.",
+          variant: "gray" as const,
+          size: "large" as const,
+          layers: [
+            { src: MOCK.review, layer: "cardHero", alt: "Leave a review" },
+            { src: MOCK.kpi, layer: "cardOverlay", alt: "" },
+          ],
+        },
+      ],
     },
     {
-      title: "Explore",
-      description: "View restaurant details, locations, and useful information.",
-      bg: "lavender" as const,
-    },
-    {
-      title: "Save",
-      description: "Keep track of places you want to visit.",
-      bg: "mint" as const,
-    },
-    {
-      title: "Share",
-      description: "Recommend great places and help others discover them.",
-      bg: "gray" as const,
+      id: "enjoy",
+      label: "Enjoy",
+      cards: [
+        {
+          title: "Preview menus",
+          description: "Check dishes and prices before you even arrive.",
+          variant: "gray" as const,
+          size: "large" as const,
+          layers: [
+            { src: MOCK.previewMenu, layer: "phoneMain", alt: "Dish preview" },
+            { src: MOCK.homePlaces, layer: "cardOverlay", alt: "" },
+          ],
+        },
+        {
+          title: "Stay in the loop",
+          description: "Get updates when your table or order is ready.",
+          variant: "violet" as const,
+          size: "small" as const,
+          layers: [
+            { src: MOCK.notification, layer: "cardHero", alt: "Order notification" },
+          ],
+        },
+        {
+          title: "Track the vibe",
+          description: "See what's popular this week around you.",
+          variant: "green" as const,
+          size: "small" as const,
+          layers: [
+            { src: MOCK.homeRecent, layer: "phoneMain", alt: "Recent places" },
+            { src: MOCK.kpi, layer: "cardOverlay", alt: "" },
+          ],
+        },
+        {
+          title: "Rate your visit",
+          description: "Share quick feedback to help the community.",
+          variant: "gray" as const,
+          size: "large" as const,
+          layers: [
+            { src: MOCK.review, layer: "cardHero", alt: "Review screen" },
+            { src: MOCK.iphone, layer: "cardOverlay", alt: "" },
+          ],
+        },
+      ],
     },
   ],
 } as const;
@@ -534,12 +570,12 @@ export const finalCta = {
   cta: "Join Early Access",
   socialProof: "500+ food lovers already signed up for early access",
   floatingImages: [
-    "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=300&q=80",
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&q=80",
-    "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=300&q=80",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=300&q=80",
-    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&q=80",
-    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=80",
+    IMG.gourmetBurger,
+    IMG.elegantTable,
+    IMG.outdoorDining,
+    IMG.joyfulScene,
+    IMG.burgers,
+    IMG.creamyDrink,
   ],
 } as const;
 

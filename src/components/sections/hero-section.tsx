@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { hero } from "@/content/landing";
+import { IMG } from "@/content/images";
+import { publicImageSrc } from "@/lib/public-image";
 import { EmailCaptureForm } from "@/components/forms/waitlist-form";
 import { HeroAppBadge } from "@/components/ui/hero-app-badge";
 import { Container } from "@/components/ui/container";
@@ -11,12 +13,7 @@ import { Section } from "@/components/ui/section";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
 import styles from "./hero-section.module.css";
 
-const avatarUrls = [
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
-  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
-];
+const avatarUrls = [IMG.serene, IMG.portrait, IMG.aerial, IMG.joyfulScene];
 
 export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -40,7 +37,7 @@ export function HeroSection() {
                 {avatarUrls.map((url) => (
                   <Image
                     key={url}
-                    src={url}
+                    src={publicImageSrc(url)}
                     alt=""
                     width={32}
                     height={32}
@@ -63,7 +60,7 @@ export function HeroSection() {
           <div className={styles.carousel}>
             <div className={styles.slide}>
               <Image
-                src={slide.image}
+                src={publicImageSrc(slide.image)}
                 alt="Restaurant preview"
                 fill
                 className={styles.slideImage}

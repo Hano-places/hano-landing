@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { solution } from "@/content/landing";
 import { publicImageSrc } from "@/lib/public-image";
@@ -37,9 +38,13 @@ export function SolutionSection() {
                   {feature.description}
                 </p>
               </div>
-              <div className={styles.metrics} aria-hidden>
+              <div className={styles.metricsLayer} aria-hidden>
                 {feature.metrics.map((metric) => (
-                  <div key={metric.name} className={styles.metric}>
+                  <div
+                    key={`${metric.name}-${metric.detail}`}
+                    className={styles.metric}
+                    style={metric.placement as CSSProperties}
+                  >
                     <Image
                       src={publicImageSrc(metric.image)}
                       alt=""

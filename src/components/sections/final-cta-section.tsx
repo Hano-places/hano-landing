@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { finalCta } from "@/content/landing";
+import { IMG } from "@/content/images";
+import { publicImageSrc } from "@/lib/public-image";
 import { EmailCaptureForm } from "@/components/forms/waitlist-form";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/layout/logo";
@@ -7,11 +9,7 @@ import { Section } from "@/components/ui/section";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
 import styles from "./final-cta-section.module.css";
 
-const avatarUrls = [
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
-  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
-];
+const avatarUrls = [IMG.serene, IMG.portrait, IMG.aerial];
 
 const floatClasses = [
   styles.img1,
@@ -33,7 +31,7 @@ export function FinalCtaSection() {
         {finalCta.floatingImages.map((src, i) => (
           <Image
             key={src}
-            src={src}
+            src={publicImageSrc(src)}
             alt=""
             width={100}
             height={120}
@@ -67,7 +65,7 @@ export function FinalCtaSection() {
             {avatarUrls.map((url) => (
               <Image
                 key={url}
-                src={url}
+                src={publicImageSrc(url)}
                 alt=""
                 width={32}
                 height={32}

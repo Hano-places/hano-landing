@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { categories } from "@/content/landing";
+import { publicImageSrc } from "@/lib/public-image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
@@ -24,7 +25,7 @@ function MarqueeRow({
       {doubled.map((item, i) => (
         <div key={`${item.label}-${i}`} className={styles.item}>
           <Image
-            src={item.image}
+            src={publicImageSrc(item.image)}
             alt=""
             width={48}
             height={48}

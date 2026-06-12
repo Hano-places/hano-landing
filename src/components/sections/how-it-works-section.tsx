@@ -1,16 +1,41 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import { howItWorks } from "@/content/landing";
+import { publicImageSrc } from "@/lib/public-image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
 import styles from "./how-it-works-section.module.css";
 
-const bgClass = {
-  gray: styles.gray,
-  lavender: styles.lavender,
-  mint: styles.mint,
+const variantClass = {
+  gray: styles.cardGray,
+  violet: styles.cardViolet,
+  green: styles.cardGreen,
 } as const;
 
+const sizeClass = {
+  large: styles.cardLarge,
+  small: styles.cardSmall,
+} as const;
+
+const layerClass = {
+  phoneMain: styles.layerPhoneMain,
+  cardHero: styles.layerCardHero,
+  cardOverlay: styles.layerCardOverlay,
+} as const;
+
+type HowItWorksTabId = (typeof howItWorks.tabs)[number]["id"];
+
 export function HowItWorksSection() {
+  const [activeTab, setActiveTab] = useState<HowItWorksTabId>(
+    howItWorks.tabs[0].id,
+  );
+  const tab =
+    howItWorks.tabs.find((t) => t.id === activeTab) ?? howItWorks.tabs[0];
+
   return (
     <Section
       id={howItWorks.id}
@@ -18,28 +43,63 @@ export function HowItWorksSection() {
       ariaLabelledBy="how-heading"
     >
       <Container>
-        <div className={styles.header}>
-          <h2 id="how-heading" className={styles.headline}>
-            {howItWorks.headline.before}{" "}
-            <SerifEmphasis>{howItWorks.headline.emphasis}</SerifEmphasis>
-            {howItWorks.headline.after}{" "}
-            <SerifEmphasis>{howItWorks.headline.emphasis2}</SerifEmphasis>
-          </h2>
-          <p className={styles.supporting}>{howItWorks.supporting}</p>
-        </div>
-        <div className={styles.grid}>
-          {howItWorks.steps.map((step) => (
-            <article
-              key={step.title}
-              className={`${styles.card} ${bgClass[step.bg]}`}
-            >
-              <div className={styles.phoneMock}>
-                <div className={styles.phone}>Hano app</div>
-              </div>
-              <h3 className={styles.cardTitle}>{step.title}</h3>
-              <p className={styles.cardDesc}>{step.description}</p>
-            </article>
-          ))}
+        <div className={styles.contentBlock}>
+          <div className={styles.header}>
+            <h2 id="how-heading" className={styles.headline}>
+              {howItWorks.headline.before}{" "}
+              <SerifEmphasis>{howItWorks.headline.emphasis}</SerifEmphasis>
+              {howItWorks.headline.after}{" "}
+              <SerifEmphasis>{howItWorks.headline.emphasis2}</SerifEmphasis>
+            </h2>
+            <p className={styles.supporting}>{howItWorks.supporting}</p>
+            <SegmentedControl
+              options={howItWorks.tabs.map((t) => t.label)}
+              value={tab.label}
+              onChange={(label) => {
+                const next = howItWorks.tabs.find((t) => t.label === label);
+                if (next) setActiveTab(next.id);
+              }}
+              ariaLabel="How Hano works modes"
+            />
+          </div>
+
+          <div
+            key={tab.id}
+            className={styles.tabPanel}
+            role="tabpanel"
+            aria-label={tab.label}
+          >
+            <div className={styles.grid}>
+              {tab.cards.map((card, index) => (
+                <article
+                  key={card.title}
+                  className={`${styles.card} ${variantClass[card.variant]} ${sizeClass[card.size]}`}
+                  style={{ animationDelay: `${index * 0.08}s` }}
+                >
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>{card.title}</h3>
+                    <p className={styles.cardDesc}>{card.description}</p>
+                  </div>
+                  <div className={styles.cardVisual} aria-hidden>
+                    {card.layers.map((layer) => (
+                      <Image
+                        key={`${layer.src}-${layer.layer}`}
+                        src={publicImageSrc(layer.src)}
+                        alt={layer.alt}
+                        width={layer.layer === "phoneMain" ? 320 : 280}
+                        height={layer.layer === "phoneMain" ? 640 : 360}
+                        className={`${layerClass[layer.layer]} ${
+                          layer.layer === "cardOverlay"
+                            ? styles.layerFloat
+                            : ""
+                        }`.trim()}
+                      />
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </Section>

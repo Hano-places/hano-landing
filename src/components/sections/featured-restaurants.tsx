@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { featuredRestaurants } from "@/content/landing";
+import { publicImageSrc } from "@/lib/public-image";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { Section } from "@/components/ui/section";
@@ -24,7 +25,7 @@ export function FeaturedRestaurantsSection() {
             <article key={restaurant.name} className={styles.card} role="listitem">
               <div className={styles.imageWrap}>
                 <Image
-                  src={restaurant.image}
+                  src={publicImageSrc(restaurant.image)}
                   alt={restaurant.name}
                   fill
                   className={styles.image}
