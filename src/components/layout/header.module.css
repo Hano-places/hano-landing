@@ -3,7 +3,7 @@
   top: 0;
   z-index: 100;
   height: var(--header-height);
-  background-color: var(--color-bg);
+  background-color: var(--color-surface-primary);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -58,7 +58,7 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem var(--container-padding) 1.5rem;
-  background-color: var(--color-bg);
+  background-color: var(--color-surface-primary);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -90,8 +90,12 @@
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--color-text-secondary);
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border-soft);
+  background-color: var(--color-surface-primary-25);
+  border: 1px solid color-mix(
+    in srgb,
+    var(--foundation-primary-primary-100) 55%,
+    white
+  );
   border-radius: var(--radius-pill);
   transition:
     background-color var(--transition-fast),
@@ -101,8 +105,12 @@
 
 .ctaLink:hover {
   color: var(--color-text);
-  background-color: var(--color-surface);
-  border-color: var(--color-border);
+  background-color: var(--color-surface-primary);
+  border-color: color-mix(
+    in srgb,
+    var(--foundation-primary-primary-200) 45%,
+    white
+  );
 }
 
 @media (min-width: 900px) {

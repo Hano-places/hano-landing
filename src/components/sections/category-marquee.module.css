@@ -1,11 +1,39 @@
 .section {
+  position: relative;
   padding: var(--section-padding-y) 0;
   overflow: hidden;
+  background-image: url("/restaurants-dishes-images/Summery%20Beverage%20on%20Sandy%20Beach.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .header {
   text-align: center;
   margin-bottom: 3rem;
+}
+
+.glassPanel {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 2.25rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
 }
 
 .headline {
@@ -52,12 +80,18 @@
   align-items: center;
   gap: 0.75rem;
   flex-shrink: 0;
+  padding: 0.5rem 1.125rem 0.5rem 0.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-soft);
 }
 
 .thumb {
   width: 3rem;
   height: 3rem;
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   object-fit: cover;
 }
 
@@ -86,5 +120,11 @@
 
   .marquee {
     mask-image: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .glassPanel {
+    padding: 1.5rem 1.25rem;
   }
 }

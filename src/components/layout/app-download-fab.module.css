@@ -4,47 +4,77 @@
   bottom: 1.5rem;
   z-index: 90;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
   padding: 0.375rem;
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
 }
 
 .storeBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  color: var(--color-text);
-  background-color: var(--color-surface);
-  border-radius: 50%;
+  display: block;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #a6a6a6;
+  border-radius: 0.5rem;
   transition:
     transform var(--transition-fast),
     background-color var(--transition-fast);
 }
 
 .storeBtn:hover {
-  transform: scale(1.05);
-  background-color: var(--color-accent-gray);
+  transform: scale(1.02);
+  background-color: #1a1a1a;
 }
 
-.logo {
-  width: 1.25rem;
-  height: 1.25rem;
+.badgeContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  min-width: 8.75rem;
 }
 
-.playLogo {
-  width: 1.35rem;
-  height: 1.35rem;
+.badgeContent svg {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.badgeContent > span:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+.badgeContent > span:last-child > span {
+  font-size: 0.5625rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.badgeContent > span:last-child > strong {
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
 }
 
 @media (max-width: 480px) {
   .fab {
     right: 1rem;
     bottom: 1rem;
+    left: 1rem;
+  }
+
+  .storeBtn {
+    width: 100%;
+  }
+
+  .badgeContent {
+    width: 100%;
+    min-width: 0;
   }
 }

@@ -2,42 +2,85 @@ type LogoProps = {
   className?: string;
 };
 
-export function AppStoreLogo({ className }: LogoProps) {
+export function AppleLogo({ className }: LogoProps) {
   return (
     <svg
       className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       aria-hidden
     >
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.63 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+      <path
+        d="M13.5864 5.4544C13.4937 5.5264 11.8584 6.4496 11.8584 8.5024C11.8584 10.8768 13.9393 11.7168 14.0016 11.7376C13.992 11.7888 13.671 12.888 12.9044 14.008C12.2209 14.9936 11.507 15.9776 10.421 15.9776C9.33501 15.9776 9.05553 15.3456 7.80184 15.3456C6.5801 15.3456 6.1457 15.9984 5.15233 15.9984C4.15897 15.9984 3.46585 15.0864 2.66892 13.9664C1.74582 12.6512 1 10.608 1 8.6688C1 5.5584 3.01867 3.9088 5.00541 3.9088C6.06106 3.9088 6.94103 4.6032 7.60381 4.6032C8.23464 4.6032 9.21843 3.8672 10.4194 3.8672C10.8746 3.8672 12.5099 3.9088 13.5864 5.4544ZM9.84926 2.5504C10.3459 1.96 10.6973 1.1408 10.6973 0.3216C10.6973 0.208 10.6877 0.0928 10.667 0C9.85884 0.0304 8.89742 0.5392 8.31769 1.2128C7.86253 1.7312 7.43771 2.5504 7.43771 3.3808C7.43771 3.5056 7.45848 3.6304 7.46806 3.6704C7.51916 3.68 7.60221 3.6912 7.68526 3.6912C8.41032 3.6912 9.32224 3.2048 9.84926 2.5504Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
 
-export function PlayStoreLogo({ className }: LogoProps) {
+export function GooglePlayLogo({ className }: LogoProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
       <path
-        fill="#4285F4"
-        d="M3.6 2.4c-.3.2-.5.6-.5 1v17.2c0 .4.2.8.5 1l.1.1 9.6-9.6v-.2L3.7 2.3l-.1.1z"
-      />
-      <path
-        fill="#34A853"
-        d="M16.9 14.3l-3.2-3.2-.2.2v.1l3.2 3.2 3.8-2.1c.7-.4.7-1 0-1.4l-3.8-2.1z"
+        fill="#EA4335"
+        d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"
       />
       <path
         fill="#FBBC04"
-        d="M16.9 9.7l-3.2 3.2.2.2 3.2-3.2L20.7 8c.7.4.7 1 0 1.4l-3.8 2.3z"
-      />
-      <path
-        fill="#EA4335"
-        d="M3.6 21.6c.3.2.7.3 1.1.1l13.2-7.6-3.8-2.2-10.5 9.7z"
+        d="M16.066 8.207 13.792 12l2.274 3.793 6.215-3.594a1.05 1.05 0 0 0 0-1.822l-6.215-3.17z"
       />
       <path
         fill="#4285F4"
-        d="M3.6 2.4l10.5 9.7 3.8-2.2L4.7 2.3c-.4-.2-.8-.1-1.1.1z"
+        d="M13.792 12 3.609 22.186a1 1 0 0 0 1.577.814l10.606-6.15L13.792 12z"
+      />
+      <path
+        fill="#34A853"
+        d="M13.792 12 3.609 1.814 15.215 5.964 13.792 12z"
       />
     </svg>
+  );
+}
+
+/** @deprecated Use AppleLogo */
+export function AppStoreLogo({ className }: LogoProps) {
+  return <AppleLogo className={className} />;
+}
+
+/** @deprecated Use GooglePlayLogo */
+export function PlayStoreLogo({ className }: LogoProps) {
+  return <GooglePlayLogo className={className} />;
+}
+
+type DownloadBadgeProps = {
+  className?: string;
+};
+
+export function AppStoreDownloadBadge({ className }: DownloadBadgeProps) {
+  return (
+    <span className={className} aria-hidden>
+      <AppleLogo />
+      <span>
+        <span>Download on the</span>
+        <strong>App Store</strong>
+      </span>
+    </span>
+  );
+}
+
+export function PlayStoreDownloadBadge({ className }: DownloadBadgeProps) {
+  return (
+    <span className={className} aria-hidden>
+      <GooglePlayLogo />
+      <span>
+        <span>GET IT ON</span>
+        <strong>Google Play</strong>
+      </span>
+    </span>
   );
 }

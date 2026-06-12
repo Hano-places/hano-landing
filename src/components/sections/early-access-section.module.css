@@ -1,6 +1,7 @@
 .section {
   position: relative;
-  padding: var(--section-padding-y) 0;
+  padding: var(--section-padding-y) 0 3rem;
+  background-color: #ffffff;
 }
 
 .anchor {
@@ -35,7 +36,7 @@
 
 .formInner {
   padding: 2rem;
-  background: var(--color-bg);
+  background: #ffffff;
   border-radius: var(--radius-card);
 }
 
@@ -50,7 +51,7 @@
 @media (min-width: 900px) {
   .section {
     /* Tall pin zone: headline + form stay fixed while page scrolls through */
-    min-height: calc(100dvh + 40vh);
+    min-height: calc(100dvh + 12vh);
   }
 
   .grid {
@@ -76,7 +77,7 @@
     z-index: 2;
     margin-bottom: 0;
     padding-bottom: 1.25rem;
-    background-color: var(--color-bg);
+    background-color: #ffffff;
   }
 
   .faqScroll {

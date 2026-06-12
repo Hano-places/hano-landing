@@ -50,11 +50,13 @@ export function CategoryMarqueeSection() {
     >
       <Container>
         <div className={styles.header}>
-          <h2 id="categories-heading" className={styles.headline}>
-            {categories.headline.before}{" "}
-            <SerifEmphasis>{categories.headline.emphasis}</SerifEmphasis>
-          </h2>
-          <p className={styles.supporting}>{categories.supporting}</p>
+          <div className={styles.glassPanel}>
+            <h2 id="categories-heading" className={styles.headline}>
+              {categories.headline.before}{" "}
+              <SerifEmphasis>{categories.headline.emphasis}</SerifEmphasis>
+            </h2>
+            <p className={styles.supporting}>{categories.supporting}</p>
+          </div>
         </div>
       </Container>
       <div className={styles.marquee}>

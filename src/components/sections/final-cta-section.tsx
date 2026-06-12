@@ -42,8 +42,8 @@ export function FinalCtaSection() {
           />
         ))}
 
-        <div className={styles.iconWrap}>
-          <Logo showText={false} />
+        <div className={styles.logoWrap}>
+          <Logo showText={false} size="lg" />
         </div>
 
         <h2 id="final-cta-heading" className={styles.headline}>

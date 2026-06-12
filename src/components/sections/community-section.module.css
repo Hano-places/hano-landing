@@ -5,7 +5,7 @@
 .card {
   padding: 3rem 2rem;
   border-radius: var(--radius-card-lg);
-  background-color: var(--color-accent-mint);
+  background-color: var(--foundation-primary-primary-200);
   text-align: center;
 }
 
@@ -37,7 +37,8 @@
 .benefit {
   padding: 0.5rem 1rem;
   font-size: var(--text-sm);
-  background: var(--color-bg);
+  color: var(--color-heading);
+  background: var(--color-brand-accent);
   border-radius: var(--radius-pill);
 }
 
@@ -55,5 +56,5 @@
 }
 
 .cta:hover {
-  opacity: 0.88;
+  background-color: var(--foundation-green-green-600);
 }

@@ -1,6 +1,9 @@
+@import "../../docs/colors.css";
+
 :root {
   /* Base */
-  --color-bg: #ffffff;
+  --color-surface-primary: var(--foundation-primary-primary-50);
+  --color-bg: var(--color-surface-primary);
   --color-text: #1a1a1a;
   --color-text-secondary: #6b6b6b;
   --color-text-muted: #9a9a9a;
@@ -12,12 +15,22 @@
   --color-accent-mint: #e8f8f0;
   --color-accent-lavender: #f3f0ff;
 
-  /* Hano brand (swappable) */
-  --color-brand-primary: #001814;
-  --color-brand-secondary: #c8ff62;
-  --color-brand-accent: #eeffce;
-  --color-cta: #000000;
-  --color-cta-text: #ffffff;
+  /* Hano brand — mapped from docs/colors.css */
+  --color-primary-500: var(--foundation-primary-primary-500);
+  --color-green-500: var(--foundation-green-green-500);
+  --color-green-800: var(--foundation-green-green-800);
+  --color-heading: var(--foundation-green-green-800);
+  --color-brand-primary: var(--foundation-green-green-500);
+  --color-brand-secondary: var(--foundation-primary-primary-500);
+  --color-brand-accent: var(--foundation-primary-primary-100);
+  --color-cta: var(--foundation-green-green-500);
+  --color-cta-text: var(--foundation-primary-primary-500);
+  --color-surface-green: var(--foundation-green-green-50);
+  --color-surface-primary-25: color-mix(
+    in srgb,
+    var(--foundation-primary-primary-50) 40%,
+    white
+  );
 
   /* Gradients */
   --gradient-form-border: linear-gradient(

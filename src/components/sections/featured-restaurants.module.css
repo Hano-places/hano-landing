@@ -1,5 +1,6 @@
 .section {
   padding: var(--section-padding-y) 0;
+  background-color: #ffffff;
 }
 
 .header {

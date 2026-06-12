@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { hero } from "@/content/landing";
 import { EmailCaptureForm } from "@/components/forms/waitlist-form";
-import { Badge } from "@/components/ui/badge";
+import { HeroAppBadge } from "@/components/ui/hero-app-badge";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { Section } from "@/components/ui/section";
@@ -27,7 +27,7 @@ export function HeroSection() {
       <Container>
         <div className={styles.grid}>
           <div className={styles.content}>
-            <Badge>{hero.badge}</Badge>
+            <HeroAppBadge />
             <h1 id="hero-heading" className={styles.headline}>
               {hero.headline.before}{" "}
               <SerifEmphasis>{hero.headline.emphasis}</SerifEmphasis>,{" "}

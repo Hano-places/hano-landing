@@ -10,7 +10,6 @@ import { CategoryMarqueeSection } from "@/components/sections/category-marquee";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { CommunitySection } from "@/components/sections/community-section";
-import { ComingSoonSection } from "@/components/sections/coming-soon-section";
 import { EarlyAccessSection } from "@/components/sections/early-access-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 
@@ -28,7 +27,6 @@ export default function Home() {
           <TestimonialsSection />
           <HowItWorksSection />
           <CommunitySection />
-          <ComingSoonSection />
           <EarlyAccessSection />
           <FinalCtaSection />
         </main>

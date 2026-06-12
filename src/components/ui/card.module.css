@@ -5,6 +5,15 @@
   padding: 1.5rem;
 }
 
+.cardPrimary25 {
+  background-color: var(--color-surface-primary-25);
+  border-color: color-mix(
+    in srgb,
+    var(--foundation-primary-primary-100) 55%,
+    white
+  );
+}
+
 .iconBox {
   display: inline-flex;
   align-items: center;

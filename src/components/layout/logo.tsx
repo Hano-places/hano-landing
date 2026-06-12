@@ -1,16 +1,34 @@
+import Image from "next/image";
 import styles from "./logo.module.css";
+
+const LOGO_MARK = "/brand-logo/small.png";
+const LOGO_MARK_LARGE = "/brand-logo/large.png";
 
 type LogoProps = {
   showText?: boolean;
+  size?: "sm" | "md" | "lg";
 };
 
-export function Logo({ showText = true }: LogoProps) {
+const MARK_SIZES = {
+  sm: 32,
+  md: 40,
+  lg: 64,
+} as const;
+
+export function Logo({ showText = true, size = "sm" }: LogoProps) {
+  const markSize = MARK_SIZES[size];
+  const useLargeAsset = size === "lg";
+
   return (
     <div className={styles.logo}>
-      <span className={styles.mark} aria-hidden>
-        <span className={styles.circle} />
-        <span className={styles.line} />
-      </span>
+      <Image
+        src={useLargeAsset ? LOGO_MARK_LARGE : LOGO_MARK}
+        alt={showText ? "" : "Hano"}
+        width={markSize}
+        height={markSize}
+        className={`${styles.mark} ${styles[size]}`.trim()}
+        priority={size !== "lg"}
+      />
       {showText && <span className={styles.text}>Hano</span>}
     </div>
   );

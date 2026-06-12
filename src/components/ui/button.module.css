@@ -29,7 +29,8 @@
 }
 
 .solid:hover:not(:disabled) {
-  opacity: 0.88;
+  background-color: var(--foundation-green-green-600);
+  border-color: var(--foundation-green-green-600);
 }
 
 .outline {

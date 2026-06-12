@@ -11,7 +11,7 @@ export function Footer() {
         <Container>
           <div className={styles.topBlock}>
             <div className={styles.brand}>
-              <Logo />
+              <Logo size="md" />
               <p>{footer.tagline}</p>
             </div>
             <div className={styles.column}>

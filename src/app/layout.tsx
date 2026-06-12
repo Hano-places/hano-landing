@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Hano — Discover The Best Restaurants In Kigali",
   description:
     "Hano helps you discover restaurants, cafés, bakeries, brunch spots, bars, and hidden gems across Kigali. Join the waitlist for early access.",
+  icons: {
+    icon: "/brand-logo/small.png",
+    apple: "/brand-logo/large.png",
+  },
   openGraph: {
     title: "Hano — Discover The Best Restaurants In Kigali",
     description:

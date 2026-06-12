@@ -29,6 +29,7 @@
   font-weight: var(--font-weight-display);
   letter-spacing: -0.03em;
   line-height: var(--leading-tight);
+  color: var(--color-heading);
 }
 
 .section-top-margin {

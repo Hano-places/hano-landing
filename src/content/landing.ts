@@ -21,7 +21,7 @@ export const navLinks = [
 ] as const;
 
 export const hero = {
-  badge: "Mobile app launching soon in Kigali",
+  badge: "Now on iOS & Android",
   headline: {
     before: "Discover. Explore. Eat.",
     emphasis: "Finally",
@@ -113,40 +113,83 @@ export const solution = {
   id: "solution",
   headline: "Meet Hano",
   supporting:
-    "Hano brings restaurant discovery into one simple platform. Search, browse, explore, and discover restaurants through curated recommendations, community insights, and useful restaurant information.",
+    "Restaurant discovery in one simple platform — curated picks, community insights, and the details that matter.",
   features: [
     {
-      icon: "restaurant" as const,
       title: "Discover Restaurants",
-      description:
-        "Explore restaurants across Kigali by category, location, and popularity.",
+      description: "Explore top spots across Kigali by neighborhood and popularity.",
+      image: "/restaurants-dishes-images/Joyful Restaurant Scene.png",
+      metrics: [
+        {
+          tag: "Trending",
+          name: "Boho",
+          detail: "Kiyovu · 4.9",
+          image: "/restaurants-dishes-images/Gourmet Burger Close-Up.png",
+        },
+        {
+          tag: "Trending",
+          name: "Pili Pili",
+          detail: "Kimihurura · 4.8",
+          image: "/restaurants-dishes-images/Sophisticated Dining Setup.png",
+        },
+      ],
     },
     {
-      icon: "search" as const,
       title: "Search By Preference",
-      description:
-        "Find places based on cuisine, budget, atmosphere, or occasion.",
+      description: "Match cuisine, budget, atmosphere, or the occasion.",
+      image: "/places-images/Modern Elegance Café Interior.png",
+      metrics: [
+        {
+          tag: "For you",
+          name: "Brunch spots",
+          detail: "12 places nearby",
+          image: "/restaurants-dishes-images/Creamy Beverage with Nut Garnish.png",
+        },
+        {
+          tag: "For you",
+          name: "Fine dining",
+          detail: "Special occasions",
+          image: "/restaurants-dishes-images/Elegant Table Setting.png",
+        },
+      ],
     },
     {
-      icon: "grid" as const,
-      title: "Explore Categories",
-      description:
-        "Browse cafés, bakeries, brunch spots, bars, lounges, and more.",
-    },
-    {
-      icon: "shield" as const,
       title: "Trusted Recommendations",
-      description: "Discover places recommended by real people.",
+      description: "See where locals and food lovers actually go.",
+      image: "/places-images/Outdoor Dining Scene.png",
+      metrics: [
+        {
+          tag: "Top rated",
+          name: "Heaven Restaurant",
+          detail: "Kiyovu · 4.8",
+          image: "/restaurants-dishes-images/Cozy Vintage Feast.png",
+        },
+        {
+          tag: "Top rated",
+          name: "Community pick",
+          detail: "Highly recommended",
+          image: "/restaurants-dishes-images/Appetizing Cheeseburgers on Board.png",
+        },
+      ],
     },
     {
-      icon: "heart" as const,
-      title: "Save Favorites",
-      description: "Create your personal list of places to visit.",
-    },
-    {
-      icon: "sparkles" as const,
-      title: "Stay Updated",
-      description: "See trending restaurants and newly discovered spots.",
+      title: "Explore Categories",
+      description: "Browse cafés, bars, bakeries, and hidden gems.",
+      image: "/places-images/Inviting Pizza Restaurant Interior.png",
+      metrics: [
+        {
+          tag: "Trending",
+          name: "Burgers",
+          detail: "24 places",
+          image: "/restaurants-dishes-images/Appetizing Cheeseburgers on Board.png",
+        },
+        {
+          tag: "Trending",
+          name: "Cocktails",
+          detail: "Night out",
+          image: "/restaurants-dishes-images/Tropical Refreshments.png",
+        },
+      ],
     },
   ],
 } as const;

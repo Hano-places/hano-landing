@@ -1,5 +1,8 @@
 import { site } from "@/content/landing";
-import { AppStoreLogo, PlayStoreLogo } from "@/components/ui/store-logos";
+import {
+  AppStoreDownloadBadge,
+  PlayStoreDownloadBadge,
+} from "@/components/ui/store-logos";
 import styles from "./app-download-fab.module.css";
 
 export function AppDownloadFab() {
@@ -12,7 +15,7 @@ export function AppDownloadFab() {
         rel="noopener noreferrer"
         aria-label="Download on the App Store"
       >
-        <AppStoreLogo className={styles.logo} />
+        <AppStoreDownloadBadge className={styles.badgeContent} />
       </a>
       <a
         href={site.playStoreUrl}
@@ -21,7 +24,7 @@ export function AppDownloadFab() {
         rel="noopener noreferrer"
         aria-label="Get it on Google Play"
       >
-        <PlayStoreLogo className={styles.playLogo} />
+        <PlayStoreDownloadBadge className={styles.badgeContent} />
       </a>
     </div>
   );
