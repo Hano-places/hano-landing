@@ -9,7 +9,7 @@ export function HeroAppBadge() {
         <span className={styles.iconWrap}>
           <AppleLogo className={styles.icon} />
         </span>
-        <span className={styles.iconWrap}>
+        <span className={`${styles.iconWrap} ${styles.playIconWrap}`}>
           <GooglePlayLogo className={styles.playIcon} />
         </span>
       </div>

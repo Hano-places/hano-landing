@@ -1,47 +1,80 @@
 import Link from "next/link";
-import { footer, site } from "@/content/landing";
+import { footer } from "@/content/landing";
 import { Container } from "@/components/ui/container";
 import { Logo } from "./logo";
+import { FooterSubscribe } from "./footer-subscribe";
 import styles from "./footer.module.css";
+
+function FooterLink({
+  href,
+  label,
+  external,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {label}
+      </a>
+    );
+  }
+
+  if (href.startsWith("#") || href.startsWith("/")) {
+    return <Link href={href}>{label}</Link>;
+  }
+
+  return <a href={href}>{label}</a>;
+}
 
 export function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.top}>
+      <div className={styles.shell}>
         <Container>
-          <div className={styles.topBlock}>
-            <div className={styles.brand}>
-              <Logo size="md" />
-              <p>{footer.tagline}</p>
+          <div className={styles.box}>
+            <div className={styles.main}>
+              <div className={styles.top}>
+                <div className={styles.brand}>
+                  <Logo size="md" tone="light" />
+                  <p className={styles.tagline}>{footer.tagline}</p>
+                </div>
+
+                <div className={styles.subscribe}>
+                  <h3 className={styles.columnTitle}>{footer.subscribe.title}</h3>
+                  <FooterSubscribe />
+                </div>
+              </div>
+
+              <div className={styles.divider} aria-hidden />
+
+              <div className={styles.columns}>
+                {footer.columns.map((column) => (
+                  <div key={column.title} className={styles.column}>
+                    <h3 className={styles.columnTitle}>{column.title}</h3>
+                    <ul className={styles.linkList}>
+                      {column.links.map((link) => (
+                        <li key={`${column.title}-${link.label}`}>
+                          <FooterLink
+                            href={link.href}
+                            label={link.label}
+                            external={
+                              "external" in link ? link.external : undefined
+                            }
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className={styles.column}>
-              <h3>Sitemap</h3>
-              {footer.sitemap.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  {link.label}
-                </Link>
-              ))}
+
+            <div className={styles.bottom}>
+              <p className={styles.copyright}>{footer.copyright}</p>
             </div>
-            <div className={styles.column}>
-              <h3>Email</h3>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </div>
-          </div>
-        </Container>
-      </div>
-      <div className={styles.bottom}>
-        <Container className={styles.bottomInner}>
-          <p>{footer.copyright}</p>
-          <div className={styles.socials}>
-            <span>Follow us:</span>
-            <a
-              href={site.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              Instagram
-            </a>
           </div>
         </Container>
       </div>

@@ -612,12 +612,42 @@ export const finalCta = {
 } as const;
 
 export const footer = {
-  tagline: "From the team building Hano — made by people who love discovering great food.",
-  sitemap: [
-    { label: "Discover", href: "#hero" },
-    { label: "Restaurants", href: "#restaurants" },
-    { label: "Categories", href: "#categories" },
-    { label: "Community", href: "#community" },
+  tagline:
+    "From the team building Hano — made by people who love discovering great food.",
+  subscribe: {
+    title: "Subscribe for updates",
+    placeholder: "Enter your email",
+    cta: "Join waitlist",
+  },
+  columns: [
+    {
+      title: "Links",
+      links: [
+        { label: "Discover", href: "#hero" },
+        { label: "Restaurants", href: "#restaurants" },
+        { label: "Categories", href: "#categories" },
+        { label: "Community", href: "#community" },
+      ],
+    },
+    {
+      title: "Learn",
+      links: [
+        { label: "How it works", href: "#how-it-works" },
+        { label: "Early access", href: "#early-access" },
+        { label: "FAQ", href: "#faq" },
+      ],
+    },
+    {
+      title: "Contact",
+      links: [
+        { label: site.email, href: `mailto:${site.email}` },
+        {
+          label: "Instagram",
+          href: site.social.instagram,
+          external: true,
+        },
+      ],
+    },
   ],
   copyright: "© 2026 Hano. Made with love in Kigali.",
 } as const;

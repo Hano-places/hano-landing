@@ -63,12 +63,14 @@ export function AppStoreDownloadBadge({ className }: DownloadBadgeProps) {
 
 export function PlayStoreDownloadBadge({ className }: DownloadBadgeProps) {
   return (
-    <span className={className} aria-hidden>
-      <GooglePlayLogo />
-      <span>
-        <span>GET IT ON</span>
-        <strong>Google Play</strong>
-      </span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element -- official Google Play badge asset
+    <img
+      src={STORE.googlePlay}
+      alt=""
+      width={180}
+      height={53}
+      className={className}
+      aria-hidden
+    />
   );
 }

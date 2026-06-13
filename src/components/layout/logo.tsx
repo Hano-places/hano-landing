@@ -7,6 +7,7 @@ const LOGO_MARK_LARGE = "/brand-logo/large.png";
 type LogoProps = {
   showText?: boolean;
   size?: "sm" | "md" | "lg";
+  tone?: "default" | "light";
 };
 
 const MARK_SIZES = {
@@ -15,7 +16,7 @@ const MARK_SIZES = {
   lg: 64,
 } as const;
 
-export function Logo({ showText = true, size = "sm" }: LogoProps) {
+export function Logo({ showText = true, size = "sm", tone = "default" }: LogoProps) {
   const markSize = MARK_SIZES[size];
   const useLargeAsset = size === "lg";
 
@@ -29,7 +30,13 @@ export function Logo({ showText = true, size = "sm" }: LogoProps) {
         className={`${styles.mark} ${styles[size]}`.trim()}
         priority={size !== "lg"}
       />
-      {showText && <span className={styles.text}>Hano</span>}
+      {showText && (
+        <span
+          className={`${styles.text}${tone === "light" ? ` ${styles.textLight}` : ""}`}
+        >
+          Hano
+        </span>
+      )}
     </div>
   );
 }

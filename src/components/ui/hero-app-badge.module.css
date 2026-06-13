@@ -43,6 +43,11 @@
 .playIcon {
   object-fit: contain;
   object-position: center;
+  transform: translateY(2px);
+}
+
+.playIconWrap {
+  align-self: center;
 }
 
 .text {

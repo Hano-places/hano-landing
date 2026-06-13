@@ -12,9 +12,18 @@ import styles from "./waitlist-form.module.css";
 type EmailFormProps = {
   cta: string;
   compact?: boolean;
+  className?: string;
+  source?: string;
+  placeholder?: string;
 };
 
-export function EmailCaptureForm({ cta, compact = false }: EmailFormProps) {
+export function EmailCaptureForm({
+  cta,
+  compact = false,
+  className,
+  source = "email-capture",
+  placeholder = "Enter your email",
+}: EmailFormProps) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">(
@@ -35,7 +44,7 @@ export function EmailCaptureForm({ cta, compact = false }: EmailFormProps) {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "email-capture" }),
+        body: JSON.stringify({ email, source }),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
@@ -56,7 +65,7 @@ export function EmailCaptureForm({ cta, compact = false }: EmailFormProps) {
 
   return (
     <form
-      className={`${styles.emailForm} ${compact ? styles.compact : ""}`}
+      className={`${styles.emailForm} ${compact ? styles.compact : ""}${className ? ` ${className}` : ""}`}
       onSubmit={handleSubmit}
       noValidate
     >
@@ -64,7 +73,7 @@ export function EmailCaptureForm({ cta, compact = false }: EmailFormProps) {
         id="email-capture"
         type="email"
         name="email"
-        placeholder="Enter your email"
+        placeholder={placeholder}
         autoComplete="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
