@@ -33,8 +33,23 @@
 }
 
 .icon {
+  display: block;
   width: 100%;
   height: 100%;
+}
+
+.playIconWrap {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+
+.playIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: translateY(0.5px);
 }
 
 .text {

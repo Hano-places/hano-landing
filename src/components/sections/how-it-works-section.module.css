@@ -32,7 +32,7 @@
   line-height: var(--leading-relaxed);
 }
 
-.tabPanel {
+.cardsPanel {
   animation: panelIn 0.4s ease both;
 }
 
@@ -309,7 +309,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tabPanel,
+  .cardsPanel,
   .card {
     animation: none;
   }

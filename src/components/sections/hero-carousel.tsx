@@ -3,11 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller, Autoplay } from "swiper/modules";
+import { Controller } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { hero } from "@/content/landing";
 import { publicImageSrc } from "@/lib/public-image";
-import { Icon } from "@/components/ui/icon";
 import styles from "./hero-section.module.css";
 
 import "swiper/css";
@@ -52,18 +51,13 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
           <div className={styles.mainSwiperWrap}>
             <Swiper
               className={styles.mainSwiper}
-              modules={[Controller, Autoplay]}
+              modules={[Controller]}
               controller={{ control: cardSwiper }}
               slidesPerView={1}
               spaceBetween={24}
               speed={600}
               grabCursor
               loop
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
               observer
               observeParents
               resizeObserver
@@ -122,8 +116,16 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
                     <Image
                       src={publicImageSrc(slide.card)}
                       alt=""
-                      width={640}
-                      height={320}
+                      width={
+                        "cardSize" in slide && slide.cardSize === "phone"
+                          ? 320
+                          : 640
+                      }
+                      height={
+                        "cardSize" in slide && slide.cardSize === "phone"
+                          ? 640
+                          : 320
+                      }
                       sizes="(max-width: 900px) 55vw, 22rem"
                       className={`${styles.secondSlideImage}${
                         "cardSize" in slide && slide.cardSize === "phone"
@@ -136,17 +138,6 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
-        </div>
-
-        <div className={styles.glassTop}>
-          <div className={styles.glassRow}>
-            <Icon name="location" size={16} />
-            <span>{activeSlide.location}</span>
-          </div>
-          <div className={styles.glassRow}>
-            <Icon name="calendar" size={16} />
-            <span>{activeSlide.date}</span>
           </div>
         </div>
 
@@ -207,17 +198,6 @@ export function HeroCarouselFallback() {
                 priority
               />
             </div>
-          </div>
-        </div>
-
-        <div className={styles.glassTop}>
-          <div className={styles.glassRow}>
-            <Icon name="location" size={16} />
-            <span>{slide.location}</span>
-          </div>
-          <div className={styles.glassRow}>
-            <Icon name="calendar" size={16} />
-            <span>{slide.date}</span>
           </div>
         </div>
 

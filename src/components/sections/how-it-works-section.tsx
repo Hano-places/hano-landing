@@ -50,7 +50,7 @@ export function HowItWorksSection() {
             <p className={styles.supporting}>{howItWorks.supporting}</p>
           </div>
 
-          <div className={styles.tabPanel}>
+          <div className={styles.cardsPanel}>
             <div className={styles.grid}>
               {howItWorks.cards.map((card, index) => (
                 <article
