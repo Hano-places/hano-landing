@@ -19,12 +19,12 @@ export function AppDownloadFab() {
       </a>
       <a
         href={site.playStoreUrl}
-        className={styles.storeBtn}
+        className={`${styles.storeBtn} ${styles.storeBtnOfficial}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Get it on Google Play"
       >
-        <PlayStoreDownloadBadge className={styles.badgeContent} />
+        <PlayStoreDownloadBadge className={styles.badgeImage} />
       </a>
     </div>
   );

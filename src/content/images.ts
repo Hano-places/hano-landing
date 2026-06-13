@@ -22,14 +22,22 @@ export const IMG = {
   tropical: "/restaurants-dishes-images/Tropical Refreshments.png",
 } as const;
 
+export const STORE = {
+  googlePlay: "/company-logos/stores/google-play.svg",
+  googlePlayIcon: "/company-logos/stores/google-play-icon.svg",
+  appStore: "/company-logos/stores/app-store.svg",
+} as const;
+
 export const MOCK = {
   homePlaces: "/mockups/home-paces.png",
   homeRecent: "/mockups/home-recent.png",
   iphone: "/mockups/iPhone mockup.png",
   notification: "/mockups/notification-mobile.png",
+  listedOrders: "/mockups/listed-orders.png",
   previewMenu: "/mockups/preview-menu.png",
   review: "/mockups/reeview.png",
   reviewFlat: "/mockups/reeview-flat.png",
   kpi: "/mockups/customers-satisfaction-kpi.png",
   kpiFlat: "/mockups/customers-satisfaction-kpi-flat.png",
+  kpiHero: "/mockups/customers-satisfaction-kpi-hero.png",
 } as const;

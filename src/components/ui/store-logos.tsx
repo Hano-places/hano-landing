@@ -1,3 +1,5 @@
+import { STORE } from "@/content/images";
+
 type LogoProps = {
   className?: string;
 };
@@ -21,29 +23,15 @@ export function AppleLogo({ className }: LogoProps) {
 
 export function GooglePlayLogo({ className }: LogoProps) {
   return (
-    <svg
+    // eslint-disable-next-line @next/next/no-img-element -- official SVG icon asset
+    <img
+      src={STORE.googlePlayIcon}
+      alt=""
+      width={16}
+      height={16}
       className={className}
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden
-    >
-      <path
-        fill="#EA4335"
-        d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"
-      />
-      <path
-        fill="#FBBC04"
-        d="M16.066 8.207 13.792 12l2.274 3.793 6.215-3.594a1.05 1.05 0 0 0 0-1.822l-6.215-3.17z"
-      />
-      <path
-        fill="#4285F4"
-        d="M13.792 12 3.609 22.186a1 1 0 0 0 1.577.814l10.606-6.15L13.792 12z"
-      />
-      <path
-        fill="#34A853"
-        d="M13.792 12 3.609 1.814 15.215 5.964 13.792 12z"
-      />
-    </svg>
+    />
   );
 }
 
@@ -75,12 +63,14 @@ export function AppStoreDownloadBadge({ className }: DownloadBadgeProps) {
 
 export function PlayStoreDownloadBadge({ className }: DownloadBadgeProps) {
   return (
-    <span className={className} aria-hidden>
-      <GooglePlayLogo />
-      <span>
-        <span>GET IT ON</span>
-        <strong>Google Play</strong>
-      </span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element -- official SVG badge asset
+    <img
+      src={STORE.googlePlay}
+      alt=""
+      width={180}
+      height={53}
+      className={className}
+      aria-hidden
+    />
   );
 }

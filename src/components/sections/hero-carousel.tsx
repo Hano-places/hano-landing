@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller, EffectCreative, Autoplay } from "swiper/modules";
+import { Controller, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { hero } from "@/content/landing";
 import { publicImageSrc } from "@/lib/public-image";
@@ -11,7 +11,6 @@ import { Icon } from "@/components/ui/icon";
 import styles from "./hero-section.module.css";
 
 import "swiper/css";
-import "swiper/css/effect-creative";
 
 type HeroCarouselProps = {
   onActiveIndexChange?: (index: number) => void;
@@ -26,8 +25,7 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
 
   useEffect(() => {
     if (!mainSwiper || !cardSwiper) return;
-    mainSwiper.controller.control = cardSwiper;
-    cardSwiper.controller.control = mainSwiper;
+
     mainSwiper.update();
     cardSwiper.update();
 
@@ -55,6 +53,7 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
             <Swiper
               className={styles.mainSwiper}
               modules={[Controller, Autoplay]}
+              controller={{ control: cardSwiper }}
               slidesPerView={1}
               spaceBetween={24}
               speed={600}
@@ -83,7 +82,7 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
                       alt=""
                       width={slide.mainType === "photo" ? 800 : 640}
                       height={slide.mainType === "photo" ? 1000 : 860}
-                      sizes="(max-width: 900px) 90vw, 26rem"
+                      sizes="(max-width: 900px) 95vw, 32rem"
                       className={
                         slide.mainType === "photo"
                           ? styles.mainSlidePhoto
@@ -100,27 +99,13 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
           <div className={styles.secondSwiperWrap}>
             <Swiper
               className={styles.secondSwiper}
-              modules={[EffectCreative, Controller]}
-              effect="creative"
-              creativeEffect={{
-                limitProgress: 2,
-                perspective: true,
-                prev: {
-                  translate: [0, "-18%", -120],
-                  opacity: 0.45,
-                  scale: 0.92,
-                },
-                next: {
-                  translate: [0, "100%", 0],
-                  opacity: 0,
-                },
-              }}
+              modules={[Controller]}
+              controller={{ control: mainSwiper }}
               direction="vertical"
               slidesPerView={1}
               speed={600}
               grabCursor
               loop
-              watchSlidesProgress
               observer
               observeParents
               resizeObserver
@@ -137,9 +122,14 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
                     <Image
                       src={publicImageSrc(slide.card)}
                       alt=""
-                      width={560}
-                      height={260}
-                      className={styles.secondSlideImage}
+                      width={640}
+                      height={320}
+                      sizes="(max-width: 900px) 55vw, 22rem"
+                      className={`${styles.secondSlideImage}${
+                        "cardSize" in slide && slide.cardSize === "phone"
+                          ? ` ${styles.secondSlideImagePhone}`
+                          : ""
+                      }`}
                       priority={index === 0}
                     />
                   </div>

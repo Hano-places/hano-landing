@@ -1,5 +1,7 @@
 .emailForm {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   align-items: flex-start;
   max-width: 480px;
@@ -7,6 +9,11 @@
 
 .emailForm > div:first-child {
   flex: 1;
+  min-width: 0;
+}
+
+.emailForm button {
+  flex-shrink: 0;
 }
 
 .compact {
@@ -50,12 +57,12 @@
   }
 }
 
-@media (max-width: 639px) {
-  .emailForm {
+@media (max-width: 380px) {
+  .emailForm:not(.compact) {
     flex-direction: column;
   }
 
-  .emailForm button {
+  .emailForm:not(.compact) button {
     width: 100%;
   }
 }

@@ -41,7 +41,8 @@
     #b8e8c8 100%
   );
 
-  /* Typography — --font-sans / --font-serif set on <html> by next/font */
+  /* Typography — --font-sans / --font-serif / --font-mono set on <html> */
+  --font-mono: var(--font-geist-mono);
   --color-border-soft: #ebebeb;
 
   --text-xs: 0.75rem;
@@ -70,7 +71,7 @@
   --container-max: 1180px;
   --container-padding: 1.5rem;
   --section-padding-y: 5rem;
-  --section-gap-top: 132px;
+  --section-gap-top: 3rem;
   --header-height: 72px;
 
   /* Radius */

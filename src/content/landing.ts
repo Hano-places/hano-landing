@@ -44,7 +44,7 @@ export const hero = {
     {
       main: MOCK.iphone,
       mainType: "mockup" as const,
-      card: MOCK.homePlaces,
+      card: MOCK.homeRecent,
       location: "Nyarutarama, Kigali",
       date: "Open daily",
       tag: "Discover",
@@ -63,6 +63,7 @@ export const hero = {
       main: MOCK.previewMenu,
       mainType: "mockup" as const,
       card: MOCK.notification,
+      cardSize: "phone" as const,
       location: "Kiyovu, Kigali",
       date: "Menus & orders",
       tag: "Preview",
@@ -71,7 +72,7 @@ export const hero = {
     {
       main: IMG.outdoorDining,
       mainType: "photo" as const,
-      card: MOCK.kpiFlat,
+      card: MOCK.kpiHero,
       location: "Nyarutarama, Kigali",
       date: "Sunset hours",
       tag: "Outdoor vibes",
@@ -80,7 +81,7 @@ export const hero = {
     {
       main: IMG.gourmetBurger,
       mainType: "photo" as const,
-      card: MOCK.previewMenu,
+      card: MOCK.listedOrders,
       location: "Kacyiru, Kigali",
       date: "Lunch & dinner",
       tag: "Crave-worthy",
@@ -90,15 +91,16 @@ export const hero = {
       main: IMG.modernCafe,
       mainType: "photo" as const,
       card: MOCK.notification,
+      cardSize: "phone" as const,
       location: "Kigali Heights",
       date: "Morning to late",
       tag: "Café culture",
       tagDescription: "Discover coffee spots and casual bites nearby",
     },
     {
-      main: MOCK.reviewFlat,
+      main: MOCK.previewMenu,
       mainType: "mockup" as const,
-      card: MOCK.homePlaces,
+      card: MOCK.reviewFlat,
       location: "Kacyiru, Kigali",
       date: "Share feedback",
       tag: "Review",
@@ -341,140 +343,66 @@ export const howItWorks = {
   },
   supporting:
     "Whether you're looking for your next meal or planning a special night out, everything is designed to flow effortlessly.",
-  tabs: [
+  cards: [
     {
-      id: "discover",
-      label: "Discover",
-      cards: [
+      title: "Discover",
+      description: "Browse places, categories, and what's trending nearby.",
+      variant: "gray" as const,
+      size: "large" as const,
+      layers: [
         {
-          title: "Discover",
-          description: "Browse places, categories, and what's trending nearby.",
-          variant: "gray" as const,
-          size: "large" as const,
-          layers: [
-            {
-              src: MOCK.iphone,
-              role: "main",
-              align: "bottom-right-phone",
-              alt: "Hano home screen",
-            },
-          ],
-        },
-        {
-          title: "Explore",
-          description: "See details, ratings, and distance at a glance.",
-          variant: "violet" as const,
-          size: "small" as const,
-          layers: [
-            {
-              src: MOCK.homeRecent,
-              role: "main",
-              align: "bottom-right",
-              alt: "Top places list",
-            },
-          ],
-        },
-        {
-          title: "Save",
-          description: "Keep spots you love on your personal shortlist.",
-          variant: "green" as const,
-          size: "small" as const,
-          layers: [
-            {
-              src: MOCK.previewMenu,
-              role: "main",
-              align: "bottom-right-phone",
-              alt: "Menu preview",
-            },
-          ],
-        },
-        {
-          title: "Share",
-          description: "Recommend gems and help friends decide faster.",
-          variant: "gray" as const,
-          size: "large" as const,
-          layers: [
-            {
-              src: MOCK.reviewFlat,
-              role: "main",
-              align: "top-right-half-clip",
-              alt: "Leave a review",
-            },
-            {
-              src: MOCK.kpiFlat,
-              role: "chip",
-              align: "below-text-left",
-              alt: "",
-            },
-          ],
+          src: MOCK.iphone,
+          role: "main",
+          align: "bottom-right-phone",
+          alt: "Hano home screen",
         },
       ],
     },
     {
-      id: "enjoy",
-      label: "Enjoy",
-      cards: [
+      title: "Explore",
+      description: "See details, ratings, and distance at a glance.",
+      variant: "violet" as const,
+      size: "small" as const,
+      layers: [
         {
-          title: "Preview menus",
-          description: "Check dishes and prices before you even arrive.",
-          variant: "gray" as const,
-          size: "large" as const,
-          layers: [
-            {
-              src: MOCK.previewMenu,
-              role: "main",
-              align: "bottom-right-phone",
-              alt: "Dish preview",
-            },
-          ],
+          src: MOCK.homeRecent,
+          role: "main",
+          align: "bottom-right",
+          alt: "Top places list",
+        },
+      ],
+    },
+    {
+      title: "Save",
+      description: "Keep spots you love on your personal shortlist.",
+      variant: "green" as const,
+      size: "small" as const,
+      layers: [
+        {
+          src: MOCK.previewMenu,
+          role: "main",
+          align: "bottom-right-phone",
+          alt: "Menu preview",
+        },
+      ],
+    },
+    {
+      title: "Share",
+      description: "Recommend gems and help friends decide faster.",
+      variant: "gray" as const,
+      size: "large" as const,
+      layers: [
+        {
+          src: MOCK.reviewFlat,
+          role: "main",
+          align: "top-right-half-clip",
+          alt: "Leave a review",
         },
         {
-          title: "Stay in the loop",
-          description: "Get updates when your table or order is ready.",
-          variant: "violet" as const,
-          size: "small" as const,
-          layers: [
-            {
-              src: MOCK.notification,
-              role: "main",
-              align: "bottom-right",
-              alt: "Order notification",
-            },
-          ],
-        },
-        {
-          title: "Track the vibe",
-          description: "See what's popular this week around you.",
-          variant: "green" as const,
-          size: "small" as const,
-          layers: [
-            {
-              src: MOCK.homeRecent,
-              role: "main",
-              align: "bottom-right",
-              alt: "Recent places",
-            },
-          ],
-        },
-        {
-          title: "Rate your visit",
-          description: "Share quick feedback to help the community.",
-          variant: "gray" as const,
-          size: "large" as const,
-          layers: [
-            {
-              src: MOCK.reviewFlat,
-              role: "main",
-              align: "top-right-half-clip",
-              alt: "Review screen",
-            },
-            {
-              src: MOCK.kpiFlat,
-              role: "chip",
-              align: "below-text-left",
-              alt: "",
-            },
-          ],
+          src: MOCK.kpiFlat,
+          role: "chip",
+          align: "below-text-left",
+          alt: "",
         },
       ],
     },
