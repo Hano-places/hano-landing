@@ -33,22 +33,6 @@
   background-color: #1a1a1a;
 }
 
-.storeBtnOfficial {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-}
-
-.storeBtnOfficial:hover {
-  background-color: transparent;
-}
-
-.badgeImage {
-  display: block;
-  height: 2.5rem;
-  width: auto;
-}
-
 .badgeContent {
   display: inline-flex;
   align-items: center;
@@ -104,10 +88,6 @@
 
   .badgeContent > span:last-child > strong {
     font-size: 0.6875rem;
-  }
-
-  .badgeImage {
-    height: 2.125rem;
   }
 }
 

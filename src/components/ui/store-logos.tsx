@@ -23,7 +23,7 @@ export function AppleLogo({ className }: LogoProps) {
 
 export function GooglePlayLogo({ className }: LogoProps) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- official SVG icon asset
+    // eslint-disable-next-line @next/next/no-img-element -- official icon extracted from google-play.svg
     <img
       src={STORE.googlePlayIcon}
       alt=""
@@ -63,14 +63,12 @@ export function AppStoreDownloadBadge({ className }: DownloadBadgeProps) {
 
 export function PlayStoreDownloadBadge({ className }: DownloadBadgeProps) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- official SVG badge asset
-    <img
-      src={STORE.googlePlay}
-      alt=""
-      width={180}
-      height={53}
-      className={className}
-      aria-hidden
-    />
+    <span className={className} aria-hidden>
+      <GooglePlayLogo />
+      <span>
+        <span>GET IT ON</span>
+        <strong>Google Play</strong>
+      </span>
+    </span>
   );
 }

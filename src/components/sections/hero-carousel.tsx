@@ -7,6 +7,8 @@ import { Controller } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { hero } from "@/content/landing";
 import { publicImageSrc } from "@/lib/public-image";
+import { HeroNotificationCards } from "./hero-notification-cards";
+import notificationStyles from "./hero-notification-cards.module.css";
 import styles from "./hero-section.module.css";
 
 import "swiper/css";
@@ -21,6 +23,8 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeSlide = hero.carouselSlides[activeIndex] ?? hero.carouselSlides[0];
+  const isNotificationSlide =
+    "cardType" in activeSlide && activeSlide.cardType === "notifications";
 
   useEffect(() => {
     if (!mainSwiper || !cardSwiper) return;
@@ -90,7 +94,11 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
             </Swiper>
           </div>
 
-          <div className={styles.secondSwiperWrap}>
+          <div
+            className={`${styles.secondSwiperWrap}${
+              isNotificationSlide ? ` ${styles.secondSwiperWrapNotifications}` : ""
+            }`}
+          >
             <Swiper
               className={styles.secondSwiper}
               modules={[Controller]}
@@ -109,31 +117,52 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
             >
               {hero.carouselSlides.map((slide, index) => (
                 <SwiperSlide
-                  key={`${slide.card}-${index}`}
-                  className={styles.secondSlide}
+                  key={`${"card" in slide ? slide.card : slide.cardType}-${index}`}
+                  className={`${styles.secondSlide}${
+                    "cardType" in slide && slide.cardType === "notifications"
+                      ? ` ${styles.secondSlideNotifications}`
+                      : ""
+                  }`}
                 >
-                  <div className={styles.secondSlideBlock}>
-                    <Image
-                      src={publicImageSrc(slide.card)}
-                      alt=""
-                      width={
-                        "cardSize" in slide && slide.cardSize === "phone"
-                          ? 320
-                          : 640
-                      }
-                      height={
-                        "cardSize" in slide && slide.cardSize === "phone"
-                          ? 640
-                          : 320
-                      }
-                      sizes="(max-width: 900px) 55vw, 22rem"
-                      className={`${styles.secondSlideImage}${
-                        "cardSize" in slide && slide.cardSize === "phone"
-                          ? ` ${styles.secondSlideImagePhone}`
-                          : ""
-                      }`}
-                      priority={index === 0}
-                    />
+                  <div
+                    className={`${styles.secondSlideBlock}${
+                      "cardType" in slide && slide.cardType === "notifications"
+                        ? ` ${styles.secondSlideBlockNotifications}`
+                        : ""
+                    }`}
+                  >
+                    {"cardType" in slide && slide.cardType === "notifications" ? (
+                      <HeroNotificationCards
+                        notifications={slide.notifications}
+                        className={notificationStyles.stackTopRight}
+                      />
+                    ) : "card" in slide ? (
+                      <Image
+                        src={publicImageSrc(slide.card)}
+                        alt=""
+                        width={
+                          "cardSize" in slide && slide.cardSize === "phone"
+                            ? 320
+                            : 640
+                        }
+                        height={
+                          "cardSize" in slide && slide.cardSize === "phone"
+                            ? 640
+                            : 320
+                        }
+                        sizes="(max-width: 900px) 55vw, 22rem"
+                        className={`${styles.secondSlideImage}${
+                          "cardSize" in slide && slide.cardSize === "phone"
+                            ? ` ${styles.secondSlideImagePhone}`
+                            : ""
+                        }${
+                          "cardVariant" in slide && slide.cardVariant === "kpi"
+                            ? ` ${styles.secondSlideImageKpi}`
+                            : ""
+                        }`}
+                        priority={index === 0}
+                      />
+                    ) : null}
                   </div>
                 </SwiperSlide>
               ))}

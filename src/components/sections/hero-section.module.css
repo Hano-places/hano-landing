@@ -173,6 +173,18 @@
   pointer-events: auto;
 }
 
+.secondSwiperWrapNotifications {
+  left: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.secondSwiperWrapNotifications .secondSwiper,
+.secondSwiperWrapNotifications .secondSwiper :global(.swiper-slide) {
+  pointer-events: none;
+}
+
 .secondSwiper {
   width: 100%;
   height: 100%;
@@ -212,6 +224,25 @@
   height: 100%;
   padding: 0 0.25rem 0;
   box-sizing: border-box;
+  background: transparent;
+}
+
+.secondSlideNotifications {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.secondSlideBlockNotifications {
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: auto;
+  height: auto;
+  padding: 1rem 0.75rem 0 0;
+}
+
+.secondSwiperWrapNotifications .secondSwiper :global(.swiper-slide) {
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
 .secondSlideImage {
@@ -232,6 +263,10 @@
   width: auto;
   height: auto;
   transform: none;
+}
+
+.secondSlideImageKpi {
+  transform: translateY(-1.25rem);
 }
 
 .glassBottom {

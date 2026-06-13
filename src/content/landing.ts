@@ -53,7 +53,23 @@ export const hero = {
     {
       main: IMG.joyfulScene,
       mainType: "photo" as const,
-      card: MOCK.homeRecent,
+      cardType: "notifications" as const,
+      notifications: [
+        {
+          size: "large" as const,
+          app: "Hano",
+          time: "now",
+          title: "New review",
+          body: 'Sarah rated Meza — "Great brunch spot."',
+        },
+        {
+          size: "small" as const,
+          app: "Hano",
+          time: "2m ago",
+          title: "Saved your pick",
+          body: "Marie added Kigali Heights Café.",
+        },
+      ],
       location: "Kimihurura, Kigali",
       date: "Weekend brunch",
       tag: "Social dining",
@@ -72,7 +88,8 @@ export const hero = {
     {
       main: IMG.outdoorDining,
       mainType: "photo" as const,
-      card: MOCK.kpiHero,
+      card: MOCK.kpi,
+      cardVariant: "kpi" as const,
       location: "Nyarutarama, Kigali",
       date: "Sunset hours",
       tag: "Outdoor vibes",
@@ -100,7 +117,7 @@ export const hero = {
     {
       main: MOCK.previewMenu,
       mainType: "mockup" as const,
-      card: MOCK.reviewFlat,
+      card: MOCK.homeRecent,
       location: "Kacyiru, Kigali",
       date: "Share feedback",
       tag: "Review",

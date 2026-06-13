@@ -1,8 +1,4 @@
-<svg
-  viewBox="17 19 42 42"
-  xmlns="http://www.w3.org/2000/svg"
-  aria-hidden="true"
->
+<svg viewBox="17 19 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <g transform="translate(-13.333471,-13.333201)">
     <path
       d="m 0,0 -10.647,-11.3 c 10e-4,-0.002 10e-4,-0.005 0.002,-0.007 0.327,-1.227 1.447,-2.13 2.777,-2.13 0.532,0 1.031,0.144 1.459,0.396 l 0.034,0.02 11.984,6.915 z"
