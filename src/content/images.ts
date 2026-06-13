@@ -10,6 +10,8 @@ export const IMG = {
     "/restaurants-dishes-images/Inviting Pizza Restaurant Interior.png",
   joyfulScene: "/restaurants-dishes-images/Joyful Restaurant Scene.png",
   modernCafe: "/restaurants-dishes-images/Modern Cafe Interior.png",
+  modernElegance:
+    "/restaurants-dishes-images/Modern Elegance Café Interior.png",
   outdoorDining: "/restaurants-dishes-images/Outdoor Dining Scene.png",
   portrait: "/restaurants-dishes-images/Portrait Amidst Foliage.png",
   serene: "/restaurants-dishes-images/Serene Portrait.png",
@@ -27,5 +29,7 @@ export const MOCK = {
   notification: "/mockups/notification-mobile.png",
   previewMenu: "/mockups/preview-menu.png",
   review: "/mockups/reeview.png",
+  reviewFlat: "/mockups/reeview-flat.png",
   kpi: "/mockups/customers-satisfaction-kpi.png",
+  kpiFlat: "/mockups/customers-satisfaction-kpi-flat.png",
 } as const;

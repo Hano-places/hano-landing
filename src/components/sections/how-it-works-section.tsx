@@ -21,10 +21,18 @@ const sizeClass = {
   small: styles.cardSmall,
 } as const;
 
-const layerClass = {
-  phoneMain: styles.layerPhoneMain,
-  cardHero: styles.layerCardHero,
-  cardOverlay: styles.layerCardOverlay,
+const roleClass = {
+  main: styles.layerMain,
+  chip: styles.layerChip,
+} as const;
+
+const alignClass = {
+  "bottom-right": styles.alignBottomRight,
+  "bottom-right-phone": styles.alignBottomRightPhone,
+  "bottom-left": styles.alignBottomLeft,
+  "top-right": styles.alignTopRight,
+  "top-right-half-clip": styles.alignTopRightHalfClip,
+  "below-text-left": styles.alignBelowTextLeft,
 } as const;
 
 type HowItWorksTabId = (typeof howItWorks.tabs)[number]["id"];
@@ -74,7 +82,7 @@ export function HowItWorksSection() {
                 <article
                   key={card.title}
                   className={`${styles.card} ${variantClass[card.variant]} ${sizeClass[card.size]}`}
-                  style={{ animationDelay: `${index * 0.08}s` }}
+                  style={{ animationDelay: `${index * 0.06}s` }}
                 >
                   <div className={styles.cardHeader}>
                     <h3 className={styles.cardTitle}>{card.title}</h3>
@@ -83,16 +91,16 @@ export function HowItWorksSection() {
                   <div className={styles.cardVisual} aria-hidden>
                     {card.layers.map((layer) => (
                       <Image
-                        key={`${layer.src}-${layer.layer}`}
+                        key={`${layer.src}-${layer.role}`}
                         src={publicImageSrc(layer.src)}
                         alt={layer.alt}
-                        width={layer.layer === "phoneMain" ? 320 : 280}
-                        height={layer.layer === "phoneMain" ? 640 : 360}
-                        className={`${layerClass[layer.layer]} ${
-                          layer.layer === "cardOverlay"
-                            ? styles.layerFloat
-                            : ""
-                        }`.trim()}
+                        width={
+                          layer.align === "bottom-right-phone" ? 320 : 360
+                        }
+                        height={
+                          layer.align === "bottom-right-phone" ? 640 : 400
+                        }
+                        className={`${styles.layer} ${roleClass[layer.role]} ${alignClass[layer.align]}`}
                       />
                     ))}
                   </div>

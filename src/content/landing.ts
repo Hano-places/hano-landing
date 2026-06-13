@@ -1,4 +1,4 @@
-import { IMG } from "./images";
+import { IMG, MOCK } from "./images";
 
 export const site = {
   name: "Hano",
@@ -42,25 +42,67 @@ export const hero = {
   ],
   carouselSlides: [
     {
-      image: IMG.joyfulScene,
-      location: "Kiyovu, Kigali",
+      main: MOCK.iphone,
+      mainType: "mockup" as const,
+      card: MOCK.homePlaces,
+      location: "Nyarutarama, Kigali",
       date: "Open daily",
-      tag: "Trending",
-      tagDescription: "Popular spot for burgers and vibes",
+      tag: "Discover",
+      tagDescription: "Browse places and what's trending nearby",
     },
     {
-      image: IMG.outdoorDining,
+      main: IMG.joyfulScene,
+      mainType: "photo" as const,
+      card: MOCK.homeRecent,
       location: "Kimihurura, Kigali",
-      date: "Brunch weekends",
-      tag: "Local favorite",
-      tagDescription: "Social dining and local classics",
+      date: "Weekend brunch",
+      tag: "Social dining",
+      tagDescription: "Find spots perfect for friends and celebrations",
     },
     {
-      image: IMG.elegantTable,
+      main: MOCK.previewMenu,
+      mainType: "mockup" as const,
+      card: MOCK.notification,
       location: "Kiyovu, Kigali",
-      date: "Reservations available",
-      tag: "Fine dining",
-      tagDescription: "Beautiful views and memorable meals",
+      date: "Menus & orders",
+      tag: "Preview",
+      tagDescription: "Check dishes and prices before you arrive",
+    },
+    {
+      main: IMG.outdoorDining,
+      mainType: "photo" as const,
+      card: MOCK.kpiFlat,
+      location: "Nyarutarama, Kigali",
+      date: "Sunset hours",
+      tag: "Outdoor vibes",
+      tagDescription: "Terrace spots and open-air dining around the city",
+    },
+    {
+      main: IMG.gourmetBurger,
+      mainType: "photo" as const,
+      card: MOCK.previewMenu,
+      location: "Kacyiru, Kigali",
+      date: "Lunch & dinner",
+      tag: "Crave-worthy",
+      tagDescription: "See what's popular before you head out",
+    },
+    {
+      main: IMG.modernCafe,
+      mainType: "photo" as const,
+      card: MOCK.notification,
+      location: "Kigali Heights",
+      date: "Morning to late",
+      tag: "Café culture",
+      tagDescription: "Discover coffee spots and casual bites nearby",
+    },
+    {
+      main: MOCK.reviewFlat,
+      mainType: "mockup" as const,
+      card: MOCK.homePlaces,
+      location: "Kacyiru, Kigali",
+      date: "Share feedback",
+      tag: "Review",
+      tagDescription: "Recommend gems and help friends decide faster",
     },
   ],
 } as const;
@@ -288,7 +330,6 @@ export const testimonials = {
   ],
 } as const;
 
-import { MOCK } from "./images";
 
 export const howItWorks = {
   id: "how-it-works",
@@ -311,8 +352,12 @@ export const howItWorks = {
           variant: "gray" as const,
           size: "large" as const,
           layers: [
-            { src: MOCK.iphone, layer: "phoneMain", alt: "Hano home screen" },
-            { src: MOCK.homePlaces, layer: "cardOverlay", alt: "" },
+            {
+              src: MOCK.iphone,
+              role: "main",
+              align: "bottom-right-phone",
+              alt: "Hano home screen",
+            },
           ],
         },
         {
@@ -321,7 +366,12 @@ export const howItWorks = {
           variant: "violet" as const,
           size: "small" as const,
           layers: [
-            { src: MOCK.homeRecent, layer: "cardHero", alt: "Top places list" },
+            {
+              src: MOCK.homeRecent,
+              role: "main",
+              align: "bottom-right",
+              alt: "Top places list",
+            },
           ],
         },
         {
@@ -330,8 +380,12 @@ export const howItWorks = {
           variant: "green" as const,
           size: "small" as const,
           layers: [
-            { src: MOCK.previewMenu, layer: "phoneMain", alt: "Menu preview" },
-            { src: MOCK.notification, layer: "cardOverlay", alt: "" },
+            {
+              src: MOCK.previewMenu,
+              role: "main",
+              align: "bottom-right-phone",
+              alt: "Menu preview",
+            },
           ],
         },
         {
@@ -340,8 +394,18 @@ export const howItWorks = {
           variant: "gray" as const,
           size: "large" as const,
           layers: [
-            { src: MOCK.review, layer: "cardHero", alt: "Leave a review" },
-            { src: MOCK.kpi, layer: "cardOverlay", alt: "" },
+            {
+              src: MOCK.reviewFlat,
+              role: "main",
+              align: "top-right-half-clip",
+              alt: "Leave a review",
+            },
+            {
+              src: MOCK.kpiFlat,
+              role: "chip",
+              align: "below-text-left",
+              alt: "",
+            },
           ],
         },
       ],
@@ -356,8 +420,12 @@ export const howItWorks = {
           variant: "gray" as const,
           size: "large" as const,
           layers: [
-            { src: MOCK.previewMenu, layer: "phoneMain", alt: "Dish preview" },
-            { src: MOCK.homePlaces, layer: "cardOverlay", alt: "" },
+            {
+              src: MOCK.previewMenu,
+              role: "main",
+              align: "bottom-right-phone",
+              alt: "Dish preview",
+            },
           ],
         },
         {
@@ -366,7 +434,12 @@ export const howItWorks = {
           variant: "violet" as const,
           size: "small" as const,
           layers: [
-            { src: MOCK.notification, layer: "cardHero", alt: "Order notification" },
+            {
+              src: MOCK.notification,
+              role: "main",
+              align: "bottom-right",
+              alt: "Order notification",
+            },
           ],
         },
         {
@@ -375,8 +448,12 @@ export const howItWorks = {
           variant: "green" as const,
           size: "small" as const,
           layers: [
-            { src: MOCK.homeRecent, layer: "phoneMain", alt: "Recent places" },
-            { src: MOCK.kpi, layer: "cardOverlay", alt: "" },
+            {
+              src: MOCK.homeRecent,
+              role: "main",
+              align: "bottom-right",
+              alt: "Recent places",
+            },
           ],
         },
         {
@@ -385,8 +462,18 @@ export const howItWorks = {
           variant: "gray" as const,
           size: "large" as const,
           layers: [
-            { src: MOCK.review, layer: "cardHero", alt: "Review screen" },
-            { src: MOCK.iphone, layer: "cardOverlay", alt: "" },
+            {
+              src: MOCK.reviewFlat,
+              role: "main",
+              align: "top-right-half-clip",
+              alt: "Review screen",
+            },
+            {
+              src: MOCK.kpiFlat,
+              role: "chip",
+              align: "below-text-left",
+              alt: "",
+            },
           ],
         },
       ],

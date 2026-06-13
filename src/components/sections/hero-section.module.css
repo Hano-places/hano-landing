@@ -1,6 +1,7 @@
 .hero {
   padding: 3rem 0 5rem;
   background-color: var(--color-surface-primary);
+  overflow: visible;
 }
 
 .grid {
@@ -73,45 +74,157 @@
   color: var(--color-text-muted);
 }
 
-.carousel {
+/* ISO Meet–style dual swiper column */
+.sliderCol {
   position: relative;
+  width: 100%;
+  min-width: 0;
 }
 
-.slide {
+.sliderBlock {
   position: relative;
-  aspect-ratio: 3 / 4;
-  max-height: 560px;
+  height: 32rem;
+}
+
+.sliderGrid {
+  position: relative;
+  height: 100%;
+}
+
+.mainSwiperWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.mainSwiper {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mainSwiper :global(.swiper-wrapper) {
+  align-items: center;
+}
+
+.mainSwiper :global(.swiper-slide) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.mainSlide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mainSlideBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mainSlideImage {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.mainSlidePhoto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: min(100%, 22rem);
+  max-height: 100%;
   border-radius: var(--radius-card-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
+  object-fit: cover;
+  object-position: center center;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-.slideImage {
-  object-fit: cover;
+.secondSwiperWrap {
+  position: absolute;
+  z-index: 3;
+  bottom: 1.5rem;
+  left: 0;
+  width: min(52%, 18rem);
+  height: 9.5rem;
+  pointer-events: auto;
+}
+
+.secondSwiper {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.secondSwiper :global(.swiper-slide) {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.secondSlide {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.secondSlideBlock {
+  width: 100%;
+}
+
+.secondSlideImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 9rem;
+  object-fit: contain;
+  object-position: left center;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .glassTop {
   position: absolute;
+  z-index: 4;
   top: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
+  left: 0;
+  max-width: 14rem;
   padding: 1rem 1.25rem;
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
+  pointer-events: none;
 }
 
 .glassBottom {
   position: absolute;
+  z-index: 4;
+  right: 0;
   bottom: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
+  max-width: 14rem;
   padding: 1rem 1.25rem;
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
+  pointer-events: none;
 }
 
 .glassRow {
@@ -150,6 +263,7 @@
   background-color: var(--color-border);
   border: none;
   border-radius: 50%;
+  cursor: pointer;
   transition: background-color var(--transition-fast);
 }
 
@@ -159,11 +273,68 @@
 
 @media (min-width: 900px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 3rem;
   }
 
   .metrics {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sliderBlock {
+    height: 36rem;
+  }
+
+  .mainSlideBlock {
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+  }
+
+  .mainSlideImage {
+    max-width: min(100%, 26rem);
+    max-height: 34rem;
+  }
+
+  .mainSlidePhoto {
+    max-width: min(100%, 24rem);
+    max-height: 34rem;
+  }
+
+  .secondSwiperWrap {
+    bottom: 2rem;
+    width: min(46%, 17.5rem);
+    height: 10.5rem;
+  }
+
+  .secondSlideImage {
+    max-height: 9.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sliderBlock {
+    height: 26rem;
+  }
+
+  .secondSwiperWrap {
+    width: min(58%, 14rem);
+    height: 8rem;
+    bottom: 1rem;
+  }
+
+  .mainSlideImage {
+    max-width: min(100%, 16rem);
+    max-height: 22rem;
+  }
+
+  .mainSlidePhoto {
+    max-width: min(100%, 18rem);
+    max-height: 22rem;
+  }
+
+  .glassTop,
+  .glassBottom {
+    max-width: 11rem;
+    padding: 0.75rem 1rem;
   }
 }

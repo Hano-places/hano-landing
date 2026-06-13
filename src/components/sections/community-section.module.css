@@ -5,7 +5,7 @@
 .card {
   padding: 3rem 2rem;
   border-radius: var(--radius-card-lg);
-  background-color: var(--foundation-primary-primary-200);
+  background-color: var(--foundation-primary-primary-100);
   text-align: center;
 }
 
@@ -38,7 +38,7 @@
   padding: 0.5rem 1rem;
   font-size: var(--text-sm);
   color: var(--color-heading);
-  background: var(--color-brand-accent);
+  background: var(--foundation-primary-primary-50);
   border-radius: var(--radius-pill);
 }
 
