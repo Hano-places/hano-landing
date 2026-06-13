@@ -13,6 +13,7 @@
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.2.0",
     "@hugeicons/react": "^1.1.6",
+    "@vercel/analytics": "^2.0.1",
     "geist": "^1.7.2",
     "next": "16.2.9",
     "react": "19.2.4",

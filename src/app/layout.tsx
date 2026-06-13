@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -45,7 +46,10 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSans.variable} ${instrumentSerif.variable} ${GeistMono.variable}`}
     >
-      <body className={instrumentSans.className}>{children}</body>
+      <body className={instrumentSans.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
