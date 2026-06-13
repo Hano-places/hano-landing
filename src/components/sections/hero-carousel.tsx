@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller } from "swiper/modules";
+import { Autoplay, Controller } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { hero } from "@/content/landing";
 import { publicImageSrc } from "@/lib/public-image";
@@ -55,8 +55,15 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
           <div className={styles.mainSwiperWrap}>
             <Swiper
               className={styles.mainSwiper}
-              modules={[Controller]}
+              modules={[Controller, Autoplay]}
               controller={{ control: cardSwiper }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              touchEventsTarget="container"
+              allowTouchMove
               slidesPerView={1}
               spaceBetween={24}
               speed={600}
@@ -104,6 +111,8 @@ export function HeroCarousel({ onActiveIndexChange }: HeroCarouselProps) {
               modules={[Controller]}
               controller={{ control: mainSwiper }}
               direction="vertical"
+              allowTouchMove={false}
+              simulateTouch={false}
               slidesPerView={1}
               speed={600}
               grabCursor

@@ -89,13 +89,9 @@
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-text-secondary);
-  background-color: var(--color-surface-primary-25);
-  border: 1px solid color-mix(
-    in srgb,
-    var(--foundation-primary-primary-100) 55%,
-    white
-  );
+  color: var(--color-green-800);
+  background-color: var(--foundation-primary-primary-100);
+  border: 1px solid var(--foundation-primary-primary-200);
   border-radius: var(--radius-pill);
   transition:
     background-color var(--transition-fast),
@@ -104,13 +100,9 @@
 }
 
 .ctaLink:hover {
-  color: var(--color-text);
-  background-color: var(--color-surface-primary);
-  border-color: color-mix(
-    in srgb,
-    var(--foundation-primary-primary-200) 45%,
-    white
-  );
+  color: var(--color-green-800);
+  background-color: var(--foundation-primary-primary-200);
+  border-color: var(--foundation-primary-primary-300);
 }
 
 @media (min-width: 900px) {

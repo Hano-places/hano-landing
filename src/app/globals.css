@@ -37,6 +37,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  color: var(--color-green-800);
+  background-color: var(--foundation-primary-primary-300);
+}
+
+::-moz-selection {
+  color: var(--color-green-800);
+  background-color: var(--foundation-primary-primary-300);
+}
+
 h1,
 h2,
 h3,
