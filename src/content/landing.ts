@@ -2,6 +2,7 @@ import { IMG, MOCK } from "./images";
 
 export const site = {
   name: "Hano",
+  url: "https://hano.now",
   tagline: "Discover Restaurants Around You",
   email: "hello@hano.rw",
   appStoreUrl: "https://apps.apple.com/",
