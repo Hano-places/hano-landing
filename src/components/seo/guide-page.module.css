@@ -1,0 +1,60 @@
+.article {
+  padding: 1rem 0 var(--section-padding-y);
+  max-width: 48rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-green-700);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.intro {
+  margin-top: 1rem;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.section {
+  margin-top: 2.5rem;
+}
+
+.section h2 {
+  margin-bottom: 0.75rem;
+  font-size: var(--text-xl);
+  color: var(--color-heading);
+}
+
+.section p {
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.placeList {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.placeList a {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.placeList span {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}

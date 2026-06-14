@@ -12,7 +12,42 @@ export type PlaceType =
 
 export type PlaceFilter = "all" | PlaceType;
 
-export type Place = {
+export type PlaceAddress = {
+  street: string;
+  locality: string;
+  region: string;
+  country: string;
+};
+
+export type PlaceGeo = {
+  lat: number;
+  lng: number;
+};
+
+export type PlaceReview = {
+  author: string;
+  rating: number;
+  text: string;
+  date?: string;
+};
+
+export type PlaceMenuItem = {
+  name: string;
+  description?: string;
+  price?: string;
+};
+
+export type PlaceMenuSection = {
+  name: string;
+  items: readonly PlaceMenuItem[];
+};
+
+export type PlaceFAQ = {
+  question: string;
+  answer: string;
+};
+
+export type PlaceBase = {
   id: string;
   name: string;
   category: string;
@@ -28,6 +63,32 @@ export type Place = {
   featured?: boolean;
 };
 
+export type PlaceSeed = PlaceBase & {
+  slug?: string;
+  address?: Partial<PlaceAddress>;
+  geo?: Partial<PlaceGeo>;
+  phone?: string;
+  reviews?: readonly PlaceReview[];
+  menu?: readonly PlaceMenuSection[];
+  faqs?: readonly PlaceFAQ[];
+  gallery?: readonly string[];
+  sameAs?: readonly string[];
+  updatedAt?: string;
+};
+
+export type Place = PlaceBase & {
+  slug: string;
+  address: PlaceAddress;
+  geo: PlaceGeo;
+  phone?: string;
+  reviews: readonly PlaceReview[];
+  menu: readonly PlaceMenuSection[];
+  faqs: readonly PlaceFAQ[];
+  gallery: readonly string[];
+  sameAs: readonly string[];
+  updatedAt: string;
+};
+
 const daily = (hours: string): WeeklyHours => ({
   monday: hours,
   tuesday: hours,
@@ -38,7 +99,7 @@ const daily = (hours: string): WeeklyHours => ({
   sunday: hours,
 });
 
-export const places: readonly Place[] = [
+export const places: readonly PlaceSeed[] = [
   {
     id: "boho",
     name: "Boho",
@@ -463,7 +524,7 @@ export const placeFilters: { id: PlaceFilter; label: string }[] = [
   { id: "bistro", label: "Bistros" },
 ];
 
-export function getFeaturedPlaces(): Place[] {
+export function getFeaturedPlaces(): PlaceSeed[] {
   return places.filter((place) => place.featured);
 }
 

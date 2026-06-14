@@ -4,6 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/content/landing";
 import { BRAND } from "@/content/images";
+import { AnalyticsScripts } from "@/components/seo/analytics";
+import { buildPageMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -21,39 +23,30 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: "Hano — Discover The Best Restaurants In Kigali",
+const homeMetadata = buildPageMetadata({
+  path: "/",
+  title: "Discover The Best Restaurants In Kigali",
   description:
     "Hano helps you discover restaurants, cafés, bakeries, brunch spots, bars, and hidden gems across Kigali. Join the waitlist for early access.",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Discover The Best Restaurants In Kigali | Hano",
+    template: "%s | Hano",
+  },
+  description: homeMetadata.description,
   icons: {
     icon: BRAND.logo,
     apple: BRAND.logo,
   },
-  openGraph: {
-    title: "Hano — Discover The Best Restaurants In Kigali",
-    description:
-      "Join the waitlist and be among the first to experience a better way to discover restaurants in Kigali.",
-    url: site.url,
-    siteName: site.name,
-    type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: "/thumbnail/thumbnail.png",
-        width: 1200,
-        height: 631,
-        alt: "Hano — Discover the best restaurants in Kigali",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Hano — Discover The Best Restaurants In Kigali",
-    description:
-      "Join the waitlist and be among the first to experience a better way to discover restaurants in Kigali.",
-    images: ["/thumbnail/thumbnail.png"],
-  },
+  alternates: homeMetadata.alternates,
+  openGraph: homeMetadata.openGraph,
+  twitter: homeMetadata.twitter,
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({
@@ -69,6 +62,7 @@ export default function RootLayout({
       <body className={instrumentSans.className}>
         {children}
         <Analytics />
+        <AnalyticsScripts />
       </body>
     </html>
   );

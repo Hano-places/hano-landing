@@ -12,10 +12,24 @@ import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { CommunitySection } from "@/components/sections/community-section";
 import { EarlyAccessSection } from "@/components/sections/early-access-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faq } from "@/content/landing";
+import {
+  buildFAQSchema,
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+} from "@/lib/seo";
 
 export default function Home() {
   return (
     <>
+      <JsonLd
+        data={[
+          buildOrganizationSchema(),
+          buildWebSiteSchema(),
+          buildFAQSchema(faq.items),
+        ]}
+      />
       <Header />
       <MainWrapper>
         <HeroSection />

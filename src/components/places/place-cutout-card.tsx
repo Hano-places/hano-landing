@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, type KeyboardEvent, type MouseEvent } from "react";
 import { motion } from "motion/react";
 import type { Place } from "@/content/places";
@@ -24,14 +25,19 @@ import styles from "@/components/ui/cutout-card.module.css";
 
 type PlaceCutoutCardProps = {
   place: Place;
+  href?: string;
   onOpenDetails?: (place: Place, rect: DOMRect | null) => void;
 };
 
-export function PlaceCutoutCard({ place, onOpenDetails }: PlaceCutoutCardProps) {
+export function PlaceCutoutCard({
+  place,
+  href,
+  onOpenDetails,
+}: PlaceCutoutCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const stagger = useCutoutContentStaggerVariants();
   const { isOpen, todayHours } = getOpenStatus(place.hours);
-  const interactive = Boolean(onOpenDetails);
+  const popoverMode = Boolean(onOpenDetails) && !href;
 
   const handleCardClick = () => {
     if (!onOpenDetails) {
@@ -46,20 +52,22 @@ export function PlaceCutoutCard({ place, onOpenDetails }: PlaceCutoutCardProps) 
   };
 
   const handleCardKeyDown = (event: KeyboardEvent) => {
+    if (!popoverMode) {
+      return;
+    }
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       handleCardClick();
     }
   };
 
-  return (
-    <div ref={cardRef} className={interactive ? styles.cardInteractive : undefined}>
+  const card = (
     <CutoutCard
-      onClick={interactive ? handleCardClick : undefined}
-      onKeyDown={interactive ? handleCardKeyDown : undefined}
-      role={interactive ? "button" : undefined}
-      tabIndex={interactive ? 0 : undefined}
-      aria-label={interactive ? `View details for ${place.name}` : undefined}
+      onClick={popoverMode ? handleCardClick : undefined}
+      onKeyDown={popoverMode ? handleCardKeyDown : undefined}
+      role={popoverMode ? "button" : undefined}
+      tabIndex={popoverMode ? 0 : undefined}
+      aria-label={popoverMode ? `View details for ${place.name}` : undefined}
     >
       <CutoutCardMedia>
         <CutoutCardImage
@@ -153,6 +161,20 @@ export function PlaceCutoutCard({ place, onOpenDetails }: PlaceCutoutCardProps) 
         </CutoutCardAction>
       ) : null}
     </CutoutCard>
+  );
+
+  return (
+    <div
+      ref={cardRef}
+      className={popoverMode ? styles.cardInteractive : undefined}
+    >
+      {href ? (
+        <Link href={href} className={styles.cardLink}>
+          {card}
+        </Link>
+      ) : (
+        card
+      )}
     </div>
   );
 }

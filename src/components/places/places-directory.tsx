@@ -3,27 +3,24 @@
 import { useMemo, useState } from "react";
 import {
   placeFilters,
-  places,
   placesPage,
   type PlaceFilter,
 } from "@/content/places";
+import { getStaticPlaces } from "@/lib/places-data";
 import { filterPlaces } from "@/lib/places-search";
+import { placeUrlFromParts } from "@/lib/places-slug";
 import { Icon } from "@/components/ui/icon";
 import { PlaceCutoutCard } from "./place-cutout-card";
-import {
-  PlaceDetailsProvider,
-  usePlaceDetails,
-} from "./place-details-popover";
 import styles from "./places-directory.module.css";
 
-function PlacesDirectoryGrid() {
+export function PlacesDirectory() {
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<PlaceFilter>("all");
-  const { openPlaceDetails } = usePlaceDetails();
+  const places = getStaticPlaces();
 
   const results = useMemo(
     () => filterPlaces(places, query, activeFilter),
-    [query, activeFilter],
+    [places, query, activeFilter],
   );
 
   return (
@@ -68,7 +65,7 @@ function PlacesDirectoryGrid() {
             <div key={place.id} className={styles.gridItem} role="listitem">
               <PlaceCutoutCard
                 place={place}
-                onOpenDetails={openPlaceDetails}
+                href={placeUrlFromParts(place.type, place.slug)}
               />
             </div>
           ))}
@@ -80,13 +77,5 @@ function PlacesDirectoryGrid() {
         </div>
       )}
     </div>
-  );
-}
-
-export function PlacesDirectory() {
-  return (
-    <PlaceDetailsProvider>
-      <PlacesDirectoryGrid />
-    </PlaceDetailsProvider>
   );
 }

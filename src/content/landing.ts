@@ -1,5 +1,5 @@
 import { IMG, MOCK } from "./images";
-import { getFeaturedPlaces } from "./places";
+import { getStaticPlaces } from "@/lib/places-data";
 
 export const site = {
   name: "Hano",
@@ -271,7 +271,7 @@ export const featuredRestaurants = {
     "Real spots people love across the city — with official websites where available.",
   viewAllHref: "/places",
   viewAllLabel: "View all places",
-  items: getFeaturedPlaces(),
+  items: getStaticPlaces().filter((place) => place.featured),
 } as const;
 
 export const categories = {
@@ -605,9 +605,19 @@ export const footer = {
     {
       title: "Learn",
       links: [
+        { label: "Explore Kigali", href: "/kigali" },
+        { label: "Food guides", href: "/guides/ultimate-kigali-food-guide" },
         { label: "How it works", href: "#how-it-works" },
         { label: "Early access", href: "#early-access" },
         { label: "FAQ", href: "#faq" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { label: "Privacy", href: "/privacy" },
+        { label: "Terms", href: "/terms" },
+        { label: "Contact", href: "/contact" },
       ],
     },
     {
