@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { HanoLogoMark } from "@/components/ui/hano-logo-mark";
 import styles from "./hero-notification-cards.module.css";
 
 export type HeroNotification = {
@@ -31,13 +31,7 @@ export function HeroNotificationCards({
           }`}
         >
           <div className={styles.header}>
-            <Image
-              src="/brand-logo/small.png"
-              alt=""
-              width={18}
-              height={18}
-              className={styles.icon}
-            />
+            <HanoLogoMark size={18} className={styles.icon} />
             <span className={styles.app}>{notification.app.toUpperCase()}</span>
             <span className={styles.time}>{notification.time}</span>
           </div>

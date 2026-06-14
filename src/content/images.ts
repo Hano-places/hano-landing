@@ -24,6 +24,12 @@ export const IMG = {
   rooftop: "/restaurants-dishes-images/images.jpg",
 } as const;
 
+export const BRAND = {
+  logo: "/brand-logo/svg/logo.svg",
+  logoSmall: "/brand-logo/small.png",
+  logoLarge: "/brand-logo/large.png",
+} as const;
+
 export const STORE = {
   googlePlay: "/company-logos/stores/google-play.svg",
   googlePlayIcon: "/company-logos/stores/Google_Play-Icon-Logo.wine.svg",

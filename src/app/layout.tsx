@@ -3,6 +3,7 @@ import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/content/landing";
+import { BRAND } from "@/content/images";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -26,8 +27,8 @@ export const metadata: Metadata = {
   description:
     "Hano helps you discover restaurants, cafés, bakeries, brunch spots, bars, and hidden gems across Kigali. Join the waitlist for early access.",
   icons: {
-    icon: "/brand-logo/small.png",
-    apple: "/brand-logo/large.png",
+    icon: BRAND.logo,
+    apple: BRAND.logo,
   },
   openGraph: {
     title: "Hano — Discover The Best Restaurants In Kigali",

@@ -4,6 +4,7 @@ import { useRef, type KeyboardEvent, type MouseEvent } from "react";
 import { motion } from "motion/react";
 import type { Place } from "@/content/places";
 import { publicImageSrc } from "@/lib/public-image";
+import { withHanoReferral } from "@/lib/place-links";
 import { getOpenStatus } from "@/lib/place-hours";
 import { Icon } from "@/components/ui/icon";
 import {
@@ -82,11 +83,11 @@ export function PlaceCutoutCard({ place, onOpenDetails }: PlaceCutoutCardProps) 
           {isOpen ? "Open now" : "Closed"}
           <CutoutCorner
             className={isOpen ? styles.pinCornerLeftOpen : styles.pinCornerLeftClosed}
-            size={24}
+            size={28}
           />
           <CutoutCorner
             className={isOpen ? styles.pinCornerBottomOpen : styles.pinCornerBottomClosed}
-            size={24}
+            size={28}
           />
         </CutoutCardPin>
       </CutoutCardMedia>
@@ -142,7 +143,7 @@ export function PlaceCutoutCard({ place, onOpenDetails }: PlaceCutoutCardProps) 
         <CutoutCardAction className={styles.actionPos}>
           <a
             className={styles.actionButton}
-            href={place.website}
+            href={withHanoReferral(place.website)}
             rel="noopener noreferrer"
             target="_blank"
             onClick={handleActionClick}

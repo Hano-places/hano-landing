@@ -7,6 +7,7 @@ import {
   formatWeeklyHours,
   getOpenStatus,
 } from "@/lib/place-hours";
+import { withHanoReferral } from "@/lib/place-links";
 import { Icon } from "@/components/ui/icon";
 import styles from "./place-card.module.css";
 
@@ -86,7 +87,7 @@ export function PlaceCard({ place, variant = "grid" }: PlaceCardProps) {
 
         {place.website ? (
           <a
-            href={place.website}
+            href={withHanoReferral(place.website)}
             className={styles.website}
             target="_blank"
             rel="noopener noreferrer"

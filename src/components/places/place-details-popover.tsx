@@ -16,6 +16,7 @@ import {
   formatWeeklyHours,
   getOpenStatus,
 } from "@/lib/place-hours";
+import { withHanoReferral } from "@/lib/place-links";
 import { Icon } from "@/components/ui/icon";
 import {
   CutoutCardImage,
@@ -81,11 +82,11 @@ function PlaceDetailsHero({ place }: { place: Place }) {
           {isOpen ? "Open now" : "Closed"}
           <CutoutCorner
             className={isOpen ? cutoutStyles.pinCornerLeftOpen : cutoutStyles.pinCornerLeftClosed}
-            size={24}
+            size={28}
           />
           <CutoutCorner
             className={isOpen ? cutoutStyles.pinCornerBottomOpen : cutoutStyles.pinCornerBottomClosed}
-            size={24}
+            size={28}
           />
         </CutoutCardPin>
       </CutoutCardMedia>
@@ -150,7 +151,7 @@ function PlaceDetailsPanel({ place }: { place: Place }) {
 
           <div className={styles.actions}>
             {place.website ? (
-              <FloatingPanelButton href={place.website}>
+              <FloatingPanelButton href={withHanoReferral(place.website)}>
                 <Icon name="restaurant" size={16} />
                 Visit website
               </FloatingPanelButton>
