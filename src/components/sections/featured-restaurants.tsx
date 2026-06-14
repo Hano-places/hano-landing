@@ -23,12 +23,14 @@ export function FeaturedRestaurantsSection() {
             <span aria-hidden="true">→</span>
           </Link>
         </div>
-        <div className={styles.track} role="list">
-          {featuredRestaurants.items.map((place) => (
-            <div key={place.id} role="listitem">
-              <PlaceCard place={place} variant="carousel" />
-            </div>
-          ))}
+        <div className={styles.trackWrap}>
+          <div className={styles.track} role="list">
+            {featuredRestaurants.items.map((place) => (
+              <div key={place.id} className={styles.trackItem} role="listitem">
+                <PlaceCard place={place} variant="carousel" />
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </Section>

@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import Image from "next/image";
 import type { Place } from "@/content/places";
 import { publicImageSrc } from "@/lib/public-image";
@@ -21,9 +19,11 @@ export function PlaceCard({ place, variant = "grid" }: PlaceCardProps) {
   const { isOpen, todayHours } = getOpenStatus(place.hours);
   const weeklyHours = formatWeeklyHours(place.hours);
 
+  const isCarousel = variant === "carousel";
+
   return (
     <article
-      className={`${styles.card} ${variant === "carousel" ? styles.carousel : styles.grid}`}
+      className={`${styles.card} ${isCarousel ? styles.carousel : styles.grid}`}
     >
       <div className={styles.imageWrap}>
         <Image
@@ -31,7 +31,11 @@ export function PlaceCard({ place, variant = "grid" }: PlaceCardProps) {
           alt={place.name}
           fill
           className={styles.image}
-          sizes={variant === "carousel" ? "320px" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+          sizes={
+            isCarousel
+              ? "(max-width: 639px) 78vw, (max-width: 899px) 45vw, (max-width: 1099px) 30vw, 22vw"
+              : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          }
         />
         <span
           className={`${styles.statusBadge} ${isOpen ? styles.statusOpen : styles.statusClosed}`}
@@ -40,33 +44,35 @@ export function PlaceCard({ place, variant = "grid" }: PlaceCardProps) {
         </span>
       </div>
 
-      <div className={styles.body}>
+      <div className={`${styles.body} ${isCarousel ? styles.carouselBody : ""}`}>
         <div className={styles.titleRow}>
-          <h3 className={styles.name}>{place.name}</h3>
+          <h3 className={styles.name} title={place.name}>
+            {place.name}
+          </h3>
           <span className={styles.rating}>
             {place.rating}
             <Icon name="star" size={14} />
           </span>
         </div>
 
-        <div className={styles.meta}>
-          <span>{place.category}</span>
-          <span aria-hidden="true">·</span>
-          <span>{place.location}</span>
-          <span aria-hidden="true">·</span>
-          <span>{place.priceRange}</span>
+        <div className={styles.meta} title={`${place.category} · ${place.location} · ${place.priceRange}`}>
+          <span className={styles.metaText}>
+            {place.category} · {place.location} · {place.priceRange}
+          </span>
         </div>
 
-        <p className={styles.description}>{place.description}</p>
+        <p className={styles.description} title={place.description}>
+          {place.description}
+        </p>
 
-        <div className={styles.hoursBlock}>
+        <div className={`${styles.hoursBlock} ${isCarousel ? styles.carouselHours : ""}`}>
           <div className={styles.hoursToday}>
             <Icon name="clock" size={15} className={styles.hoursIcon} />
-            <span>
+            <span className={styles.hoursTodayText}>
               Today · <strong>{todayHours}</strong>
             </span>
           </div>
-          {variant === "grid" ? (
+          {!isCarousel ? (
             <ul className={styles.hoursWeek}>
               {weeklyHours.map((entry) => (
                 <li key={entry.day}>

@@ -9,9 +9,18 @@
 }
 
 .carousel {
-  flex: 0 0 min(320px, 85vw);
-  scroll-snap-align: start;
-  border-radius: var(--radius-card-lg);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 25.5rem;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.carousel:hover {
+  border-color: color-mix(in srgb, var(--color-green-500) 30%, var(--color-border));
+  box-shadow: var(--shadow-card);
 }
 
 .grid {
@@ -27,7 +36,12 @@
 
 .imageWrap {
   position: relative;
+  flex-shrink: 0;
   aspect-ratio: 16 / 10;
+}
+
+.carousel .imageWrap {
+  aspect-ratio: 4 / 3;
 }
 
 .image {
@@ -62,6 +76,14 @@
   padding: 1.25rem;
 }
 
+.carouselBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 1rem 1rem 1.125rem;
+}
+
 .titleRow {
   display: flex;
   align-items: flex-start;
@@ -74,16 +96,33 @@
   font-size: var(--text-xl);
   font-weight: var(--font-weight-medium);
   letter-spacing: -0.02em;
+  min-width: 0;
+}
+
+.carousel .name {
+  font-size: var(--text-lg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .meta {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem;
+  min-width: 0;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   margin-bottom: 0.75rem;
+}
+
+.metaText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carousel .meta {
+  margin-bottom: 0.5rem;
 }
 
 .rating {
@@ -101,18 +140,43 @@
   line-height: var(--leading-relaxed);
 }
 
+.carousel .description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: calc(2 * var(--text-sm) * var(--leading-relaxed));
+  margin-bottom: 0.25rem;
+}
+
 .hoursBlock {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid var(--color-border-soft);
 }
 
+.carouselHours {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
 .hoursToday {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+}
+
+.hoursTodayText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carousel .hoursToday {
+  font-size: var(--text-xs);
 }
 
 .hoursToday strong {
@@ -154,6 +218,19 @@
   font-weight: var(--font-weight-medium);
   color: var(--color-green-700);
   text-decoration: none;
+}
+
+.carousel .website {
+  flex-shrink: 0;
+  margin-top: 0.625rem;
+  font-size: var(--text-xs);
+}
+
+.carousel .statusBadge {
+  top: 0.625rem;
+  left: 0.625rem;
+  padding: 0.3rem 0.625rem;
+  font-size: 0.6875rem;
 }
 
 .website:hover {
