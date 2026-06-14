@@ -59,7 +59,7 @@ function PlaceDetailsHero({ place }: { place: Place }) {
 
   return (
     <div className={styles.hero}>
-      <CutoutCardMedia className={styles.heroMedia} style={{ height: "11.5rem" }}>
+      <CutoutCardMedia className={styles.heroMedia} style={{ height: "9.5rem" }}>
         <CutoutCardImage
           alt={place.name}
           sizes="340px"
@@ -200,7 +200,7 @@ function PlaceDetailsInner({ children }: { children: ReactNode }) {
   const openPlaceDetails = useCallback(
     (place: Place, rect: DOMRect | null) => {
       setSelectedPlace(place);
-      openFloatingPanel(rect, place.name, "centered");
+      openFloatingPanel(rect, place.name, "bottom-center");
     },
     [openFloatingPanel],
   );

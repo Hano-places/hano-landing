@@ -38,12 +38,12 @@
   z-index: 210;
   display: flex;
   flex-direction: column;
-  width: min(21.25rem, calc(100vw - 2rem));
-  max-height: min(90dvh, 40rem);
+  width: min(88vw, 22.5rem);
+  max-height: calc(100dvh - 1.5rem);
   overflow: hidden;
   background: #ffffff;
   border: 1px solid color-mix(in srgb, var(--color-border) 85%, transparent);
-  border-radius: 14px;
+  border-radius: 28px;
   box-shadow:
     0 1px 2px -1px color-mix(in srgb, var(--color-text) 8%, transparent),
     0 8px 24px -4px color-mix(in srgb, var(--color-text) 12%, transparent),
@@ -57,12 +57,18 @@
   translate: -50% -50%;
 }
 
+.panelBottomCenter {
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  transform-origin: bottom center;
+}
+
 .panelScroll {
-  flex: 1;
-  min-height: 0;
+  flex: 0 1 auto;
   overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow-y: visible;
 }
 
 .panelTitleWrap {
@@ -79,7 +85,7 @@
 }
 
 .header {
-  padding: 0.75rem 1rem 0;
+  padding: 0.5rem 1rem 0;
   font-size: var(--text-xs);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.1em;
@@ -88,7 +94,7 @@
 }
 
 .body {
-  padding: 0.75rem 1rem 1rem;
+  padding: 0.5rem 1rem 0.75rem;
 }
 
 .footer {
@@ -96,7 +102,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.75rem 1rem 1rem;
+  padding: 0.625rem 1rem 0.875rem;
 }
 
 .closeButton {
@@ -123,7 +129,7 @@
   width: 100%;
   align-items: center;
   gap: 0.625rem;
-  padding: 0.625rem 0.875rem;
+  padding: 0.5rem 0.75rem;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
@@ -143,6 +149,15 @@
 
 .divider {
   height: 1px;
-  margin: 0.25rem 0.75rem;
+  margin: 0.15rem 0.75rem;
   background: var(--color-border-soft);
+}
+
+@media (max-height: 720px), (max-width: 420px) {
+  .panelScroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }

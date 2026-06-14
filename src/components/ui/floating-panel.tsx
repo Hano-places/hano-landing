@@ -29,7 +29,7 @@ const TRANSITION = {
   duration: 0.4,
 };
 
-type PanelPlacement = "anchored" | "centered";
+type PanelPlacement = "anchored" | "centered" | "bottom-center";
 
 interface FloatingPanelContextType {
   isOpen: boolean;
@@ -166,11 +166,20 @@ export function FloatingPanelContent({
   const contentRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const [panelStyle, setPanelStyle] = useState<React.CSSProperties>({});
+  const [panelWidth, setPanelWidth] = useState<number | undefined>(undefined);
 
   const resolvedTitleId = titleId ?? `floating-panel-title-${uniqueId}`;
 
   const updatePanelPosition = useCallback(() => {
-    if (placement === "centered" || !triggerRect) {
+    if (placement === "bottom-center" && triggerRect?.width) {
+      setPanelWidth(
+        Math.min(Math.max(triggerRect.width, 288), window.innerWidth - 32),
+      );
+    } else {
+      setPanelWidth(undefined);
+    }
+
+    if (placement === "centered" || placement === "bottom-center" || !triggerRect) {
       setPanelStyle({});
       return;
     }
@@ -283,15 +292,22 @@ export function FloatingPanelContent({
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
       }
-    : placement === "centered"
+    : placement === "bottom-center"
       ? {
-          hidden: { opacity: 0, scale: 0.94 },
-          visible: { opacity: 1, scale: 1 },
+          hidden: { opacity: 0, x: "-50%", y: 28, scale: 0.98 },
+          visible: { opacity: 1, x: "-50%", y: 0, scale: 1 },
         }
-      : {
-          hidden: { opacity: 0, scale: 0.92, y: 12 },
-          visible: { opacity: 1, scale: 1, y: 0 },
-        };
+      : placement === "centered"
+        ? {
+            hidden: { opacity: 0, scale: 0.94 },
+            visible: { opacity: 1, scale: 1 },
+          }
+        : {
+            hidden: { opacity: 0, scale: 0.92, y: 12 },
+            visible: { opacity: 1, scale: 1, y: 0 },
+          };
+
+  const resolvedWidth = panelWidth;
 
   return (
     <AnimatePresence>
@@ -310,9 +326,15 @@ export function FloatingPanelContent({
             className={cn(
               styles.panel,
               placement === "centered" && styles.panelCentered,
+              placement === "bottom-center" && styles.panelBottomCenter,
               className,
             )}
-            style={placement === "centered" ? undefined : panelStyle}
+            style={{
+              ...(placement === "centered" || placement === "bottom-center"
+                ? undefined
+                : panelStyle),
+              ...(resolvedWidth ? { width: resolvedWidth } : undefined),
+            }}
             initial="hidden"
             animate="visible"
             exit="hidden"
