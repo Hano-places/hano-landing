@@ -65,7 +65,7 @@
 .track {
   display: flex;
   align-items: stretch;
-  gap: 1rem;
+  gap: 1.25rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 0.25rem var(--container-padding) 1rem;
@@ -89,32 +89,30 @@
 
 .trackItem {
   display: flex;
-  flex: 0 0 calc(100% - 3rem);
-  max-width: calc(100% - 3rem);
+  flex: 0 0 min(88vw, 22.5rem);
+  width: min(88vw, 22.5rem);
+  min-width: 18rem;
   scroll-snap-align: start;
 }
 
-@media (min-width: 540px) {
+@media (min-width: 640px) {
   .trackItem {
-    flex: 0 0 calc((100% - 1rem) / 2);
-    max-width: calc((100% - 1rem) / 2);
+    flex: 0 0 calc((100% - 1.25rem) / 2);
+    width: calc((100% - 1.25rem) / 2);
+    min-width: 19rem;
+    max-width: 24rem;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .track {
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 
   .trackItem {
-    flex: 0 0 calc((100% - 2.5rem) / 3);
-    max-width: calc((100% - 2.5rem) / 3);
-  }
-}
-
-@media (min-width: 1024px) {
-  .trackItem {
-    flex: 0 0 calc((100% - 3.75rem) / 4);
-    max-width: calc((100% - 3.75rem) / 4);
+    flex: 0 0 calc((100% - 3rem) / 3);
+    width: calc((100% - 3rem) / 3);
+    min-width: 20rem;
+    max-width: none;
   }
 }

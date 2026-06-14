@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { featuredRestaurants } from "@/content/landing";
-import { PlaceCard } from "@/components/places/place-card";
+import { PlaceCutoutCard } from "@/components/places/place-cutout-card";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import styles from "./featured-restaurants.module.css";
@@ -27,7 +27,7 @@ export function FeaturedRestaurantsSection() {
           <div className={styles.track} role="list">
             {featuredRestaurants.items.map((place) => (
               <div key={place.id} className={styles.trackItem} role="listitem">
-                <PlaceCard place={place} variant="carousel" />
+                <PlaceCutoutCard place={place} />
               </div>
             ))}
           </div>
