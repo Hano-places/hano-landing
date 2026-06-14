@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/content/landing";
@@ -14,13 +14,68 @@ const sectionIds = navLinks
   .map((l) => l.href.replace(/^\/?#/, ""))
   .filter(Boolean);
 
+function MenuCloseIcon() {
+  return (
+    <svg
+      aria-hidden
+      width={22}
+      height={22}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+    >
+      <path d="M6 6l12 12M18 6 6 18" />
+    </svg>
+  );
+}
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const activeId = useActiveSection(sectionIds);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) {
+        return;
+      }
+      if (headerRef.current?.contains(target)) {
+        return;
+      }
+      setMenuOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className={styles.header}>
+    <header ref={headerRef} className={styles.header}>
       <Container className={styles.inner}>
         <Link href="/" aria-label="Hano home">
           <Logo />
@@ -58,15 +113,20 @@ export function Header() {
             className={styles.menuBtn}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
+            aria-controls="mobile-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
           >
-            <Icon name="grid" size={22} />
+            {menuOpen ? <MenuCloseIcon /> : <Icon name="grid" size={22} />}
           </button>
         </div>
       </Container>
 
-      {menuOpen && (
-        <nav className={styles.mobileNav} aria-label="Mobile navigation">
+      {menuOpen ? (
+        <nav
+          id="mobile-navigation"
+          className={styles.mobileNav}
+          aria-label="Mobile navigation"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -85,7 +145,7 @@ export function Header() {
             Join Early Access
           </Link>
         </nav>
-      )}
+      ) : null}
     </header>
   );
 }
