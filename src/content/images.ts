@@ -20,6 +20,8 @@ export const IMG = {
   beachDrink:
     "/restaurants-dishes-images/Summery Beverage on Sandy Beach.png",
   tropical: "/restaurants-dishes-images/Tropical Refreshments.png",
+  nightView: "/restaurants-dishes-images/our-night-view.jpg",
+  rooftop: "/restaurants-dishes-images/images.jpg",
 } as const;
 
 export const STORE = {

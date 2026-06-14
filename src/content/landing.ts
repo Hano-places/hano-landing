@@ -1,4 +1,5 @@
 import { IMG, MOCK } from "./images";
+import { getFeaturedPlaces } from "./places";
 
 export const site = {
   name: "Hano",
@@ -16,11 +17,11 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { label: "Discover", href: "#hero" },
-  { label: "Restaurants", href: "#restaurants" },
-  { label: "Categories", href: "#categories" },
-  { label: "Community", href: "#community" },
-  { label: "About", href: "#early-access" },
+  { label: "Discover", href: "/#hero" },
+  { label: "Restaurants", href: "/places" },
+  { label: "Categories", href: "/#categories" },
+  { label: "Community", href: "/#community" },
+  { label: "About", href: "/#early-access" },
 ] as const;
 
 export const hero = {
@@ -265,41 +266,12 @@ export const solution = {
 
 export const featuredRestaurants = {
   id: "restaurants",
-  headline: "Popular Restaurants In Kigali",
+  headline: "Popular Restaurants & Cafés In Kigali",
   supporting:
-    "Explore some of the restaurants people are talking about right now.",
-  items: [
-    {
-      name: "Boho",
-      category: "Restaurant",
-      location: "Kiyovu",
-      rating: 4.9,
-      priceRange: "$$",
-      description:
-        "Known for great burgers, vibrant atmosphere, and consistent dining experiences.",
-      image: IMG.gourmetBurger,
-    },
-    {
-      name: "Pili Pili",
-      category: "Restaurant & Lounge",
-      location: "Kimihurura",
-      rating: 4.8,
-      priceRange: "$$$",
-      description:
-        "A Kigali favorite for social dining and local classics.",
-      image: IMG.sophisticated,
-    },
-    {
-      name: "Heaven Restaurant",
-      category: "Restaurant",
-      location: "Kiyovu",
-      rating: 4.8,
-      priceRange: "$$$",
-      description:
-        "Beautiful views, local flavors, and memorable dining experiences.",
-      image: IMG.elegantTable,
-    },
-  ],
+    "Real spots people love across the city — with official websites where available.",
+  viewAllHref: "/places",
+  viewAllLabel: "View all places",
+  items: getFeaturedPlaces(),
 } as const;
 
 export const categories = {
@@ -625,7 +597,7 @@ export const footer = {
       title: "Links",
       links: [
         { label: "Discover", href: "#hero" },
-        { label: "Restaurants", href: "#restaurants" },
+        { label: "Restaurants", href: "/places" },
         { label: "Categories", href: "#categories" },
         { label: "Community", href: "#community" },
       ],
