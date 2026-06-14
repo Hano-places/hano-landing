@@ -1,3 +1,6 @@
+"use client";
+
+import { useId } from "react";
 import { STORE } from "@/content/images";
 
 type LogoProps = {
@@ -22,16 +25,90 @@ export function AppleLogo({ className }: LogoProps) {
 }
 
 export function GooglePlayLogo({ className }: LogoProps) {
+  const id = useId().replace(/:/g, "");
+  const g1 = `google-play-gradient-1-${id}`;
+  const g2 = `google-play-gradient-2-${id}`;
+  const g3 = `google-play-gradient-3-${id}`;
+  const g4 = `google-play-gradient-4-${id}`;
+
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- official icon extracted from google-play.svg
-    <img
-      src={STORE.googlePlayIcon}
-      alt=""
-      width={16}
-      height={16}
+    <svg
       className={className}
+      viewBox="0 0 27.5 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       aria-hidden
-    />
+    >
+      <defs>
+        <linearGradient
+          id={g1}
+          gradientUnits="userSpaceOnUse"
+          x1="14.09"
+          y1="1.87"
+          x2="-5.9"
+          y2="21.86"
+        >
+          <stop stopColor="#008eff" offset="0" />
+          <stop stopColor="#008fff" offset=".01" />
+          <stop stopColor="#00acff" offset=".26" />
+          <stop stopColor="#00c0ff" offset=".51" />
+          <stop stopColor="#00cdff" offset=".76" />
+          <stop stopColor="#00d1ff" offset="1" />
+        </linearGradient>
+        <linearGradient
+          id={g2}
+          gradientUnits="userSpaceOnUse"
+          x1="26.45"
+          y1="15.32"
+          x2="-2.37"
+          y2="15.32"
+        >
+          <stop stopColor="#ffd800" offset="0" />
+          <stop stopColor="#ff8a00" offset="1" />
+        </linearGradient>
+        <linearGradient
+          id={g3}
+          gradientUnits="userSpaceOnUse"
+          x1="17.69"
+          y1="18.05"
+          x2="-9.41"
+          y2="45.15"
+        >
+          <stop stopColor="#ff3a44" offset="0" />
+          <stop stopColor="#b11162" offset="1" />
+        </linearGradient>
+        <linearGradient
+          id={g4}
+          gradientUnits="userSpaceOnUse"
+          x1="-3.19"
+          y1="-8.29"
+          x2="8.92"
+          y2="3.81"
+        >
+          <stop stopColor="#328e71" offset="0" />
+          <stop stopColor="#2d9571" offset=".07" />
+          <stop stopColor="#15bd74" offset=".48" />
+          <stop stopColor="#06d575" offset=".8" />
+          <stop stopColor="#00de76" offset="1" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M.55.48A2.39 2.39 0 000 2.15v26.34a2.41 2.41 0 00.55 1.67l.09.09 14.75-14.76v-.35L.64.39z"
+        fill={`url(#${g1})`}
+      />
+      <path
+        d="M20.31 20.41l-4.92-4.92v-.35l4.92-4.91.11.06 5.83 3.31c1.67.94 1.67 2.49 0 3.44l-5.83 3.31z"
+        fill={`url(#${g2})`}
+      />
+      <path
+        d="M20.42 20.35l-5-5L.55 30.16a2 2 0 002.45.07l17.39-9.88"
+        fill={`url(#${g3})`}
+      />
+      <path
+        d="M20.42 10.29L3 .4A1.93 1.93 0 00.55.48l14.84 14.84z"
+        fill={`url(#${g4})`}
+      />
+    </svg>
   );
 }
 

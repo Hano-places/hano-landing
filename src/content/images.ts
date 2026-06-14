@@ -26,7 +26,7 @@ export const IMG = {
 
 export const STORE = {
   googlePlay: "/company-logos/stores/google-play.svg",
-  googlePlayIcon: "/company-logos/stores/google-play-icon.svg",
+  googlePlayIcon: "/company-logos/stores/Google_Play-Icon-Logo.wine.svg",
   appStore: "/company-logos/stores/app-store.svg",
 } as const;
 
