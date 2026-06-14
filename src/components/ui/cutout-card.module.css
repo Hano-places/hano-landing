@@ -238,6 +238,10 @@
   color: var(--color-text-secondary);
 }
 
+.cardInteractive {
+  height: 100%;
+}
+
 .title {
   margin-bottom: 0.5rem;
   overflow: hidden;

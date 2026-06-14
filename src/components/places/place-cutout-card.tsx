@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, type KeyboardEvent, type MouseEvent } from "react";
 import { motion } from "motion/react";
 import type { Place } from "@/content/places";
 import { publicImageSrc } from "@/lib/public-image";
@@ -22,14 +23,43 @@ import styles from "@/components/ui/cutout-card.module.css";
 
 type PlaceCutoutCardProps = {
   place: Place;
+  onOpenDetails?: (place: Place, rect: DOMRect | null) => void;
 };
 
-export function PlaceCutoutCard({ place }: PlaceCutoutCardProps) {
+export function PlaceCutoutCard({ place, onOpenDetails }: PlaceCutoutCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
   const stagger = useCutoutContentStaggerVariants();
   const { isOpen, todayHours } = getOpenStatus(place.hours);
+  const interactive = Boolean(onOpenDetails);
+
+  const handleCardClick = () => {
+    if (!onOpenDetails) {
+      return;
+    }
+    const rect = cardRef.current?.getBoundingClientRect() ?? null;
+    onOpenDetails(place, rect);
+  };
+
+  const handleActionClick = (event: MouseEvent) => {
+    event.stopPropagation();
+  };
+
+  const handleCardKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleCardClick();
+    }
+  };
 
   return (
-    <CutoutCard>
+    <div ref={cardRef} className={interactive ? styles.cardInteractive : undefined}>
+    <CutoutCard
+      onClick={interactive ? handleCardClick : undefined}
+      onKeyDown={interactive ? handleCardKeyDown : undefined}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-label={interactive ? `View details for ${place.name}` : undefined}
+    >
       <CutoutCardMedia>
         <CutoutCardImage
           alt={place.name}
@@ -115,11 +145,13 @@ export function PlaceCutoutCard({ place }: PlaceCutoutCardProps) {
             href={place.website}
             rel="noopener noreferrer"
             target="_blank"
+            onClick={handleActionClick}
           >
             Visit
           </a>
         </CutoutCardAction>
       ) : null}
     </CutoutCard>
+    </div>
   );
 }

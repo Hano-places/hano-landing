@@ -1,0 +1,143 @@
+.summary {
+  margin-bottom: 1rem;
+}
+
+.hero {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 14px 14px 0 0;
+}
+
+.heroMedia {
+  flex-shrink: 0;
+}
+
+.titleBlock {
+  padding: 0.875rem 1rem 0;
+}
+
+.placeName {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.category {
+  margin-bottom: 0.35rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.summaryMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.625rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.price {
+  flex-shrink: 0;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.description {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.hoursSection {
+  padding: 0.875rem;
+  margin-bottom: 0.75rem;
+  background: color-mix(in srgb, var(--foundation-primary-primary-100) 45%, white);
+  border: 1px solid var(--foundation-primary-primary-200);
+  border-radius: 12px;
+}
+
+.hoursHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+}
+
+.statusPill {
+  margin-left: auto;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-pill);
+}
+
+.statusOpen {
+  color: var(--color-green-800);
+  background: var(--foundation-primary-primary-100);
+}
+
+.statusClosed {
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+}
+
+.todayHours {
+  margin-bottom: 0.625rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.todayHours strong {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.hoursList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 0.875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.hoursList li {
+  display: contents;
+}
+
+.hoursList li span:last-child {
+  text-align: right;
+  color: var(--color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+}

@@ -105,6 +105,11 @@
   gap: 1.5rem;
 }
 
+.gridItem {
+  display: flex;
+  min-height: 0;
+}
+
 .empty {
   display: flex;
   flex-direction: column;

@@ -9,12 +9,17 @@ import {
 } from "@/content/places";
 import { filterPlaces } from "@/lib/places-search";
 import { Icon } from "@/components/ui/icon";
-import { PlaceCard } from "./place-card";
+import { PlaceCutoutCard } from "./place-cutout-card";
+import {
+  PlaceDetailsProvider,
+  usePlaceDetails,
+} from "./place-details-popover";
 import styles from "./places-directory.module.css";
 
-export function PlacesDirectory() {
+function PlacesDirectoryGrid() {
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState<PlaceFilter>("all");
+  const { openPlaceDetails } = usePlaceDetails();
 
   const results = useMemo(
     () => filterPlaces(places, query, activeFilter),
@@ -60,8 +65,11 @@ export function PlacesDirectory() {
       {results.length > 0 ? (
         <div className={styles.grid} role="list">
           {results.map((place) => (
-            <div key={place.id} role="listitem">
-              <PlaceCard place={place} variant="grid" />
+            <div key={place.id} className={styles.gridItem} role="listitem">
+              <PlaceCutoutCard
+                place={place}
+                onOpenDetails={openPlaceDetails}
+              />
             </div>
           ))}
         </div>
@@ -72,5 +80,13 @@ export function PlacesDirectory() {
         </div>
       )}
     </div>
+  );
+}
+
+export function PlacesDirectory() {
+  return (
+    <PlaceDetailsProvider>
+      <PlacesDirectoryGrid />
+    </PlaceDetailsProvider>
   );
 }
