@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Sibling product repos (reference only — not part of landing site)
+/hano-mobile-v2/
+/hano-web/
