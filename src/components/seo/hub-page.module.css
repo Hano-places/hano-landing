@@ -1,5 +1,5 @@
 .page {
-  padding: calc(var(--header-height) + 2rem) 0 var(--section-padding-y);
+  padding: 0;
 }
 
 .eyebrow {

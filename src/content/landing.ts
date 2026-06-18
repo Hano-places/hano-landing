@@ -596,10 +596,10 @@ export const footer = {
     {
       title: "Links",
       links: [
-        { label: "Discover", href: "#hero" },
+        { label: "Discover", href: "/#hero" },
         { label: "Restaurants", href: "/places" },
-        { label: "Categories", href: "#categories" },
-        { label: "Community", href: "#community" },
+        { label: "Categories", href: "/#categories" },
+        { label: "Community", href: "/#community" },
       ],
     },
     {
@@ -607,9 +607,9 @@ export const footer = {
       links: [
         { label: "Explore Kigali", href: "/kigali" },
         { label: "Food guides", href: "/guides/ultimate-kigali-food-guide" },
-        { label: "How it works", href: "#how-it-works" },
-        { label: "Early access", href: "#early-access" },
-        { label: "FAQ", href: "#faq" },
+        { label: "How it works", href: "/#how-it-works" },
+        { label: "Early access", href: "/#early-access" },
+        { label: "FAQ", href: "/#faq" },
       ],
     },
     {
@@ -617,6 +617,7 @@ export const footer = {
       links: [
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },
+        { label: "Cookies", href: "/cookies" },
         { label: "Contact", href: "/contact" },
       ],
     },

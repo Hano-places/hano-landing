@@ -23,6 +23,7 @@ export function getStaticSitemapPaths(): {
     { path: "/kigali", lastModified: now, priority: 0.9 },
     { path: "/privacy", lastModified: now, priority: 0.3 },
     { path: "/terms", lastModified: now, priority: 0.3 },
+    { path: "/cookies", lastModified: now, priority: 0.3 },
     { path: "/contact", lastModified: now, priority: 0.4 },
     { path: "/guides/ultimate-kigali-food-guide", lastModified: now, priority: 0.7 },
     { path: "/guides/best-date-night-restaurants-kigali", lastModified: now, priority: 0.7 },

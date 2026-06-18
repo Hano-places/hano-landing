@@ -101,7 +101,7 @@ export function PlaceCutoutCard({
       </CutoutCardMedia>
 
       <CutoutCardContent
-        className={place.website ? styles.contentWithAction : undefined}
+        className={place.website && !href ? styles.contentWithAction : undefined}
       >
         <motion.div
           animate="show"
@@ -147,7 +147,7 @@ export function PlaceCutoutCard({
         </motion.div>
       </CutoutCardContent>
 
-      {place.website ? (
+      {place.website && !href ? (
         <CutoutCardAction className={styles.actionPos}>
           <a
             className={styles.actionButton}

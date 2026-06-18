@@ -7,6 +7,7 @@ import {
   getOpenStatus,
 } from "@/lib/place-hours";
 import { withHanoReferral } from "@/lib/place-links";
+import { getDirectionsUrl } from "@/lib/maps";
 import {
   categoryCityPath,
   categoryNeighborhoodPath,
@@ -14,9 +15,11 @@ import {
   dishRankingPath,
   neighborhoodSlugFromLocation,
   placeCategorySegment,
-  placeUrlFromParts,
 } from "@/lib/places-slug";
 import { Icon } from "@/components/ui/icon";
+import { PlaceFaqSection } from "@/components/places/place-faq-section";
+import { PlaceRelatedCard } from "@/components/places/place-related-card";
+import { PlaceSidebar } from "@/components/places/place-sidebar";
 import styles from "./place-detail-page.module.css";
 
 type PlaceDetailPageProps = {
@@ -24,11 +27,20 @@ type PlaceDetailPageProps = {
   relatedPlaces: readonly Place[];
 };
 
+function isPlaceholderReview(place: Place): boolean {
+  return (
+    place.reviews.length === 1 &&
+    place.reviews[0]?.author === "Hano community"
+  );
+}
+
 export function PlaceDetailPage({ place, relatedPlaces }: PlaceDetailPageProps) {
   const { isOpen, todayHours } = getOpenStatus(place.hours);
   const weeklyHours = formatWeeklyHours(place.hours);
   const segment = placeCategorySegment(place.type);
   const neighborhoodSlug = neighborhoodSlugFromLocation(place.location);
+  const showReviews = place.reviews.length > 0 && !isPlaceholderReview(place);
+  const directionsUrl = getDirectionsUrl(place);
 
   return (
     <article className={styles.page}>
@@ -73,180 +85,184 @@ export function PlaceDetailPage({ place, relatedPlaces }: PlaceDetailPageProps) 
             </span>
           </div>
           <p className={styles.description}>{place.description}</p>
-          <div className={styles.actions}>
+          {place.tags.length > 0 ? (
+            <ul className={styles.tags} aria-label="Highlights">
+              {place.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          ) : null}
+          <div className={styles.heroActions}>
+            <a
+              href={directionsUrl}
+              className={styles.primaryAction}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get directions
+            </a>
             {place.website ? (
               <a
                 href={withHanoReferral(place.website)}
-                className={styles.primaryAction}
+                className={styles.secondaryAction}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Visit website
               </a>
             ) : null}
-            <Link href="/places" className={styles.secondaryAction}>
-              Browse all places
-            </Link>
           </div>
         </div>
       </div>
 
-      <div className={styles.grid}>
-        <section className={styles.section}>
-          <h2>Key information</h2>
-          <dl className={styles.infoList}>
-            <div>
-              <dt>Address</dt>
-              <dd>
-                {place.address.street}, {place.address.locality},{" "}
-                {place.address.country}
-              </dd>
-            </div>
-            {place.phone ? (
+      <div className={styles.bodyGrid}>
+        <div className={styles.mainColumn}>
+          <section className={styles.cardSection}>
+            <h2>Visit information</h2>
+            <dl className={styles.infoList}>
               <div>
-                <dt>Phone</dt>
+                <dt>Address</dt>
                 <dd>
-                  <a href={`tel:${place.phone}`}>{place.phone}</a>
+                  {place.address.street}, {place.address.locality},{" "}
+                  {place.address.country}
                 </dd>
               </div>
-            ) : null}
-            <div>
-              <dt>Today</dt>
-              <dd>{todayHours}</dd>
-            </div>
-            <div>
-              <dt>Category</dt>
-              <dd>{place.category}</dd>
-            </div>
-          </dl>
-
-          <h3>Opening hours</h3>
-          <ul className={styles.hoursList}>
-            {weeklyHours.map((entry) => (
-              <li key={entry.day}>
-                <span>{entry.day}</span>
-                <span>{entry.hours}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className={styles.section}>
-          <h2>Ratings & reviews</h2>
-          <p className={styles.ratingSummary}>
-            <strong>{place.rating}</strong> out of 5 based on {place.reviews.length}{" "}
-            {place.reviews.length === 1 ? "review" : "reviews"} on Hano
-          </p>
-          <ul className={styles.reviewList}>
-            {place.reviews.map((review) => (
-              <li key={`${review.author}-${review.text.slice(0, 20)}`}>
-                <div className={styles.reviewHeader}>
-                  <strong>{review.author}</strong>
-                  <span>
-                    {review.rating}
-                    <Icon name="star" size={12} />
-                  </span>
+              {place.phone ? (
+                <div>
+                  <dt>Phone</dt>
+                  <dd>
+                    <a href={`tel:${place.phone}`}>{place.phone}</a>
+                  </dd>
                 </div>
-                <p>{review.text}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {place.menu.length > 0 ? (
-          <section className={styles.section}>
-            <h2>Menu highlights</h2>
-            {place.menu.map((section) => (
-              <div key={section.name} className={styles.menuSection}>
-                <h3>{section.name}</h3>
-                <ul>
-                  {section.items.map((item) => (
-                    <li key={item.name}>
-                      <strong>{item.name}</strong>
-                      {item.description ? <span> — {item.description}</span> : null}
-                      {item.price ? <em> · {item.price}</em> : null}
-                    </li>
-                  ))}
-                </ul>
+              ) : null}
+              <div>
+                <dt>Today</dt>
+                <dd>{todayHours}</dd>
               </div>
-            ))}
-          </section>
-        ) : null}
-
-        {place.gallery.length > 1 ? (
-          <section className={styles.section}>
-            <h2>Gallery</h2>
-            <div className={styles.gallery}>
-              {place.gallery.map((image) => (
-                <div key={image} className={styles.galleryItem}>
-                  <Image
-                    src={publicImageSrc(image)}
-                    alt={`${place.name} photo`}
-                    fill
-                    className={styles.galleryImage}
-                    sizes="(max-width: 768px) 50vw, 200px"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-        ) : null}
-
-        <section className={styles.section}>
-          <h2>Frequently asked questions</h2>
-          <dl className={styles.faqList}>
-            {place.faqs.map((faq) => (
-              <div key={faq.question}>
-                <dt>{faq.question}</dt>
-                <dd>{faq.answer}</dd>
+              <div>
+                <dt>Category</dt>
+                <dd>{place.category}</dd>
               </div>
-            ))}
-          </dl>
-        </section>
+            </dl>
 
-        <section className={styles.section}>
-          <h2>Explore more in Kigali</h2>
-          <ul className={styles.linkList}>
-            <li>
-              <Link href={categoryCityPath(segment, "kigali")}>
-                All {categorySegmentLabel(segment).toLowerCase()} in Kigali
-              </Link>
-            </li>
-            {neighborhoodSlug ? (
-              <li>
-                <Link href={categoryNeighborhoodPath(segment, neighborhoodSlug)}>
-                  {categorySegmentLabel(segment)} in {place.location}
-                </Link>
-              </li>
-            ) : null}
-            {place.tags.slice(0, 3).map((tag) => (
-              <li key={tag}>
-                <Link href={dishRankingPath(tag, "kigali")}>
-                  Top rated {tag} in Kigali
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {relatedPlaces.length > 0 ? (
-          <section className={styles.section}>
-            <h2>Related places</h2>
-            <ul className={styles.relatedList}>
-              {relatedPlaces.map((related) => (
-                <li key={related.id}>
-                  <Link href={placeUrlFromParts(related.type, related.slug)}>
-                    <strong>{related.name}</strong>
-                    <span>
-                      {related.location} · {related.rating}★
-                    </span>
-                  </Link>
+            <h3>Opening hours</h3>
+            <ul className={styles.hoursList}>
+              {weeklyHours.map((entry) => (
+                <li key={entry.day}>
+                  <span>{entry.day}</span>
+                  <span>{entry.hours}</span>
                 </li>
               ))}
             </ul>
           </section>
-        ) : null}
+
+          {place.menu.length > 0 ? (
+            <section className={styles.cardSection}>
+              <h2>Menu highlights</h2>
+              {place.menu.map((section) => (
+                <div key={section.name} className={styles.menuSection}>
+                  <h3>{section.name}</h3>
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item.name}>
+                        <strong>{item.name}</strong>
+                        {item.description ? <span> — {item.description}</span> : null}
+                        {item.price ? <em> · {item.price}</em> : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </section>
+          ) : null}
+
+          {place.gallery.length > 1 ? (
+            <section className={styles.cardSection}>
+              <h2>Gallery</h2>
+              <div className={styles.gallery}>
+                {place.gallery.map((image) => (
+                  <div key={image} className={styles.galleryItem}>
+                    <Image
+                      src={publicImageSrc(image)}
+                      alt={`${place.name} photo`}
+                      fill
+                      className={styles.galleryImage}
+                      sizes="(max-width: 768px) 50vw, 200px"
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <PlaceFaqSection faqs={place.faqs} />
+
+          {showReviews ? (
+            <section className={styles.cardSection}>
+              <h2>Ratings & reviews</h2>
+              <p className={styles.ratingSummary}>
+                <strong>{place.rating}</strong> out of 5 based on {place.reviews.length}{" "}
+                {place.reviews.length === 1 ? "review" : "reviews"} on Hano
+              </p>
+              <ul className={styles.reviewList}>
+                {place.reviews.map((review) => (
+                  <li key={`${review.author}-${review.text.slice(0, 20)}`}>
+                    <div className={styles.reviewHeader}>
+                      <strong>{review.author}</strong>
+                      <span>
+                        {review.rating}
+                        <Icon name="star" size={12} />
+                      </span>
+                    </div>
+                    <p>{review.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+        </div>
+
+        <PlaceSidebar place={place} />
       </div>
+
+      {relatedPlaces.length > 0 ? (
+        <section className={styles.relatedSection}>
+          <h2>Related places</h2>
+          <div className={styles.relatedGrid}>
+            {relatedPlaces.map((related) => (
+              <PlaceRelatedCard key={related.id} place={related} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      <section className={styles.exploreSection} aria-label="Explore more in Kigali">
+        <h2 className={styles.exploreHeading}>Explore more in Kigali</h2>
+        <ul className={styles.explorePills}>
+          <li>
+            <Link href={categoryCityPath(segment, "kigali")} className={styles.explorePill}>
+              All {categorySegmentLabel(segment).toLowerCase()} in Kigali
+            </Link>
+          </li>
+          {neighborhoodSlug ? (
+            <li>
+              <Link
+                href={categoryNeighborhoodPath(segment, neighborhoodSlug)}
+                className={styles.explorePill}
+              >
+                {categorySegmentLabel(segment)} in {place.location}
+              </Link>
+            </li>
+          ) : null}
+          {place.tags.slice(0, 3).map((tag) => (
+            <li key={tag}>
+              <Link href={dishRankingPath(tag, "kigali")} className={styles.explorePill}>
+                Top rated {tag} in Kigali
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </article>
   );
 }

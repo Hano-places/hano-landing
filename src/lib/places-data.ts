@@ -1,5 +1,6 @@
-import type { Place, PlaceSeed } from "@/content/places";
+import type { Place, PlaceFAQ, PlaceSeed } from "@/content/places";
 import { places as staticPlaces } from "@/content/places";
+import { formatWeeklyHours, getOpenStatus } from "@/lib/place-hours";
 import {
   getPlaceSlug,
   neighborhoodSlugFromLocation,
@@ -44,20 +45,54 @@ function defaultFaqs(place: PlaceSeed): Place["faqs"] {
     return place.faqs;
   }
 
-  return [
+  const weeklyHours = formatWeeklyHours(place.hours);
+  const hoursSummary = weeklyHours
+    .map((entry) => `${entry.day}: ${entry.hours}`)
+    .join("; ");
+  const { todayHours } = getOpenStatus(place.hours);
+  const tagLine =
+    place.tags.length > 0
+      ? place.tags.slice(0, 3).join(", ")
+      : place.category.toLowerCase();
+  const priceGuide: Record<PlaceSeed["priceRange"], string> = {
+    $: "budget-friendly",
+    $$: "mid-range",
+    $$$: "upscale",
+    $$$$: "premium",
+  };
+
+  const faqs: PlaceFAQ[] = [
     {
       question: `What type of place is ${place.name}?`,
-      answer: `${place.name} is a ${place.category.toLowerCase()} in ${place.location}, ${DEFAULT_CITY}.`,
+      answer: `${place.name} is a ${place.category.toLowerCase()} in ${place.location}, ${DEFAULT_CITY}. It is known for ${tagLine} and is typically ${priceGuide[place.priceRange]} (${place.priceRange}).`,
     },
     {
       question: `What are the opening hours for ${place.name}?`,
-      answer: `${place.name} hours vary by day. Check the full weekly schedule on Hano for the latest opening times.`,
+      answer: `Today ${place.name} is open ${todayHours}. Weekly hours: ${hoursSummary}.`,
     },
     {
-      question: `Where is ${place.name} located?`,
-      answer: `${place.name} is located in ${place.location}, ${DEFAULT_CITY}, Rwanda.`,
+      question: `Where is ${place.name} located in Kigali?`,
+      answer: `${place.name} is in ${place.location}, ${DEFAULT_CITY}. Use the map on this page for directions — the venue is in the ${place.location} area.`,
+    },
+    {
+      question: `Is ${place.name} good for ${place.tags[0] ?? "dining out"}?`,
+      answer: `${place.name} is a popular ${place.type.replace("-", " ")} with a ${place.rating} rating on Hano. Guests often visit for ${tagLine}.`,
     },
   ];
+
+  if (place.website) {
+    faqs.push({
+      question: `Does ${place.name} have an official website?`,
+      answer: `Yes. You can visit the official ${place.name} website from this page for menus, reservations, or the latest updates.`,
+    });
+  }
+
+  faqs.push({
+    question: `How do I get to ${place.name}?`,
+    answer: `Open Google Maps directions from this page for turn-by-turn navigation to ${place.name} in ${place.location}. Moto taxis and ride apps are common in Kigali.`,
+  });
+
+  return faqs;
 }
 
 function defaultReviews(place: PlaceSeed): Place["reviews"] {

@@ -1,5 +1,5 @@
 .hero {
-  padding: calc(var(--header-height) + 2.5rem) 0 2.5rem;
+  padding: calc(var(--header-height) + 1rem) 0 2rem;
   background:
     radial-gradient(
       circle at top right,
