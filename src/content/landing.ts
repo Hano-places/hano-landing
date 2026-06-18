@@ -605,6 +605,7 @@ export const footer = {
     {
       title: "Learn",
       links: [
+        { label: "Explore Rwanda", href: "/rwanda" },
         { label: "Explore Kigali", href: "/kigali" },
         { label: "Food guides", href: "/guides/ultimate-kigali-food-guide" },
         { label: "How it works", href: "/#how-it-works" },

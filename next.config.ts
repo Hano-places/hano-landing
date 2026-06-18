@@ -6,22 +6,27 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/sitemap-businesses.xml",
-        destination: "/sitemap/businesses.xml",
+        destination: "/sitemap.xml",
         permanent: true,
       },
       {
         source: "/sitemap-categories.xml",
-        destination: "/sitemap/categories.xml",
+        destination: "/sitemap.xml",
         permanent: true,
       },
       {
         source: "/sitemap-locations.xml",
-        destination: "/sitemap/locations.xml",
+        destination: "/sitemap.xml",
         permanent: true,
       },
       {
         source: "/sitemap-blog.xml",
-        destination: "/sitemap/blog.xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
+      {
+        source: "/sitemap/:id.xml",
+        destination: "/sitemap.xml",
         permanent: true,
       },
     ];

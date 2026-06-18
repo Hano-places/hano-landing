@@ -119,9 +119,9 @@ export function buildBusinessMetadata(place: Place): Metadata {
 export function buildCategoryMetadata(segment: CategorySegment): Metadata {
   const label = categorySegmentLabel(segment);
   const path = `/${segment}`;
-  const title = `Best ${label} in Kigali | ${site.name}`;
+  const title = `Best ${label} in Rwanda | ${site.name}`;
   const description = truncateDescription(
-    `Explore the best ${label.toLowerCase()} in Kigali — ratings, hours, neighborhoods, and curated picks on ${site.name}.`,
+    `Explore the best ${label.toLowerCase()} in Rwanda — ratings, hours, neighborhoods, and curated picks in Kigali on ${site.name}.`,
   );
 
   return buildPageMetadata({ path, title, description });
@@ -145,6 +145,9 @@ export function buildWebSiteSchema() {
     "@type": "WebSite",
     name: site.name,
     url: site.url,
+    description:
+      "Discover restaurants, cafés, bars, hotels, and places to visit in Rwanda.",
+    inLanguage: "en",
     potentialAction: {
       "@type": "SearchAction",
       target: {

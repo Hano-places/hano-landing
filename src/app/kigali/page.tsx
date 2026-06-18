@@ -15,9 +15,9 @@ import styles from "./kigali-page.module.css";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/kigali",
-  title: "Places to Visit in Kigali — Restaurants, Cafés & Experiences",
+  title: "Best Places to Visit in Kigali, Rwanda — Restaurants & Cafés",
   description:
-    "Discover the best restaurants, cafés, bars, and food experiences in Kigali, Rwanda. Explore neighborhoods, top-rated spots, and local favorites on Hano.",
+    "Discover the best restaurants, cafés, bars, and places to visit in Kigali, Rwanda. Explore neighborhoods, top-rated spots, and local favorites on Hano.",
 });
 
 export default async function KigaliPage() {

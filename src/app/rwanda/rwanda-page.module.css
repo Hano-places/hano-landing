@@ -1,0 +1,48 @@
+.page {
+  padding-top: 1rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-green-700);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.04em;
+  color: var(--color-heading);
+}
+
+.description {
+  max-width: 46rem;
+  margin-top: 1rem;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.links,
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.links a,
+.categories a {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  color: var(--color-heading);
+}
+
+.categories {
+  margin-top: 1rem;
+}

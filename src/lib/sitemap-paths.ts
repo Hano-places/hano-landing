@@ -20,6 +20,7 @@ export function getStaticSitemapPaths(): {
   return [
     { path: "/", lastModified: now, priority: 1 },
     { path: "/places", lastModified: now, priority: 0.9 },
+    { path: "/rwanda", lastModified: now, priority: 0.95 },
     { path: "/kigali", lastModified: now, priority: 0.9 },
     { path: "/privacy", lastModified: now, priority: 0.3 },
     { path: "/terms", lastModified: now, priority: 0.3 },
