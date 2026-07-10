@@ -22,6 +22,16 @@ export function getStaticSitemapPaths(): {
     { path: "/places", lastModified: now, priority: 0.9 },
     { path: "/rwanda", lastModified: now, priority: 0.95 },
     { path: "/kigali", lastModified: now, priority: 0.9 },
+    { path: "/musanze", lastModified: now, priority: 0.75 },
+    { path: "/rubavu", lastModified: now, priority: 0.75 },
+    { path: "/huye", lastModified: now, priority: 0.75 },
+    { path: "/restaurants", lastModified: now, priority: 0.9 },
+    { path: "/rankings", lastModified: now, priority: 0.9 },
+    { path: "/guides", lastModified: now, priority: 0.9 },
+    { path: "/faq", lastModified: now, priority: 0.9 },
+    { path: "/about", lastModified: now, priority: 0.9 },
+    { path: "/download", lastModified: now, priority: 0.9 },
+    { path: "/business", lastModified: now, priority: 0.9 },
     { path: "/privacy", lastModified: now, priority: 0.3 },
     { path: "/terms", lastModified: now, priority: 0.3 },
     { path: "/cookies", lastModified: now, priority: 0.3 },
@@ -29,6 +39,9 @@ export function getStaticSitemapPaths(): {
     { path: "/guides/ultimate-kigali-food-guide", lastModified: now, priority: 0.7 },
     { path: "/guides/best-date-night-restaurants-kigali", lastModified: now, priority: 0.7 },
     { path: "/guides/hidden-gems-kigali", lastModified: now, priority: 0.7 },
+    { path: "/guides/weekend-guide-kigali", lastModified: now, priority: 0.7 },
+    { path: "/guides/best-coffee-shops-kigali", lastModified: now, priority: 0.7 },
+    { path: "/guides/best-breakfast-places-kigali", lastModified: now, priority: 0.7 },
   ];
 }
 

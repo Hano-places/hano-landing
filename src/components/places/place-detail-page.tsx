@@ -236,12 +236,22 @@ export function PlaceDetailPage({ place, relatedPlaces }: PlaceDetailPageProps) 
         </section>
       ) : null}
 
-      <section className={styles.exploreSection} aria-label="Explore more in Kigali">
-        <h2 className={styles.exploreHeading}>Explore more in Kigali</h2>
+      <section className={styles.exploreSection} aria-label="Explore more">
+        <h2 className={styles.exploreHeading}>Explore more in Rwanda</h2>
         <ul className={styles.explorePills}>
+          <li>
+            <Link href="/rwanda" className={styles.explorePill}>
+              Places in Rwanda
+            </Link>
+          </li>
           <li>
             <Link href={categoryCityPath(segment, "kigali")} className={styles.explorePill}>
               All {categorySegmentLabel(segment).toLowerCase()} in Kigali
+            </Link>
+          </li>
+          <li>
+            <Link href="/rankings" className={styles.explorePill}>
+              Top rankings
             </Link>
           </li>
           {neighborhoodSlug ? (
@@ -261,6 +271,16 @@ export function PlaceDetailPage({ place, relatedPlaces }: PlaceDetailPageProps) 
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/guides" className={styles.explorePill}>
+              Food guides
+            </Link>
+          </li>
+          <li>
+            <Link href="/download" className={styles.explorePill}>
+              Download the app
+            </Link>
+          </li>
         </ul>
       </section>
     </article>

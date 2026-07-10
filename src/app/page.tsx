@@ -17,6 +17,7 @@ import { faq } from "@/content/landing";
 import {
   buildFAQSchema,
   buildOrganizationSchema,
+  buildSiteNavigationSchema,
   buildWebSiteSchema,
 } from "@/lib/seo";
 
@@ -27,6 +28,7 @@ export default function Home() {
         data={[
           buildOrganizationSchema(),
           buildWebSiteSchema(),
+          buildSiteNavigationSchema(),
           buildFAQSchema(faq.items),
         ]}
       />

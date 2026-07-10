@@ -159,6 +159,40 @@ export function buildWebSiteSchema() {
   };
 }
 
+export type NavSchemaLink = {
+  name: string;
+  path: string;
+};
+
+export const SITELINK_NAV: readonly NavSchemaLink[] = [
+  { name: "Restaurants", path: "/restaurants" },
+  { name: "Places", path: "/places" },
+  { name: "Rwanda", path: "/rwanda" },
+  { name: "Guides", path: "/guides" },
+  { name: "Rankings", path: "/rankings" },
+  { name: "Download App", path: "/download" },
+  { name: "List Your Business", path: "/business" },
+  { name: "FAQ", path: "/faq" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+] as const;
+
+export function buildSiteNavigationSchema(
+  links: readonly NavSchemaLink[] = SITELINK_NAV,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${site.name} site navigation`,
+    itemListElement: links.map((link, index) => ({
+      "@type": "SiteNavigationElement",
+      position: index + 1,
+      name: link.name,
+      url: absoluteUrl(link.path),
+    })),
+  };
+}
+
 export function buildFAQSchema(faqs: readonly FAQItem[]) {
   return {
     "@context": "https://schema.org",

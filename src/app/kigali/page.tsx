@@ -58,7 +58,12 @@ export default async function KigaliPage() {
         title="Top-rated places in Kigali"
         description="Hand-picked restaurants, cafés, and lounges across the city."
         places={places.slice(0, 12)}
-        links={[{ href: "/places", label: "View all places" }]}
+        links={[
+          { href: "/places", label: "View all places" },
+          { href: "/rankings", label: "View rankings" },
+          { href: "/download", label: "Download the app" },
+          { href: "/business", label: "List your business" },
+        ]}
       />
     </SeoPageShell>
   );

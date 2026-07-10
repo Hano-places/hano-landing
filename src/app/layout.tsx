@@ -25,22 +25,30 @@ const instrumentSerif = Instrument_Serif({
 
 const homeMetadata = buildPageMetadata({
   path: "/",
-  title: "Discover The Best Restaurants & Places in Rwanda",
+  title: "Hano — Discover the Best Restaurants & Places in Rwanda",
   description:
     "Hano helps you discover restaurants, cafés, bars, hotels, and hidden gems across Rwanda. Explore Kigali and top-rated places to visit.",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  applicationName: site.name,
   title: {
-    default: "Discover The Best Restaurants & Places in Rwanda | Hano",
+    default: "Hano — Discover the Best Restaurants & Places in Rwanda",
     template: "%s | Hano",
   },
   description: homeMetadata.description,
-  icons: {
-    icon: BRAND.logo,
-    apple: BRAND.logo,
-  },
+    icons: {
+      icon: [
+        { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+        { url: "/brand-logo/small.png", sizes: "32x32", type: "image/png" },
+        { url: BRAND.logo, type: "image/svg+xml" },
+      ],
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        { url: "/brand-logo/large.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
   alternates: homeMetadata.alternates,
   openGraph: homeMetadata.openGraph,
   twitter: homeMetadata.twitter,

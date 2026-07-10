@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 import { hero } from "@/content/landing";
 import { IMG } from "@/content/images";
 import { publicImageSrc } from "@/lib/public-image";
@@ -37,6 +38,13 @@ export function HeroSection() {
             </h1>
             <p className={styles.subheadline}>{hero.subheadline}</p>
             <EmailCaptureForm cta={hero.cta} />
+            <p className={styles.subheadline}>
+              <Link href="/restaurants">Explore restaurants</Link>
+              {" · "}
+              <Link href="/download">{hero.secondaryCta}</Link>
+              {" · "}
+              <Link href="/business">List your business</Link>
+            </p>
             <div className={styles.socialProof}>
               <div className={styles.avatars} aria-hidden>
                 {avatarUrls.map((url) => (

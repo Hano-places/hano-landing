@@ -58,9 +58,15 @@ export default async function RwandaPage() {
         </p>
 
         <nav className={styles.links} aria-label="Explore Rwanda">
-          <Link href="/kigali">Places in Kigali</Link>
+          <Link href="/kigali">Kigali</Link>
+          <Link href="/musanze">Musanze</Link>
+          <Link href="/rubavu">Rubavu</Link>
+          <Link href="/huye">Huye</Link>
           <Link href="/places">All curated places</Link>
-          <Link href="/guides/ultimate-kigali-food-guide">Rwanda food guide</Link>
+          <Link href="/guides">Food guides</Link>
+          <Link href="/rankings">Rankings</Link>
+          <Link href="/download">Download app</Link>
+          <Link href="/business">List your business</Link>
         </nav>
 
         <nav className={styles.categories} aria-label="Categories in Rwanda">
@@ -80,6 +86,8 @@ export default async function RwandaPage() {
         links={[
           { href: "/kigali", label: "Explore Kigali" },
           { href: "/restaurants/kigali", label: "Restaurants in Kigali" },
+          { href: "/download", label: "Download the app" },
+          { href: "/business", label: "List your business" },
         ]}
       />
     </SeoPageShell>

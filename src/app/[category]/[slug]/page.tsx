@@ -42,6 +42,9 @@ export async function generateStaticParams() {
 
   for (const segment of CATEGORY_SEGMENTS) {
     params.push({ category: segment, slug: "kigali" });
+    params.push({ category: segment, slug: "musanze" });
+    params.push({ category: segment, slug: "rubavu" });
+    params.push({ category: segment, slug: "huye" });
   }
 
   for (const place of places) {
@@ -62,12 +65,17 @@ async function resolvePage(params: PageProps["params"]) {
   }
 
   if (isCitySlug(slug)) {
-    const places = await getPlacesByCategorySegment(category);
+    const places =
+      slug === "kigali"
+        ? (await getPlacesByCategorySegment(category)).sort(
+            (a, b) => b.rating - a.rating,
+          )
+        : [];
     return {
       kind: "city" as const,
       category,
       slug,
-      places: places.sort((a, b) => b.rating - a.rating),
+      places,
     };
   }
 
@@ -108,10 +116,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (resolved.kind === "city") {
     const label = categorySegmentLabel(resolved.category);
+    const cityName =
+      resolved.slug.charAt(0).toUpperCase() + resolved.slug.slice(1);
     return buildPageMetadata({
       path: categoryCityPath(resolved.category, resolved.slug),
-      title: `Best ${label} in Kigali`,
-      description: `Discover the best ${label.toLowerCase()} in Kigali with ratings, hours, neighborhoods, and curated recommendations on Hano.`,
+      title: `Best ${label} in ${cityName}, Rwanda`,
+      description: `Discover the best ${label.toLowerCase()} in ${cityName}, Rwanda — ratings, hours, and curated recommendations on Hano.`,
     });
   }
 
@@ -158,27 +168,40 @@ export default async function CategorySlugPage({ params }: PageProps) {
   if (resolved.kind === "city") {
     const label = categorySegmentLabel(resolved.category);
     const path = categoryCityPath(resolved.category, resolved.slug);
+    const cityName =
+      resolved.slug.charAt(0).toUpperCase() + resolved.slug.slice(1);
 
     return (
       <SeoPageShell>
         <JsonLd
           data={[
-            buildItemListSchema(resolved.places, `Best ${label} in Kigali`, path),
+            buildItemListSchema(
+              resolved.places,
+              `Best ${label} in ${cityName}`,
+              path,
+            ),
             buildBreadcrumbSchema([
               { name: "Home", path: "/" },
               { name: label, path: `/${resolved.category}` },
-              { name: "Kigali", path },
+              { name: cityName, path },
             ]),
           ]}
         />
         <HubPage
-          eyebrow="Kigali"
-          title={`Best ${label} in Kigali`}
-          description={`Explore top-rated ${label.toLowerCase()} across Kigali — from neighborhood favorites to hidden gems, with hours, ratings, and details on Hano.`}
+          eyebrow={cityName}
+          title={`Best ${label} in ${cityName}`}
+          description={
+            resolved.places.length > 0
+              ? `Explore top-rated ${label.toLowerCase()} across ${cityName} — from neighborhood favorites to hidden gems, with hours, ratings, and details on Hano.`
+              : `Hano is expanding ${label.toLowerCase()} coverage in ${cityName}. Browse Kigali listings or list your business in ${cityName}.`
+          }
           places={resolved.places}
           links={[
             { href: `/${resolved.category}`, label: `All ${label.toLowerCase()}` },
+            { href: "/rwanda", label: "Explore Rwanda" },
             { href: "/kigali", label: "Explore Kigali" },
+            { href: "/business", label: "List your business" },
+            { href: "/download", label: "Download the app" },
           ]}
         />
       </SeoPageShell>

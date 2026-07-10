@@ -11,6 +11,7 @@ import { Logo } from "./logo";
 import styles from "./header.module.css";
 
 const sectionIds = navLinks
+  .filter((l) => l.href.includes("#"))
   .map((l) => l.href.replace(/^\/?#/, ""))
   .filter(Boolean);
 
@@ -103,10 +104,10 @@ export function Header() {
 
         <div className={styles.actions}>
           <Link
-            href="/#early-access"
+            href="/download"
             className={`${styles.desktopCta} ${styles.ctaLink}`}
           >
-            Join Early Access
+            Download App
           </Link>
           <button
             type="button"
@@ -138,11 +139,11 @@ export function Header() {
             </Link>
           ))}
           <Link
-            href="/#early-access"
+            href="/download"
             className={`${styles.ctaLink} ${styles.mobileCta}`}
             onClick={() => setMenuOpen(false)}
           >
-            Join Early Access
+            Download App
           </Link>
         </nav>
       ) : null}

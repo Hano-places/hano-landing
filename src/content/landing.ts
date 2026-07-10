@@ -17,11 +17,12 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { label: "Discover", href: "/#hero" },
-  { label: "Restaurants", href: "/places" },
-  { label: "Categories", href: "/#categories" },
-  { label: "Community", href: "/#community" },
-  { label: "About", href: "/#early-access" },
+  { label: "Restaurants", href: "/restaurants" },
+  { label: "Places", href: "/places" },
+  { label: "Rwanda", href: "/rwanda" },
+  { label: "Guides", href: "/guides" },
+  { label: "Download", href: "/download" },
+  { label: "Business", href: "/business" },
 ] as const;
 
 export const hero = {
@@ -594,23 +595,24 @@ export const footer = {
   },
   columns: [
     {
-      title: "Links",
+      title: "Discover",
       links: [
-        { label: "Discover", href: "/#hero" },
-        { label: "Restaurants", href: "/places" },
-        { label: "Categories", href: "/#categories" },
-        { label: "Community", href: "/#community" },
+        { label: "Restaurants", href: "/restaurants" },
+        { label: "Places", href: "/places" },
+        { label: "Rwanda", href: "/rwanda" },
+        { label: "Kigali", href: "/kigali" },
+        { label: "Rankings", href: "/rankings" },
       ],
     },
     {
-      title: "Learn",
+      title: "Company",
       links: [
-        { label: "Explore Rwanda", href: "/rwanda" },
-        { label: "Explore Kigali", href: "/kigali" },
-        { label: "Food guides", href: "/guides/ultimate-kigali-food-guide" },
-        { label: "How it works", href: "/#how-it-works" },
-        { label: "Early access", href: "/#early-access" },
-        { label: "FAQ", href: "/#faq" },
+        { label: "About", href: "/about" },
+        { label: "Guides", href: "/guides" },
+        { label: "FAQ", href: "/faq" },
+        { label: "Download App", href: "/download" },
+        { label: "List your business", href: "/business" },
+        { label: "Contact", href: "/contact" },
       ],
     },
     {
@@ -619,7 +621,6 @@ export const footer = {
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },
         { label: "Cookies", href: "/cookies" },
-        { label: "Contact", href: "/contact" },
       ],
     },
     {

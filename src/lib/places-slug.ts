@@ -7,11 +7,12 @@ export const CATEGORY_SEGMENTS = [
   "lounges",
   "bakeries",
   "bistros",
+  "hotels",
 ] as const;
 
 export type CategorySegment = (typeof CATEGORY_SEGMENTS)[number];
 
-export const CITY_SLUGS = ["kigali"] as const;
+export const CITY_SLUGS = ["kigali", "musanze", "rubavu", "huye"] as const;
 export type CitySlug = (typeof CITY_SLUGS)[number];
 
 export const NEIGHBORHOOD_SLUGS = [
@@ -92,6 +93,8 @@ export function categorySegmentLabel(segment: CategorySegment): string {
       return "Bakeries";
     case "bistros":
       return "Bistros";
+    case "hotels":
+      return "Hotels";
     default:
       return "Places";
   }
@@ -111,6 +114,8 @@ export function categorySegmentSingular(segment: CategorySegment): string {
       return "Bakery";
     case "bistros":
       return "Bistro";
+    case "hotels":
+      return "Hotel";
     default:
       return "Place";
   }

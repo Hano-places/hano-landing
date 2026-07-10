@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   placeFilters,
   placesPage,
@@ -14,7 +15,9 @@ import { PlaceCutoutCard } from "./place-cutout-card";
 import styles from "./places-directory.module.css";
 
 export function PlacesDirectory() {
-  const [query, setQuery] = useState("");
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") ?? "";
+  const [query, setQuery] = useState(initialQuery);
   const [activeFilter, setActiveFilter] = useState<PlaceFilter>("all");
   const places = getStaticPlaces();
 

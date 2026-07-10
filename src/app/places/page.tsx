@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
@@ -49,12 +50,19 @@ export default async function PlacesPage() {
             <h1 className={styles.headline}>{placesPage.headline}</h1>
             <p className={styles.supporting}>{placesPage.supporting}</p>
             <p className={styles.count}>{places.length} curated places in Kigali</p>
+            <p className={styles.count}>
+              <Link href="/download">Download the app</Link>
+              {" · "}
+              <Link href="/business">List your business</Link>
+            </p>
           </Container>
         </section>
 
         <section className={styles.directorySection}>
           <Container>
-            <PlacesDirectory />
+            <Suspense fallback={<p>Loading places…</p>}>
+              <PlacesDirectory />
+            </Suspense>
           </Container>
         </section>
       </MainWrapper>
