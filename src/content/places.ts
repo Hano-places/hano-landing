@@ -1,93 +1,26 @@
 import { IMG } from "./images";
 import type { WeeklyHours } from "@/lib/place-hours";
 
-export type PlaceType =
-  | "restaurant"
-  | "cafe"
-  | "bar"
-  | "lounge"
-  | "bistro"
-  | "fine-dining"
-  | "bakery";
+export type {
+  Place,
+  PlaceAddress,
+  PlaceBase,
+  PlaceFAQ,
+  PlaceFilter,
+  PlaceGalleryImage,
+  PlaceGeo,
+  PlaceMediaAttribution,
+  PlaceMenuItem,
+  PlaceMenuSection,
+  PlaceReview,
+  PlaceSeed,
+  PlaceType,
+  PlaceVideo,
+} from "./place-types";
 
-export type PlaceFilter = "all" | PlaceType;
+export { gallerySrcs, placeHeroSrc } from "./place-types";
 
-export type PlaceAddress = {
-  street: string;
-  locality: string;
-  region: string;
-  country: string;
-};
-
-export type PlaceGeo = {
-  lat: number;
-  lng: number;
-};
-
-export type PlaceReview = {
-  author: string;
-  rating: number;
-  text: string;
-  date?: string;
-};
-
-export type PlaceMenuItem = {
-  name: string;
-  description?: string;
-  price?: string;
-};
-
-export type PlaceMenuSection = {
-  name: string;
-  items: readonly PlaceMenuItem[];
-};
-
-export type PlaceFAQ = {
-  question: string;
-  answer: string;
-};
-
-export type PlaceBase = {
-  id: string;
-  name: string;
-  category: string;
-  type: PlaceType;
-  location: string;
-  rating: number;
-  priceRange: "$" | "$$" | "$$$" | "$$$$";
-  description: string;
-  image: (typeof IMG)[keyof typeof IMG];
-  website?: string;
-  tags: readonly string[];
-  hours: WeeklyHours;
-  featured?: boolean;
-};
-
-export type PlaceSeed = PlaceBase & {
-  slug?: string;
-  address?: Partial<PlaceAddress>;
-  geo?: Partial<PlaceGeo>;
-  phone?: string;
-  reviews?: readonly PlaceReview[];
-  menu?: readonly PlaceMenuSection[];
-  faqs?: readonly PlaceFAQ[];
-  gallery?: readonly string[];
-  sameAs?: readonly string[];
-  updatedAt?: string;
-};
-
-export type Place = PlaceBase & {
-  slug: string;
-  address: PlaceAddress;
-  geo: PlaceGeo;
-  phone?: string;
-  reviews: readonly PlaceReview[];
-  menu: readonly PlaceMenuSection[];
-  faqs: readonly PlaceFAQ[];
-  gallery: readonly string[];
-  sameAs: readonly string[];
-  updatedAt: string;
-};
+import type { PlaceSeed, PlaceFilter } from "./place-types";
 
 const daily = (hours: string): WeeklyHours => ({
   monday: hours,
@@ -435,6 +368,7 @@ export const places: readonly PlaceSeed[] = [
   },
   {
     id: "pan-afrikan",
+    website: "https://panafrikancuisine.com/",
     name: "Kigali Pan-Afrikan Kitchen",
     category: "Restaurant · Pan-African",
     type: "restaurant",
@@ -487,6 +421,7 @@ export const places: readonly PlaceSeed[] = [
       "Wood-fired pizza, handmade pasta, and Italian wines in a cozy Kiyovu trattoria.",
     image: IMG.pizzaInterior,
     tags: ["italian", "pizza", "pasta", "wine"],
+    website: "https://www.soleluna.company/",
     hours: {
       monday: "Closed",
       tuesday: "12 PM – 11 PM",

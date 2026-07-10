@@ -1,0 +1,45 @@
+.section {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.heading {
+  font-size: var(--text-xl);
+  color: var(--color-heading);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: #000;
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+.caption {
+  padding: 0.65rem 0.85rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  background: #ffffff;
+}

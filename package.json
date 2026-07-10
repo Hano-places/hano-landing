@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "format": "biome format --write .",
-    "check": "biome check ."
+    "check": "biome check .",
+    "places:media": "node scripts/fetch-place-media.mjs",
+    "places:media:rebuild": "node scripts/rebuild-place-media-from-disk.mjs"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.2.0",

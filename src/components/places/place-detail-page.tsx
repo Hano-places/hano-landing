@@ -18,8 +18,11 @@ import {
 } from "@/lib/places-slug";
 import { Icon } from "@/components/ui/icon";
 import { PlaceFaqSection } from "@/components/places/place-faq-section";
+import { PlaceGallery } from "@/components/places/place-gallery";
+import { PlaceMenu } from "@/components/places/place-menu";
 import { PlaceRelatedCard } from "@/components/places/place-related-card";
 import { PlaceSidebar } from "@/components/places/place-sidebar";
+import { PlaceVideos } from "@/components/places/place-videos";
 import styles from "./place-detail-page.module.css";
 
 type PlaceDetailPageProps = {
@@ -156,44 +159,15 @@ export function PlaceDetailPage({ place, relatedPlaces }: PlaceDetailPageProps) 
             </ul>
           </section>
 
-          {place.menu.length > 0 ? (
-            <section className={styles.cardSection}>
-              <h2>Menu highlights</h2>
-              {place.menu.map((section) => (
-                <div key={section.name} className={styles.menuSection}>
-                  <h3>{section.name}</h3>
-                  <ul>
-                    {section.items.map((item) => (
-                      <li key={item.name}>
-                        <strong>{item.name}</strong>
-                        {item.description ? <span> — {item.description}</span> : null}
-                        {item.price ? <em> · {item.price}</em> : null}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </section>
-          ) : null}
+          <PlaceMenu
+            sections={place.menu}
+            menuUrl={place.menuUrl}
+            placeName={place.name}
+          />
 
-          {place.gallery.length > 1 ? (
-            <section className={styles.cardSection}>
-              <h2>Gallery</h2>
-              <div className={styles.gallery}>
-                {place.gallery.map((image) => (
-                  <div key={image} className={styles.galleryItem}>
-                    <Image
-                      src={publicImageSrc(image)}
-                      alt={`${place.name} photo`}
-                      fill
-                      className={styles.galleryImage}
-                      sizes="(max-width: 768px) 50vw, 200px"
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
+          <PlaceGallery placeName={place.name} images={place.gallery} />
+
+          <PlaceVideos videos={place.videos} placeName={place.name} />
 
           <PlaceFaqSection faqs={place.faqs} />
 

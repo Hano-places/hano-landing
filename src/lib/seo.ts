@@ -307,6 +307,14 @@ export function buildRestaurantSchema(place: Place) {
     schema.sameAs = place.sameAs;
   }
 
+  if (place.gallery.length > 1) {
+    schema.image = place.gallery.map((item) => absoluteUrl(item.src));
+  }
+
+  if (place.menuUrl) {
+    schema.hasMenu = place.menuUrl;
+  }
+
   if (place.reviews.length > 0) {
     schema.review = place.reviews.map((review) => ({
       "@type": "Review",

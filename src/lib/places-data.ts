@@ -1,5 +1,7 @@
-import type { Place, PlaceFAQ, PlaceSeed } from "@/content/places";
+import type { Place, PlaceFAQ, PlaceGalleryImage, PlaceSeed } from "@/content/places";
 import { places as staticPlaces } from "@/content/places";
+import { placeMediaById } from "@/content/place-media.generated";
+import { curatedMenusById } from "@/content/place-menus";
 import { formatWeeklyHours, getOpenStatus } from "@/lib/place-hours";
 import {
   getPlaceSlug,
@@ -38,6 +40,15 @@ function defaultAddress(location: string): Place["address"] {
 
 function defaultGeo(location: string): Place["geo"] {
   return NEIGHBORHOOD_GEO[location] ?? { lat: -1.9441, lng: 30.0619 };
+}
+
+function defaultGallery(image: string): PlaceGalleryImage[] {
+  return [
+    {
+      src: image,
+      source: "partner",
+    },
+  ];
 }
 
 function defaultFaqs(place: PlaceSeed): Place["faqs"] {
@@ -110,24 +121,38 @@ function defaultReviews(place: PlaceSeed): Place["reviews"] {
 }
 
 export function enrichPlace(seed: PlaceSeed): Place {
+  const media = placeMediaById[seed.id];
   const slug = seed.slug ?? getPlaceSlug(seed.id);
   const address = { ...defaultAddress(seed.location), ...seed.address };
-  const geo = { ...defaultGeo(seed.location), ...seed.geo };
+  const geo = { ...defaultGeo(seed.location), ...seed.geo, ...media?.geo };
   const sameAs = [
     ...(seed.website ? [seed.website] : []),
     ...(seed.sameAs ?? []),
   ];
 
+  const curated = curatedMenusById[seed.id];
+  const image = media?.image ?? seed.image;
+  const gallery =
+    media?.gallery && media.gallery.length > 0
+      ? media.gallery
+      : seed.gallery && seed.gallery.length > 0
+        ? seed.gallery
+        : defaultGallery(image);
+
   return {
     ...seed,
     slug,
+    image,
     address,
     geo,
-    phone: seed.phone,
+    phone: media?.phone ?? seed.phone,
+    googlePlaceId: media?.googlePlaceId ?? seed.googlePlaceId,
     reviews: defaultReviews(seed),
-    menu: seed.menu ?? [],
+    menu: media?.menu ?? seed.menu ?? curated?.menu ?? [],
+    menuUrl: media?.menuUrl ?? seed.menuUrl ?? curated?.menuUrl,
     faqs: defaultFaqs(seed),
-    gallery: seed.gallery ?? [seed.image],
+    gallery,
+    videos: media?.videos ?? seed.videos ?? [],
     sameAs,
     updatedAt: seed.updatedAt ?? "2026-01-01T00:00:00.000Z",
   };
