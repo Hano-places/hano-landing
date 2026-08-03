@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import posthog from "posthog-js";
 import {
   waitlistOnboarding,
   type WaitlistAudience,
@@ -265,9 +266,21 @@ export function WaitlistPanel({
         success?: boolean;
         duplicate?: boolean;
       } | null;
-      setAlreadyJoined(Boolean(payloadJson?.duplicate));
+      const duplicate = Boolean(payloadJson?.duplicate);
+      setAlreadyJoined(duplicate);
       setStatus("success");
+      posthog.capture("waitlist_joined", {
+        source,
+        audience: payload.audience ?? "not_selected",
+        skipped_questions: payload.skippedQuestions,
+        duplicate,
+      });
     } catch {
+      posthog.capture("waitlist_submission_failed", {
+        source,
+        audience: payload.audience ?? "not_selected",
+        skipped_questions: payload.skippedQuestions,
+      });
       setError("Something went wrong. Please try again.");
       setStatus("idle");
     }
@@ -296,6 +309,7 @@ export function WaitlistPanel({
   };
 
   const selectAudience = (id: WaitlistAudience) => {
+    posthog.capture("waitlist_audience_selected", { source, audience: id });
     setAudience(id);
     setAnswers({});
     setQuestionIndex(0);
@@ -328,6 +342,10 @@ export function WaitlistPanel({
   };
 
   const handleSkip = () => {
+    posthog.capture("waitlist_questions_skipped", {
+      source,
+      audience: audience ?? "not_selected",
+    });
     void submitWaitlist({ skipped: true });
   };
 
@@ -603,6 +621,11 @@ function WaitlistShell({
             placeholder ?? waitlistOnboarding.emailCapture.placeholder
           }
           onStart={(email, rect) => {
+            posthog.capture("waitlist_started", {
+              source,
+              intent,
+              entry_variant: "email",
+            });
             setInitialEmail(email);
             openFloatingPanel(rect, panelTitle, "centered");
           }}
@@ -613,6 +636,11 @@ function WaitlistShell({
           fullWidth={fullWidth}
           triggerClassName={triggerClassName}
           onOpen={(rect) => {
+            posthog.capture("waitlist_started", {
+              source,
+              intent,
+              entry_variant: "button",
+            });
             setInitialEmail("");
             openFloatingPanel(rect, panelTitle, "centered");
           }}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import posthog from "posthog-js";
 import { waitlistOnboarding } from "@/content/waitlist";
 import {
   FloatingPanelRoot,
@@ -17,7 +18,13 @@ function FabTriggers({ nearFooter }: { nearFooter: boolean }) {
   const { openFloatingPanel } = useFloatingPanel();
   const groupRef = useRef<HTMLDivElement>(null);
 
-  const openWaitlist = () => {
+  const openWaitlist = (store: "app_store" | "google_play") => {
+    posthog.capture("waitlist_started", {
+      source: "app-download-fab",
+      intent: "app",
+      entry_variant: "store_badge",
+      store,
+    });
     openFloatingPanel(
       groupRef.current?.getBoundingClientRect() ?? null,
       waitlistOnboarding.titleApp,
@@ -37,7 +44,7 @@ function FabTriggers({ nearFooter }: { nearFooter: boolean }) {
         type="button"
         className={styles.storeBtn}
         aria-label="Download on the App Store"
-        onClick={openWaitlist}
+        onClick={() => openWaitlist("app_store")}
         tabIndex={nearFooter ? -1 : undefined}
       >
         <AppStoreDownloadBadge className={styles.badgeContent} />
@@ -46,7 +53,7 @@ function FabTriggers({ nearFooter }: { nearFooter: boolean }) {
         type="button"
         className={`${styles.storeBtn} ${styles.storeBtnOfficial}`}
         aria-label="Get it on Google Play"
-        onClick={openWaitlist}
+        onClick={() => openWaitlist("google_play")}
         tabIndex={nearFooter ? -1 : undefined}
       >
         <PlayStoreDownloadBadge className={styles.badgeImage} />
