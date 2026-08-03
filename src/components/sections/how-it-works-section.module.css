@@ -44,9 +44,11 @@
 
 .card {
   position: relative;
-  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 28rem;
   overflow: clip;
-  padding: 2rem 2.25rem;
+  padding: 1.75rem 1.75rem 0;
   border-radius: 1.5rem;
   animation: cardIn 0.45s ease both;
 }
@@ -79,10 +81,13 @@
   );
 }
 
+/* Copy stays in its own band — never overlays the mockup */
 .cardHeader {
   position: relative;
-  z-index: 3;
-  max-width: 16rem;
+  z-index: 2;
+  flex: 0 0 auto;
+  max-width: 18rem;
+  padding-bottom: 0.75rem;
   color: rgba(0, 8, 6, 0.55);
 }
 
@@ -99,11 +104,15 @@
   line-height: var(--leading-relaxed);
 }
 
+/* Mockups live only in this stage below the copy */
 .cardVisual {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 1;
+  flex: 1 1 auto;
+  min-height: 16rem;
+  margin: 0 -0.25rem;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .layer {
@@ -123,33 +132,37 @@
   z-index: 4;
 }
 
-/* Large cards — phone / screen bleeds off bottom-right */
+/* Large cards — phone / screen bleeds off bottom-right of the visual stage */
 .cardLarge .layerMain.alignBottomRight {
   right: 0;
   bottom: 0;
-  width: 58%;
-  transform: translate(10%, 12%);
+  width: 62%;
+  transform: translate(8%, 10%);
 }
 
 .cardLarge .layerMain.alignBottomRightPhone {
   right: 0;
   bottom: 0;
-  width: 52%;
-  transform: translate(14%, 16%);
+  width: auto;
+  height: 108%;
+  max-width: 58%;
+  object-fit: contain;
+  object-position: right bottom;
+  transform: translate(10%, 8%);
 }
 
-/* Discover / Preview menus — right-aligned, vertically centered */
+/* Menus — phone sits in the visual stage, right-aligned */
 .cardGray.cardLarge .layerMain.alignBottomRightPhone {
   right: 0;
-  top: 50%;
-  bottom: auto;
+  top: auto;
+  bottom: 0;
   width: auto;
-  height: 94%;
-  max-width: none;
-  max-height: 94%;
+  height: 112%;
+  max-width: 56%;
+  max-height: none;
   object-fit: contain;
-  object-position: right center;
-  transform: translateY(-50%);
+  object-position: right bottom;
+  transform: translate(12%, 6%);
 }
 
 .cardLarge .layerMain.alignBottomLeft {
@@ -160,18 +173,19 @@
   max-width: 58%;
   object-fit: contain;
   object-position: left bottom;
-  transform: translate(-10%, 0);
+  transform: translate(-8%, 0);
 }
 
-/* Share — pre-cropped mockup, flush top-right (no card clipping) */
+/* Reviews — mockup flush top-right of the visual stage */
 .cardLarge .layerMain.alignTopRightHalfClip {
   top: 0;
   right: 0;
   left: auto;
   bottom: auto;
   width: auto;
-  max-width: 52%;
+  max-width: 58%;
   height: auto;
+  max-height: 100%;
   object-fit: contain;
   object-position: right top;
   transform: none;
@@ -181,62 +195,70 @@
   right: 0;
   bottom: 0;
   width: 40%;
-  transform: translate(-4%, 18%);
+  transform: translate(-4%, 12%);
 }
 
 .cardLarge .layerChip.alignTopRight {
   right: 0;
-  top: 38%;
+  top: 28%;
   width: 38%;
   transform: translate(6%, 0);
 }
 
+/* KPI chip sits in the visual stage under the left side */
 .cardLarge .layerChip.alignBelowTextLeft {
-  left: 2.25rem;
-  top: 11rem;
-  width: 36%;
+  left: 0.75rem;
+  bottom: 1.25rem;
+  top: auto;
+  width: 42%;
   max-width: 14.5rem;
   transform: none;
 }
 
-/* Small / medium cards — fill the corner, clipped by card edge */
+/* Small / medium cards — fill the corner of the visual stage */
 .cardSmall .layerMain.alignBottomRight,
 .cardMedium .layerMain.alignBottomRight {
   right: 0;
   bottom: 0;
   width: 92%;
-  transform: translate(14%, 8%);
+  transform: translate(10%, 8%);
 }
 
 .cardSmall .layerMain.alignBottomRightPhone,
 .cardMedium .layerMain.alignBottomRightPhone {
   right: 0;
   bottom: 0;
-  width: 78%;
-  transform: translate(16%, 12%);
+  width: auto;
+  height: 110%;
+  max-width: 78%;
+  object-fit: contain;
+  object-position: right bottom;
+  transform: translate(8%, 8%);
 }
 
 /* Orders / Categories — keep phone mockup inside the right edge */
 .cardGreen.cardSmall .layerMain.alignBottomRightPhone,
 .cardGreen.cardMedium .layerMain.alignBottomRightPhone {
-  right: 8%;
-  width: 72%;
-  transform: translate(0, 10%);
+  right: 6%;
+  width: auto;
+  height: 108%;
+  max-width: 72%;
+  transform: translate(0, 6%);
 }
 
-/* Rankings / Discover — smaller mockup, inset from right edge */
+/* Rankings / Discover — inset from right edge */
 .cardViolet.cardSmall .layerMain.alignBottomRight,
 .cardViolet.cardMedium .layerMain.alignBottomRight {
-  right: 8%;
-  width: 78%;
-  transform: translate(0, 8%);
+  right: 4%;
+  width: 86%;
+  transform: translate(0, 6%);
 }
 
 .cardSmall .layerMain.alignBottomLeft {
   left: 0;
   bottom: 0;
   width: 88%;
-  transform: translate(-12%, 8%);
+  transform: translate(-10%, 8%);
 }
 
 @keyframes panelIn {
@@ -277,48 +299,56 @@
   }
 
   .card {
-    padding: 2.5rem 3rem;
+    min-height: 30rem;
+    padding: 2.25rem 2.5rem 0;
   }
 
-  .cardLarge .layerMain.alignBottomRightPhone {
-    width: 48%;
-    transform: translate(12%, 14%);
+  .cardHeader {
+    max-width: 17rem;
+    padding-bottom: 1rem;
   }
 
+  .cardVisual {
+    min-height: 18rem;
+  }
+
+  .cardLarge .layerMain.alignBottomRightPhone,
   .cardGray.cardLarge .layerMain.alignBottomRightPhone {
-    height: 96%;
-    max-height: 96%;
+    max-width: 52%;
+    height: 115%;
+    transform: translate(10%, 4%);
   }
 
   .cardLarge .layerMain.alignTopRightHalfClip {
-    max-width: 48%;
-    transform: none;
+    max-width: 54%;
   }
 
   .cardLarge .layerChip.alignBelowTextLeft {
-    left: 3rem;
-    top: 12rem;
-    width: 32%;
+    left: 1rem;
+    bottom: 1.5rem;
+    width: 38%;
     max-width: 15rem;
   }
 
-  .cardSmall .layerMain.alignBottomRight {
-    width: 96%;
-    transform: translate(18%, 6%);
+  .cardSmall .layerMain.alignBottomRight,
+  .cardMedium .layerMain.alignBottomRight {
+    width: 94%;
+    transform: translate(12%, 6%);
   }
 
   .cardGreen.cardSmall .layerMain.alignBottomRightPhone,
   .cardGreen.cardMedium .layerMain.alignBottomRightPhone {
-    right: 6%;
-    width: 68%;
-    transform: translate(0, 8%);
+    right: 4%;
+    max-width: 68%;
+    height: 112%;
+    transform: translate(0, 4%);
   }
 
   .cardViolet.cardSmall .layerMain.alignBottomRight,
   .cardViolet.cardMedium .layerMain.alignBottomRight {
-    right: 6%;
-    width: 74%;
-    transform: translate(0, 6%);
+    right: 4%;
+    width: 82%;
+    transform: translate(0, 4%);
   }
 }
 
@@ -331,29 +361,22 @@
 
 @media (max-width: 640px) {
   .card {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
     min-height: 0;
-    padding: 1.5rem;
-    overflow: hidden;
+    padding: 1.5rem 1.5rem 0;
   }
 
   .cardHeader {
     max-width: none;
-    z-index: auto;
+    padding-bottom: 0.5rem;
   }
 
   .cardVisual {
-    position: relative;
-    inset: auto;
-    z-index: auto;
     flex: none;
     height: 15rem;
-    margin: 0 -0.25rem -1.5rem;
+    min-height: 15rem;
+    margin: 0 -0.25rem;
   }
 
-  /* Contain mockups inside the visual band below the copy */
   .cardLarge .layerMain.alignBottomRight,
   .cardLarge .layerMain.alignBottomRightPhone,
   .cardGray.cardLarge .layerMain.alignBottomRightPhone {
