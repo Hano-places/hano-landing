@@ -20,7 +20,7 @@ import styles from "../legal.module.css";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/rankings",
-  title: "Top Rankings — Best Restaurants & Food in Rwanda",
+  title: "Top Rankings | Best Restaurants & Food in Rwanda",
   description:
     "Top-rated restaurants, cafés, rooftops, burgers, pizza, and coffee in Kigali and Rwanda. Browse Hano rankings by category and dish.",
 });
@@ -46,7 +46,7 @@ export default function RankingsPage() {
       <article className={styles.article}>
         <h1>Top rankings in Rwanda</h1>
         <p>
-          Explore the best restaurants, cafés, and dishes in Kigali — ranked for discovery
+          Explore the best restaurants, cafés, and dishes in Kigali, ranked for discovery
           across Rwanda&apos;s hospitality scene.
         </p>
 

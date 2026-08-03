@@ -58,51 +58,31 @@
   max-width: 22rem;
 }
 
-.subscribeEmailForm {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  gap: 0.5rem;
-  width: 100%;
-  max-width: none;
-}
-
-.subscribeEmailForm > div:first-child {
-  flex: 1;
-  min-width: 0;
-}
-
-.subscribeEmailForm button {
-  flex-shrink: 0;
-  color: var(--color-green-700);
-  background-color: var(--color-primary-500);
-  border-color: var(--color-primary-500);
-}
-
-.subscribeEmailForm button:hover:not(:disabled) {
-  color: var(--color-green-700);
-  background-color: var(--foundation-primary-primary-400);
-  border-color: var(--foundation-primary-primary-400);
-}
-
-.subscribeForm input {
+/* Scope to the email capture form only — not modal panel buttons. */
+.subscribeForm form input {
   color: var(--foundation-green-green-50);
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--foundation-green-green-400);
 }
 
-.subscribeForm input::placeholder {
+.subscribeForm form input::placeholder {
   color: var(--foundation-green-green-300);
 }
 
-.subscribeForm input:focus {
+.subscribeForm form input:focus {
   border-color: var(--color-primary-500);
 }
 
-.subscribeForm p {
-  color: var(--color-primary-500);
-  background-color: rgba(200, 255, 98, 0.12);
+.subscribeForm form button {
+  color: var(--color-green-700);
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+}
+
+.subscribeForm form button:hover:not(:disabled) {
+  color: var(--color-green-700);
+  background-color: var(--foundation-primary-primary-400);
+  border-color: var(--foundation-primary-primary-400);
 }
 
 .divider {
@@ -218,14 +198,5 @@
 
   .subscribeForm {
     max-width: none;
-  }
-
-  .subscribeEmailForm {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .subscribeEmailForm button {
-    width: 100%;
   }
 }

@@ -200,7 +200,7 @@ export const contactPage: LegalDocumentContent = {
   eyebrow: "Support",
   title: "Contact Hano",
   intro:
-    "We'd love to hear from you — whether you're a restaurant owner, a food lover in Kigali, or interested in partnering with Hano.",
+    "We'd love to hear from you, whether you're a restaurant owner, a food lover in Kigali, or interested in partnering with Hano.",
   updatedAt: "June 2026",
   sections: [
     {

@@ -44,8 +44,23 @@
   text-align: center;
   font-size: var(--text-lg);
   font-weight: var(--font-weight-medium);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   letter-spacing: -0.01em;
+}
+
+.formSupporting {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.formTrust {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
 @media (min-width: 900px) {

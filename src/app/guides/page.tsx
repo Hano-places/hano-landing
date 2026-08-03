@@ -34,7 +34,7 @@ export default function GuidesIndexPage() {
         <h1>Guides to food & places in Rwanda</h1>
         <p>
           Curated long-form guides to help you discover restaurants, cafés, and experiences
-          across Kigali and Rwanda — with links to every place on Hano.
+          across Kigali and Rwanda, with links to every place on Hano.
         </p>
         <ul className={styles.list}>
           {guides.map((guide) => (

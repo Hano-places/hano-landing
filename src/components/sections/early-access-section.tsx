@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { earlyAccess, faq } from "@/content/landing";
-import { FullWaitlistForm } from "@/components/forms/waitlist-form";
+import { WaitlistOnboarding } from "@/components/forms/waitlist-onboarding";
 import { Accordion } from "@/components/ui/accordion";
 import { Container } from "@/components/ui/container";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
@@ -74,10 +74,13 @@ export function EarlyAccessSection() {
             <div className={styles.formCard}>
               <div className={styles.formInner}>
                 <h3 className={styles.formTitle}>{earlyAccess.formTitle}</h3>
-                <FullWaitlistForm
+                <p className={styles.formSupporting}>{earlyAccess.description}</p>
+                <WaitlistOnboarding
                   cta={earlyAccess.cta}
-                  trustMessage={earlyAccess.trustMessage}
+                  source="early-access"
+                  fullWidth
                 />
+                <p className={styles.formTrust}>{earlyAccess.trustMessage}</p>
               </div>
             </div>
           </div>

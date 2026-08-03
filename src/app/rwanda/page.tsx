@@ -16,7 +16,7 @@ import styles from "./rwanda-page.module.css";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/rwanda",
-  title: "Best Places in Rwanda — Restaurants, Cafés, Bars & Hotels",
+  title: "Best Places in Rwanda | Restaurants, Cafés, Bars & Hotels",
   description:
     "Discover the best restaurants, cafés, bars, hotels, and places to visit in Rwanda. Explore Kigali and top-rated hospitality spots across the country on Hano.",
 });
@@ -53,7 +53,7 @@ export default async function RwandaPage() {
         <h1 className={styles.title}>Discover places in Rwanda</h1>
         <p className={styles.description}>
           From Kigali&apos;s restaurant scene to hidden gems across the country, Hano is
-          your guide to hospitality in Rwanda — restaurants, cafés, bars, lounges, and
+          your guide to hospitality in Rwanda, restaurants, cafés, bars, lounges, and
           places worth visiting.
         </p>
 
@@ -81,7 +81,7 @@ export default async function RwandaPage() {
       <HubPage
         eyebrow="Top picks in Rwanda"
         title="Top-rated places in Rwanda"
-        description="Hand-picked restaurants, cafés, and lounges — starting with Kigali's best."
+        description="Hand-picked restaurants, cafés, and lounges, starting with Kigali's best."
         places={places.slice(0, 12)}
         links={[
           { href: "/kigali", label: "Explore Kigali" },

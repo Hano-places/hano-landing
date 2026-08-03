@@ -25,7 +25,7 @@ const instrumentSerif = Instrument_Serif({
 
 const homeMetadata = buildPageMetadata({
   path: "/",
-  title: "Hano — Discover the Best Restaurants & Places in Rwanda",
+  title: "Hano | Discover the Best Restaurants & Places in Rwanda",
   description:
     "Hano helps you discover restaurants, cafés, bars, hotels, and hidden gems across Rwanda. Explore Kigali and top-rated places to visit.",
 });
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   applicationName: site.name,
   title: {
-    default: "Hano — Discover the Best Restaurants & Places in Rwanda",
+    default: "Hano | Discover the Best Restaurants & Places in Rwanda",
     template: "%s | Hano",
   },
   description: homeMetadata.description,

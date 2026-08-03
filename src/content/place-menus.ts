@@ -145,7 +145,7 @@ export const curatedMenusById: Record<
         items: [
           {
             name: "Seasonal tasting menu",
-            description: "Contemporary African cuisine — reservations recommended.",
+            description: "Contemporary African cuisine, reservations recommended.",
           },
           {
             name: "Vegan tasting options",

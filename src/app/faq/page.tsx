@@ -9,7 +9,7 @@ import styles from "../legal.module.css";
 export const metadata: Metadata = buildPageMetadata({
   path: "/faq",
   title: "FAQ",
-  description: `Answers about ${site.name} — restaurant discovery in Rwanda, the app, waitlist, business listings, and privacy.`,
+  description: `Answers about ${site.name}, restaurant discovery in Rwanda, the app, waitlist, business listings, and privacy.`,
 });
 
 export default function FaqPage() {

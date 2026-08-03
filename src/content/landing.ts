@@ -5,7 +5,7 @@ export const site = {
   name: "Hano",
   url: "https://hano.now",
   tagline: "Discover Restaurants Around You",
-  email: "hello@hano.rw",
+  email: "hello@hano.now",
   appStoreUrl: "https://apps.apple.com/",
   playStoreUrl: "https://play.google.com/store",
   whatsappUrl: "https://wa.me/",
@@ -33,7 +33,7 @@ export const hero = {
     after: "all in one place.",
   },
   subheadline:
-    "Instantly find restaurants, cafés, bakeries, and hidden gems across Kigali — curated recommendations from people you trust.",
+    "Instantly find restaurants, cafés, bakeries, and hidden gems across Kigali, with curated recommendations from people you trust.",
   cta: "Join Early Access",
   secondaryCta: "Explore Restaurants",
   socialProof: "500+ food lovers already signed up for early access",
@@ -63,7 +63,7 @@ export const hero = {
           app: "Hano",
           time: "now",
           title: "New review",
-          body: 'Sarah rated Meza — "Great brunch spot."',
+          body: 'Sarah rated Meza: "Great brunch spot."',
         },
         {
           size: "small" as const,
@@ -176,7 +176,7 @@ export const solution = {
   id: "solution",
   headline: "Meet Hano",
   supporting:
-    "Restaurant discovery in one simple platform — curated picks, community insights, and the details that matter.",
+    "Restaurant discovery in one simple platform: curated picks, community insights, and the details that matter.",
   features: [
     {
       title: "Discover Restaurants",
@@ -269,7 +269,7 @@ export const featuredRestaurants = {
   id: "restaurants",
   headline: "Popular Restaurants & Cafés In Kigali",
   supporting:
-    "Real spots people love across the city — with official websites where available.",
+    "Real spots people love across the city, with official websites where available.",
   viewAllHref: "/places",
   viewAllLabel: "View all places",
   items: getStaticPlaces().filter((place) => place.featured),
@@ -415,6 +415,7 @@ export const community = {
     "Giveaways and special events",
   ],
   cta: "Join The WhatsApp Community",
+  ctaShort: "Join community",
 } as const;
 
 export const comingSoon = {
@@ -587,9 +588,9 @@ export const finalCta = {
 
 export const footer = {
   tagline:
-    "From the team building Hano — made by people who love discovering great food.",
+    "From the team building Hano, made by people who love discovering great food.",
   subscribe: {
-    title: "Subscribe for updates",
+    title: "Get launch updates",
     placeholder: "Enter your email",
     cta: "Join waitlist",
   },

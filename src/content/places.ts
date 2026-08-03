@@ -162,7 +162,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.8,
     priceRange: "$$$",
     description:
-      "Coffee shop and garden restaurant in Kiyovu — calm greenery and refined plates.",
+      "Coffee shop and garden restaurant in Kiyovu, calm greenery and refined plates.",
     image: IMG.aerial,
     website: "https://peacockgarden.net/",
     tags: ["garden", "coffee", "lunch", "healthy"],
@@ -178,7 +178,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.8,
     priceRange: "$$",
     description:
-      "Quiet rooftop café above Ikirezi Bookstore — coffee, light bites, and leafy views.",
+      "Quiet rooftop café above Ikirezi Bookstore, coffee, light bites, and leafy views.",
     image: IMG.rooftop,
     tags: ["rooftop", "bookstore", "quiet", "vegetarian"],
     featured: true,
@@ -201,7 +201,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.9,
     priceRange: "$$$$",
     description:
-      "Seasonal contemporary African cuisine in Alliance Towers — reservations recommended.",
+      "Seasonal contemporary African cuisine in Alliance Towers, reservations recommended.",
     image: IMG.sophisticated,
     website: "https://www.nyurah.com/",
     tags: ["fine dining", "seasonal", "african", "vegan options"],
@@ -247,7 +247,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.8,
     priceRange: "$$$$",
     description:
-      "Elevated African fusion at Simba Center — tasting menus and a polished dining room.",
+      "Elevated African fusion at Simba Center, tasting menus and a polished dining room.",
     image: IMG.joyfulScene,
     website: "https://www.leyoukounkoun.rw/",
     tags: ["african fusion", "tasting menu", "simba center"],
@@ -300,7 +300,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.8,
     priceRange: "$$$",
     description:
-      "Upscale East African cuisine across two floors — a Kimihurura institution since 2006.",
+      "Upscale East African cuisine across two floors, a Kimihurura institution since 2006.",
     image: IMG.tropical,
     website: "https://republounge.com/",
     tags: ["east african", "institution", "two floors"],
@@ -338,7 +338,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.6,
     priceRange: "$",
     description:
-      "Kigali's original build-your-own burrito bar — tacos, bowls, and fast-casual Mexican.",
+      "Kigali's original build-your-own burrito bar, tacos, bowls, and fast-casual Mexican.",
     image: IMG.burgers,
     tags: ["mexican", "burritos", "fast casual", "budget"],
     hours: {
@@ -360,7 +360,7 @@ export const places: readonly PlaceSeed[] = [
     rating: 4.7,
     priceRange: "$$",
     description:
-      "French-inspired pastries, breads, and espresso — multiple locations across Kigali.",
+      "French-inspired pastries, breads, and espresso, multiple locations across Kigali.",
     image: IMG.creamyDrink,
     website: "https://www.briocherwanda.com/",
     tags: ["bakery", "pastries", "coffee", "breakfast", "brunch"],
@@ -467,7 +467,7 @@ export const placesPage = {
   title: "Explore Kigali",
   headline: "Restaurants, cafés & hidden gems",
   supporting:
-    "Browse real spots across Kigali — search by name, neighborhood, or cuisine and see who's open now.",
+    "Browse real spots across Kigali, search by name, neighborhood, or cuisine and see who's open now.",
   searchPlaceholder: "Search by name, area, or cuisine…",
   emptyState: "No places match your search. Try a different keyword or filter.",
 } as const;

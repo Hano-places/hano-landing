@@ -317,35 +317,112 @@
 
 @media (max-width: 640px) {
   .card {
-    min-height: 22rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 0;
     padding: 1.5rem;
+    overflow: hidden;
   }
 
-  .cardLarge .layerMain.alignBottomRightPhone {
-    width: 62%;
-    transform: translate(8%, 10%);
+  .cardHeader {
+    max-width: none;
+    z-index: auto;
   }
 
+  .cardVisual {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    flex: none;
+    height: 15rem;
+    margin: 0 -0.25rem -1.5rem;
+  }
+
+  /* Contain mockups inside the visual band below the copy */
+  .cardLarge .layerMain.alignBottomRight,
+  .cardLarge .layerMain.alignBottomRightPhone,
   .cardGray.cardLarge .layerMain.alignBottomRightPhone {
-    height: 92%;
-    max-height: 92%;
-    transform: translateY(-50%);
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: auto;
+    height: 100%;
+    max-width: 72%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+    transform: none;
+  }
+
+  .cardLarge .layerMain.alignBottomLeft {
+    top: auto;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    max-width: 72%;
+    object-fit: contain;
+    object-position: left bottom;
+    transform: none;
   }
 
   .cardLarge .layerMain.alignTopRightHalfClip {
-    max-width: 54%;
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    height: 100%;
+    max-width: 78%;
+    object-fit: contain;
+    object-position: right top;
+    transform: none;
+  }
+
+  .cardLarge .layerChip.alignBottomRight,
+  .cardLarge .layerChip.alignTopRight {
+    right: 0.25rem;
+    bottom: 0.5rem;
+    top: auto;
+    width: 42%;
+    max-width: 9rem;
     transform: none;
   }
 
   .cardLarge .layerChip.alignBelowTextLeft {
-    left: 1.5rem;
-    top: 9.5rem;
-    width: 42%;
-    max-width: 12.5rem;
+    left: 0.25rem;
+    top: auto;
+    bottom: 0.5rem;
+    width: 46%;
+    max-width: 9.5rem;
+    transform: none;
   }
 
-  .cardSmall .layerMain.alignBottomRight {
-    width: 100%;
-    transform: translate(10%, 6%);
+  .cardSmall .layerMain.alignBottomRight,
+  .cardViolet.cardSmall .layerMain.alignBottomRight,
+  .cardSmall .layerMain.alignBottomRightPhone,
+  .cardGreen.cardSmall .layerMain.alignBottomRightPhone {
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: auto;
+    height: 100%;
+    max-width: 78%;
+    object-fit: contain;
+    object-position: right bottom;
+    transform: none;
+  }
+
+  .cardSmall .layerMain.alignBottomLeft {
+    left: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    max-width: 78%;
+    object-fit: contain;
+    object-position: left bottom;
+    transform: none;
   }
 }

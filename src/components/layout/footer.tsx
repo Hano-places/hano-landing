@@ -31,7 +31,7 @@ function FooterLink({
 
 export function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-site-footer>
       <div className={styles.shell}>
         <Container>
           <div className={styles.box}>

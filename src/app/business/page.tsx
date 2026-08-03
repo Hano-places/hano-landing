@@ -42,7 +42,7 @@ export default function BusinessPage() {
         <p>
           Get discovered by people searching for restaurants, cafés, and places to visit in
           Rwanda. {site.name} helps diners find accurate hours, ratings, and neighborhood
-          context — and helps great businesses get found.
+          context, and helps great businesses get found.
         </p>
         <h2 style={{ marginTop: "2rem", color: "var(--color-heading)" }}>
           Why list with us
@@ -51,7 +51,7 @@ export default function BusinessPage() {
           <li>Appear in category and neighborhood searches across Kigali and Rwanda</li>
           <li>Share menus, hours, photos, and your official website</li>
           <li>Earn a &quot;Find us on Hano&quot; badge for your own site</li>
-          <li>Transparent rankings — no pay-to-rank</li>
+          <li>Transparent rankings, no pay-to-rank</li>
         </ul>
         <p>
           Ready to get started? Email{" "}

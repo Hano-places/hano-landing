@@ -14,7 +14,7 @@ export default function HuyePage() {
     <CityHubContent
       cityName="Huye"
       cityPath="/huye"
-      description="Home to a vibrant university town and southern Rwanda culture, Huye has a growing food scene. Hano is expanding listings here — explore Rwanda-wide discovery or list your business."
+      description="Home to a vibrant university town and southern Rwanda culture, Huye has a growing food scene. Hano is expanding listings here, explore Rwanda-wide discovery or list your business."
       places={[]}
     />
   );

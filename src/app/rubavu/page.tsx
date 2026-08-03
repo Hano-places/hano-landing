@@ -14,7 +14,7 @@ export default function RubavuPage() {
     <CityHubContent
       cityName="Rubavu"
       cityPath="/rubavu"
-      description="On the shores of Lake Kivu, Rubavu offers lakeside dining, cafés, and nightlife. Hano is building coverage for Rubavu hospitality — browse Rwanda categories or claim your listing."
+      description="On the shores of Lake Kivu, Rubavu offers lakeside dining, cafés, and nightlife. Hano is building coverage for Rubavu hospitality, browse Rwanda categories or claim your listing."
       places={[]}
     />
   );

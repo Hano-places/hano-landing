@@ -21,7 +21,7 @@ export const guides: readonly Guide[] = [
     datePublished: "2026-01-15",
     updatedAt: "2026-07-01T00:00:00.000Z",
     intro:
-      "Kigali's food scene blends Rwandan tradition with global influences — from rooftop Afro-fusion to specialty coffee, fine dining, and neighborhood grills. Whether you are a local looking for your next favorite spot or a visitor planning meals around the city, this guide covers the essential places to eat across Kigali and how they fit into Rwanda's wider hospitality landscape. Use it alongside Hano's restaurant and café listings to compare ratings, hours, and neighborhoods before you go.",
+      "Kigali's food scene blends Rwandan tradition with global influences, from rooftop Afro-fusion to specialty coffee, fine dining, and neighborhood grills. Whether you are a local looking for your next favorite spot or a visitor planning meals around the city, this guide covers the essential places to eat across Kigali and how they fit into Rwanda's wider hospitality landscape. Use it alongside Hano's restaurant and café listings to compare ratings, hours, and neighborhoods before you go.",
     sections: [
       {
         heading: "Fine dining and special occasions",
@@ -30,7 +30,7 @@ export const guides: readonly Guide[] = [
       },
       {
         heading: "Cafés and coffee culture",
-        body: "Specialty coffee is thriving in Kigali. Look for farm-to-cup roasters, rooftop cafés, and garden settings perfect for remote work or slow mornings — a core part of how people discover places to visit in Rwanda's capital.",
+        body: "Specialty coffee is thriving in Kigali. Look for farm-to-cup roasters, rooftop cafés, and garden settings perfect for remote work or slow mornings, a core part of how people discover places to visit in Rwanda's capital.",
         placeIds: ["question-coffee", "inzora", "casa-verde", "peacock-cafe"],
       },
       {
@@ -44,11 +44,11 @@ export const guides: readonly Guide[] = [
     slug: "best-date-night-restaurants-kigali",
     title: "Best Date Night Restaurants in Kigali",
     description:
-      "Romantic restaurants in Kigali for date night — rooftop views, fine dining, and intimate settings.",
+      "Romantic restaurants in Kigali for date night, rooftop views, fine dining, and intimate settings.",
     datePublished: "2026-02-01",
     updatedAt: "2026-07-01T00:00:00.000Z",
     intro:
-      "Planning a date in Kigali? These restaurants combine atmosphere, quality food, and memorable settings — from skyline views to intimate fine dining rooms. Romantic dining is one of the most common hospitality searches in Rwanda's capital, and Hano highlights places with strong ratings, clear hours, and neighborhood context so you can book with confidence.",
+      "Planning a date in Kigali? These restaurants combine atmosphere, quality food, and memorable settings, from skyline views to intimate fine dining rooms. Romantic dining is one of the most common hospitality searches in Rwanda's capital, and Hano highlights places with strong ratings, clear hours, and neighborhood context so you can book with confidence.",
     sections: [
       {
         heading: "Rooftop and skyline views",
@@ -70,7 +70,7 @@ export const guides: readonly Guide[] = [
     datePublished: "2026-03-01",
     updatedAt: "2026-07-01T00:00:00.000Z",
     intro:
-      "Beyond the well-known names, Kigali hides neighborhood favorites, quirky cafés, and spots that reward curious explorers. Hidden gems matter for organic discovery — they are the places locals recommend when tourists ask for authentic food experiences in Rwanda.",
+      "Beyond the well-known names, Kigali hides neighborhood favorites, quirky cafés, and spots that reward curious explorers. Hidden gems matter for organic discovery, they are the places locals recommend when tourists ask for authentic food experiences in Rwanda.",
     sections: [
       {
         heading: "Neighborhood favorites",
@@ -79,7 +79,7 @@ export const guides: readonly Guide[] = [
       },
       {
         heading: "Quiet corners worth finding",
-        body: "Bookstore rooftops, garden cafés, and bistros off the main drag — perfect when you want something different.",
+        body: "Bookstore rooftops, garden cafés, and bistros off the main drag, perfect when you want something different.",
         placeIds: ["inzora", "poivre-noir", "peacock-cafe"],
       },
     ],
@@ -88,11 +88,11 @@ export const guides: readonly Guide[] = [
     slug: "weekend-guide-kigali",
     title: "Weekend Guide to Kigali Food",
     description:
-      "A weekend food itinerary for Kigali — brunch, lunch, dinner, and nightlife across Rwanda's capital.",
+      "A weekend food itinerary for Kigali, brunch, lunch, dinner, and nightlife across Rwanda's capital.",
     datePublished: "2026-04-01",
     updatedAt: "2026-07-01T00:00:00.000Z",
     intro:
-      "Weekends in Kigali are made for long brunches, late lunches, and rooftop evenings. This guide maps a simple food itinerary across neighborhoods so you can plan Saturday and Sunday without guesswork — and jump into Hano listings for hours and ratings.",
+      "Weekends in Kigali are made for long brunches, late lunches, and rooftop evenings. This guide maps a simple food itinerary across neighborhoods so you can plan Saturday and Sunday without guesswork, and jump into Hano listings for hours and ratings.",
     sections: [
       {
         heading: "Saturday brunch and coffee",
@@ -115,11 +115,11 @@ export const guides: readonly Guide[] = [
     slug: "best-coffee-shops-kigali",
     title: "Best Coffee Shops in Kigali",
     description:
-      "The best cafés and specialty coffee shops in Kigali, Rwanda — for work, brunch, and slow mornings.",
+      "The best cafés and specialty coffee shops in Kigali, Rwanda, for work, brunch, and slow mornings.",
     datePublished: "2026-05-01",
     updatedAt: "2026-07-01T00:00:00.000Z",
     intro:
-      "Rwanda is famous for coffee, and Kigali's café culture keeps growing. From farm-to-cup specialty shops to leafy garden cafés, these are the best places for coffee, light meals, and remote work — ranked and linked on Hano for easy discovery.",
+      "Rwanda is famous for coffee, and Kigali's café culture keeps growing. From farm-to-cup specialty shops to leafy garden cafés, these are the best places for coffee, light meals, and remote work, ranked and linked on Hano for easy discovery.",
     sections: [
       {
         heading: "Specialty and farm-to-cup",
@@ -137,11 +137,11 @@ export const guides: readonly Guide[] = [
     slug: "best-breakfast-places-kigali",
     title: "Best Breakfast Places in Kigali",
     description:
-      "Where to eat breakfast and brunch in Kigali — bakeries, cafés, and hotel restaurants.",
+      "Where to eat breakfast and brunch in Kigali, bakeries, cafés, and hotel restaurants.",
     datePublished: "2026-06-01",
     updatedAt: "2026-07-01T00:00:00.000Z",
     intro:
-      "Breakfast searches are high-intent in Kigali: people want open hours, reliable spots, and good coffee. This guide covers bakeries, cafés, and restaurants that start the day well — with links to full Hano profiles.",
+      "Breakfast searches are high-intent in Kigali: people want open hours, reliable spots, and good coffee. This guide covers bakeries, cafés, and restaurants that start the day well, with links to full Hano profiles.",
     sections: [
       {
         heading: "Bakeries and pastries",

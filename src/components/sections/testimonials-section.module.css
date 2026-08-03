@@ -24,19 +24,35 @@
 .grid {
   display: grid;
   gap: 1.25rem;
+  grid-template-columns: 1fr;
+  align-items: stretch;
 }
 
 .card {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 1.75rem;
   border-radius: var(--radius-card);
   border: 1px solid var(--color-border);
   background: var(--color-bg);
 }
 
 .quote {
-  font-size: var(--text-lg);
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: clamp(1rem, 2.4vw, var(--text-lg));
   line-height: var(--leading-relaxed);
-  margin-bottom: 1.5rem;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.card footer {
+  margin-top: auto;
+  padding-top: 0.25rem;
 }
 
 .author {
@@ -49,8 +65,19 @@
   color: var(--color-text-muted);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 2rem;
   }
 }

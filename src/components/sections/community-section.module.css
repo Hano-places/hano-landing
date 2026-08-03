@@ -58,3 +58,22 @@
 .cta:hover {
   background-color: var(--foundation-green-green-600);
 }
+
+.ctaShort {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .cta {
+    padding: 0.875rem 1.25rem;
+    font-size: var(--text-sm);
+  }
+
+  .ctaFull {
+    display: none;
+  }
+
+  .ctaShort {
+    display: inline;
+  }
+}

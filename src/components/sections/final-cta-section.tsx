@@ -2,7 +2,7 @@ import Image from "next/image";
 import { finalCta } from "@/content/landing";
 import { IMG } from "@/content/images";
 import { publicImageSrc } from "@/lib/public-image";
-import { EmailCaptureForm } from "@/components/forms/waitlist-form";
+import { WaitlistOnboarding } from "@/components/forms/waitlist-onboarding";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/layout/logo";
 import { Section } from "@/components/ui/section";
@@ -57,7 +57,11 @@ export function FinalCtaSection() {
         <p className={styles.supporting}>{finalCta.supporting}</p>
 
         <div className={styles.formWrap}>
-          <EmailCaptureForm cta={finalCta.cta} />
+          <WaitlistOnboarding
+            cta={finalCta.cta}
+            source="final-cta"
+            variant="email"
+          />
         </div>
 
         <div className={styles.socialProof}>

@@ -15,7 +15,7 @@ import styles from "./kigali-page.module.css";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/kigali",
-  title: "Best Places to Visit in Kigali, Rwanda — Restaurants & Cafés",
+  title: "Best Places to Visit in Kigali, Rwanda | Restaurants & Cafés",
   description:
     "Discover the best restaurants, cafés, bars, and places to visit in Kigali, Rwanda. Explore neighborhoods, top-rated spots, and local favorites on Hano.",
 });
@@ -39,7 +39,7 @@ export default async function KigaliPage() {
         <p className={styles.eyebrow}>Rwanda</p>
         <h1 className={styles.title}>Discover Kigali</h1>
         <p className={styles.description}>
-          Kigali is one of East Africa&apos;s most dynamic food cities — from rooftop
+          Kigali is one of East Africa&apos;s most dynamic food cities, from rooftop
           restaurants and specialty coffee to fine dining and neighborhood grills. Start
           exploring by category or browse all curated places.
         </p>

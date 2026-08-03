@@ -8,7 +8,7 @@ import styles from "../legal.module.css";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/about",
-  title: "About Hano — Discover Rwanda",
+  title: "About Hano | Discover Rwanda",
   description: `Learn about ${site.name}, Rwanda's hospitality discovery platform for restaurants, cafés, bars, and places worth visiting.`,
 });
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
         <p>
           {site.name} is building Rwanda&apos;s definitive hospitality discovery platform.
           We help locals and visitors find restaurants, cafés, bakeries, bars, lounges, and
-          hidden gems — starting in Kigali and expanding nationwide.
+          hidden gems, starting in Kigali and expanding nationwide.
         </p>
         <p>
           Finding a great place to eat should not mean scrolling endless WhatsApp threads or

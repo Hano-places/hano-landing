@@ -29,7 +29,8 @@ export function CommunitySection() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {community.cta}
+            <span className={styles.ctaFull}>{community.cta}</span>
+            <span className={styles.ctaShort}>{community.ctaShort}</span>
           </a>
         </div>
       </Container>

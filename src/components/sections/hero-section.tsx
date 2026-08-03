@@ -6,7 +6,7 @@ import Link from "next/link";
 import { hero } from "@/content/landing";
 import { IMG } from "@/content/images";
 import { publicImageSrc } from "@/lib/public-image";
-import { EmailCaptureForm } from "@/components/forms/waitlist-form";
+import { WaitlistOnboarding } from "@/components/forms/waitlist-onboarding";
 import { HeroAppBadge } from "@/components/ui/hero-app-badge";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -37,7 +37,7 @@ export function HeroSection() {
               {hero.headline.after}
             </h1>
             <p className={styles.subheadline}>{hero.subheadline}</p>
-            <EmailCaptureForm cta={hero.cta} />
+            <WaitlistOnboarding cta={hero.cta} source="hero" variant="email" />
             <p className={styles.subheadline}>
               <Link href="/restaurants">Explore restaurants</Link>
               {" · "}

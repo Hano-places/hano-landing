@@ -350,6 +350,23 @@
 }
 
 @media (max-width: 640px) {
+  .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .headline {
+    text-align: center;
+  }
+
+  .subheadline {
+    margin-inline: auto;
+  }
+
+  .socialProof {
+    justify-content: center;
+  }
+
   .sliderBlock {
     height: 26rem;
   }

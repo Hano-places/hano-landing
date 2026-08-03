@@ -19,7 +19,7 @@ import styles from "./places-page.module.css";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/places",
-  title: "Explore Places in Rwanda — Restaurants, Cafés & Hidden Gems",
+  title: "Explore Places in Rwanda | Restaurants, Cafés & Hidden Gems",
   description:
     "Browse restaurants, cafés, bars, and hidden gems across Rwanda. Search by name, neighborhood, or cuisine and find top-rated places in Kigali.",
 });

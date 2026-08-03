@@ -121,7 +121,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return buildPageMetadata({
       path: categoryCityPath(resolved.category, resolved.slug),
       title: `Best ${label} in ${cityName}, Rwanda`,
-      description: `Discover the best ${label.toLowerCase()} in ${cityName}, Rwanda — ratings, hours, and curated recommendations on Hano.`,
+      description: `Discover the best ${label.toLowerCase()} in ${cityName}, Rwanda, ratings, hours, and curated recommendations on Hano.`,
     });
   }
 
@@ -129,7 +129,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildPageMetadata({
     path: `/${resolved.category}/${resolved.slug}`,
     title: `${label} in ${resolved.label} | Kigali`,
-    description: `Find ${label.toLowerCase()} in ${resolved.label}, Kigali — browse ratings, opening hours, and local favorites on Hano.`,
+    description: `Find ${label.toLowerCase()} in ${resolved.label}, Kigali, browse ratings, opening hours, and local favorites on Hano.`,
   });
 }
 
@@ -192,7 +192,7 @@ export default async function CategorySlugPage({ params }: PageProps) {
           title={`Best ${label} in ${cityName}`}
           description={
             resolved.places.length > 0
-              ? `Explore top-rated ${label.toLowerCase()} across ${cityName} — from neighborhood favorites to hidden gems, with hours, ratings, and details on Hano.`
+              ? `Explore top-rated ${label.toLowerCase()} across ${cityName}, from neighborhood favorites to hidden gems, with hours, ratings, and details on Hano.`
               : `Hano is expanding ${label.toLowerCase()} coverage in ${cityName}. Browse Kigali listings or list your business in ${cityName}.`
           }
           places={resolved.places}

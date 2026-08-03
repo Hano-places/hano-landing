@@ -121,7 +121,7 @@ export function buildCategoryMetadata(segment: CategorySegment): Metadata {
   const path = `/${segment}`;
   const title = `Best ${label} in Rwanda | ${site.name}`;
   const description = truncateDescription(
-    `Explore the best ${label.toLowerCase()} in Rwanda — ratings, hours, neighborhoods, and curated picks in Kigali on ${site.name}.`,
+    `Explore the best ${label.toLowerCase()} in Rwanda, ratings, hours, neighborhoods, and curated picks in Kigali on ${site.name}.`,
   );
 
   return buildPageMetadata({ path, title, description });

@@ -106,19 +106,25 @@ interface FloatingPanelTriggerProps {
   children: ReactNode;
   className?: string;
   title: string;
+  placement?: PanelPlacement;
 }
 
 export function FloatingPanelTrigger({
   children,
   className,
   title,
+  placement = "anchored",
 }: FloatingPanelTriggerProps) {
   const { openFloatingPanel, uniqueId } = useFloatingPanel();
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = () => {
     if (triggerRef.current) {
-      openFloatingPanel(triggerRef.current.getBoundingClientRect(), title);
+      openFloatingPanel(
+        triggerRef.current.getBoundingClientRect(),
+        title,
+        placement,
+      );
     }
   };
 

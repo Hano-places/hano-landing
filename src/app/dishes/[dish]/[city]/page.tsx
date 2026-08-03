@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildPageMetadata({
     path: dishRankingPath(dish, city),
     title: `Top Rated ${label} in Kigali`,
-    description: `Find the top rated ${label.toLowerCase()} in Kigali — ranked by ratings and community favorites on Hano.`,
+    description: `Find the top rated ${label.toLowerCase()} in Kigali, ranked by ratings and community favorites on Hano.`,
   });
 }
 
@@ -75,7 +75,7 @@ export default async function DishRankingPage({ params }: PageProps) {
       <HubPage
         eyebrow="Food rankings"
         title={`Top rated ${label.toLowerCase()} in Kigali`}
-        description={`Compare the best places for ${label.toLowerCase()} in Kigali — with ratings, neighborhoods, and opening hours.`}
+        description={`Compare the best places for ${label.toLowerCase()} in Kigali, with ratings, neighborhoods, and opening hours.`}
         places={places}
         links={[
           { href: "/restaurants/kigali", label: "Restaurants in Kigali" },

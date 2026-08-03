@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   path: "/privacy",
   title: "Privacy Policy",
-  description: `Privacy policy for ${site.name} — how we collect, use, and protect your information.`,
+  description: `Privacy policy for ${site.name}, how we collect, use, and protect your information.`,
 });
 
 export default function PrivacyPage() {

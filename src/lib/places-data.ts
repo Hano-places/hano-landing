@@ -83,7 +83,7 @@ function defaultFaqs(place: PlaceSeed): Place["faqs"] {
     },
     {
       question: `Where is ${place.name} located in Kigali?`,
-      answer: `${place.name} is in ${place.location}, ${DEFAULT_CITY}. Use the map on this page for directions — the venue is in the ${place.location} area.`,
+      answer: `${place.name} is in ${place.location}, ${DEFAULT_CITY}. Use the map on this page for directions, the venue is in the ${place.location} area.`,
     },
     {
       question: `Is ${place.name} good for ${place.tags[0] ?? "dining out"}?`,

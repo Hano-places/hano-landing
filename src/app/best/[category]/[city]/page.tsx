@@ -75,7 +75,7 @@ export default async function BestCategoryCityPage({ params }: PageProps) {
       <HubPage
         eyebrow="Rankings"
         title={`Top rated ${label} in Kigali`}
-        description={`A ranked list of the highest-rated ${label.toLowerCase()} in Kigali — updated from Hano's curated directory.`}
+        description={`A ranked list of the highest-rated ${label.toLowerCase()} in Kigali, updated from Hano's curated directory.`}
         places={places}
         links={[
           { href: `/${category}/kigali`, label: `All ${label.toLowerCase()} in Kigali` },

@@ -66,7 +66,7 @@ export default async function BestRooftopRestaurantsPage({ params }: PageProps) 
       <HubPage
         eyebrow="Rankings"
         title="Best rooftop restaurants in Kigali"
-        description="Sunset views, cocktails, and elevated dining — the top rooftop restaurants in Kigali ranked on Hano."
+        description="Sunset views, cocktails, and elevated dining, the top rooftop restaurants in Kigali ranked on Hano."
         places={places}
         links={[
           { href: "/restaurants/kigali", label: "All restaurants in Kigali" },
