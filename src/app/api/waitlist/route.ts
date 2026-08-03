@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { appendWaitlistToSheet } from "@/lib/waitlist-sheets";
 
 const waitlistSchema = z.object({
   email: z.string().email(),
@@ -18,14 +19,18 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = waitlistSchema.parse(body);
 
-    // Stub: log for now; wire to email provider later
-    console.log("[waitlist]", data);
+    await appendWaitlistToSheet(data);
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    }
+
+    console.error("[waitlist] failed to save signup", error);
     return NextResponse.json(
-      { error: "Invalid request" },
-      { status: 400 },
+      { error: "Failed to save signup" },
+      { status: 502 },
     );
   }
 }

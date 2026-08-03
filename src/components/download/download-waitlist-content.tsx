@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { WaitlistOnboarding } from "@/components/forms/waitlist-onboarding";
 import { site } from "@/content/landing";
-import styles from "../legal.module.css";
+import styles from "@/app/legal.module.css";
 
 export function DownloadWaitlistContent() {
   return (

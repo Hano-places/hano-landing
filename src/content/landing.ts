@@ -8,7 +8,7 @@ export const site = {
   email: "hello@hano.now",
   appStoreUrl: "https://apps.apple.com/",
   playStoreUrl: "https://play.google.com/store",
-  whatsappUrl: "https://wa.me/",
+  whatsappUrl: "https://chat.whatsapp.com/LNgPuM4rJQnHcBgswbJlQh",
   social: {
     instagram: "https://instagram.com/",
     tiktok: "https://tiktok.com/",
