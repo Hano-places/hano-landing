@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   waitlistOnboarding,
   type WaitlistAudience,
@@ -383,6 +384,14 @@ export function WaitlistPanel({
       >
         <FloatingPanelBody className={styles.body}>
           <div className={styles.success}>
+            <Image
+              src="/addons/check.png"
+              alt=""
+              width={160}
+              height={160}
+              className={styles.successIllustration}
+              priority
+            />
             <h3 id="waitlist-title" className={styles.stepHeading}>
               {waitlistOnboarding.steps.success.heading}
             </h3>
