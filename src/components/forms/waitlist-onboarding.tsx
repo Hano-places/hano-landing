@@ -552,7 +552,6 @@ export function WaitlistPanel({
                 type="button"
                 className={styles.skip}
                 onClick={handleSkip}
-                disabled={status === "loading"}
               >
                 {waitlistOnboarding.skip}
               </button>
