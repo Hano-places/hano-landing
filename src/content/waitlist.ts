@@ -31,16 +31,12 @@ export const waitlistOnboarding = {
       supporting: "We'll personalize what you see next. Pick the option that fits best.",
     },
     details: {
-      headingByAudience: {
-        local: "What should Hano help you find?",
-        visitor: "What do you want from Hano while you're here?",
-        partner: "How can Hano help your place?",
-      },
-      supportingByAudience: {
-        local: "Tap anything that sounds like you. No typing needed.",
-        visitor: "A few quick taps so we can launch with the right recommendations.",
-        partner: "Tell us about your venue. Just tick what applies.",
-      },
+      supporting: "Tap an option to continue. You can skip anytime.",
+      multiHint: "Pick one or more, then continue.",
+    },
+    submitting: {
+      heading: "I'm adding you to the waitlist",
+      body: "Hang tight while we save your spot.",
     },
     success: {
       heading: "You're on the list",

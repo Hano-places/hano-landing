@@ -23,7 +23,7 @@ import {
 import styles from "./waitlist-onboarding.module.css";
 
 type Answers = Record<string, string[]>;
-type PanelStep = "email" | "audience" | "details";
+type PanelStep = "email" | "audience" | "question";
 type WaitlistIntent = "default" | "app";
 
 type WaitlistOnboardingProps = {
@@ -51,25 +51,24 @@ function toggleValue(
     : [...current, value];
 }
 
-function isDetailsComplete(
-  audience: WaitlistAudience | null,
-  answers: Answers,
-): boolean {
-  if (!audience) return false;
-  return waitlistOnboarding.questionsByAudience[audience].every(
-    (question) => (answers[question.id]?.length ?? 0) > 0,
-  );
-}
+function stepMeta(
+  step: PanelStep,
+  hasEmailUpFront: boolean,
+  questionIndex: number,
+  questionCount: number,
+) {
+  const questionSteps = Math.max(questionCount, 1);
+  const base = hasEmailUpFront ? 1 : 2; // audience (+ optional email)
+  const total = base + questionSteps;
 
-function stepMeta(step: PanelStep, hasEmailUpFront: boolean) {
-  if (hasEmailUpFront) {
-    if (step === "audience") return { index: 1, total: 2 };
-    if (step === "details") return { index: 2, total: 2 };
-    return { index: 1, total: 2 };
+  if (step === "email") return { index: 1, total };
+  if (step === "audience") {
+    return { index: hasEmailUpFront ? 1 : 2, total };
   }
-  if (step === "email") return { index: 1, total: 3 };
-  if (step === "audience") return { index: 2, total: 3 };
-  return { index: 3, total: 3 };
+  return {
+    index: base + questionIndex + 1,
+    total,
+  };
 }
 
 function WaitlistButtonTrigger({
@@ -182,6 +181,7 @@ export function WaitlistPanel({
   const [step, setStep] = useState<PanelStep>(
     hasEmailUpFront ? "audience" : "email",
   );
+  const [questionIndex, setQuestionIndex] = useState(0);
   const [audience, setAudience] = useState<WaitlistAudience | null>(null);
   const [answers, setAnswers] = useState<Answers>({});
   const [email, setEmail] = useState(initialEmail);
@@ -201,6 +201,7 @@ export function WaitlistPanel({
     clearAdvanceTimer();
     setEmail(initialEmail);
     setStep(initialEmail.trim() ? "audience" : "email");
+    setQuestionIndex(0);
     setAudience(null);
     setAnswers({});
     setError("");
@@ -212,16 +213,20 @@ export function WaitlistPanel({
   const questions = audience
     ? waitlistOnboarding.questionsByAudience[audience]
     : [];
+  const currentQuestion = questions[questionIndex] ?? null;
+  const isLastQuestion =
+    questions.length > 0 && questionIndex >= questions.length - 1;
 
-  const emailCopy = intent === "app"
-    ? {
-        heading: waitlistOnboarding.steps.email.headingApp,
-        supporting: waitlistOnboarding.steps.email.supportingApp,
-      }
-    : {
-        heading: waitlistOnboarding.steps.email.heading,
-        supporting: waitlistOnboarding.steps.email.supporting,
-      };
+  const emailCopy =
+    intent === "app"
+      ? {
+          heading: waitlistOnboarding.steps.email.headingApp,
+          supporting: waitlistOnboarding.steps.email.supportingApp,
+        }
+      : {
+          heading: waitlistOnboarding.steps.email.heading,
+          supporting: waitlistOnboarding.steps.email.supporting,
+        };
 
   const submitWaitlist = async (options?: {
     skipped?: boolean;
@@ -240,6 +245,7 @@ export function WaitlistPanel({
     const result = onboardingWaitlistSchema.safeParse(payload);
     if (!result.success) {
       setError(result.error.issues[0]?.message ?? "Email is required");
+      setStatus("idle");
       if (!payload.email) setStep("email");
       return;
     }
@@ -259,6 +265,17 @@ export function WaitlistPanel({
     }
   };
 
+  const finishOrAdvance = (nextAnswers: Answers) => {
+    if (isLastQuestion) {
+      void submitWaitlist({
+        nextAudience: audience,
+        nextAnswers,
+      });
+      return;
+    }
+    setQuestionIndex((current) => current + 1);
+  };
+
   const handleEmailContinue = () => {
     setError("");
     const result = emailWaitlistSchema.safeParse({ email: email.trim() });
@@ -273,7 +290,8 @@ export function WaitlistPanel({
   const selectAudience = (id: WaitlistAudience) => {
     setAudience(id);
     setAnswers({});
-    setStep("details");
+    setQuestionIndex(0);
+    setStep("question");
   };
 
   const selectAnswer = (
@@ -281,7 +299,7 @@ export function WaitlistPanel({
     optionId: string,
     mode: "single" | "multi",
   ) => {
-    if (!audience) return;
+    if (!audience || !currentQuestion || status === "loading") return;
 
     clearAdvanceTimer();
 
@@ -291,15 +309,20 @@ export function WaitlistPanel({
     };
     setAnswers(next);
 
-    if (!isDetailsComplete(audience, next)) return;
+    // Multi-select: stay on step until Continue.
+    if (mode === "multi") return;
 
+    // Single-select: paint selection, then advance or submit.
     advanceTimerRef.current = window.setTimeout(() => {
       advanceTimerRef.current = null;
-      void submitWaitlist({
-        nextAudience: audience,
-        nextAnswers: next,
-      });
-    }, mode === "multi" ? 450 : 180);
+      finishOrAdvance(next);
+    }, 180);
+  };
+
+  const handleQuestionContinue = () => {
+    if (!currentQuestion) return;
+    if ((answers[currentQuestion.id]?.length ?? 0) === 0) return;
+    finishOrAdvance(answers);
   };
 
   const handleSkip = () => {
@@ -307,7 +330,11 @@ export function WaitlistPanel({
   };
 
   const handleBack = () => {
-    if (step === "details") {
+    if (step === "question") {
+      if (questionIndex > 0) {
+        setQuestionIndex((current) => current - 1);
+        return;
+      }
       setStep("audience");
       return;
     }
@@ -319,9 +346,33 @@ export function WaitlistPanel({
   const { index: stepIndex, total: totalSteps } = stepMeta(
     step,
     hasEmailUpFront,
+    questionIndex,
+    questions.length || 2,
   );
   const isFirstStep =
     step === "email" || (step === "audience" && hasEmailUpFront);
+
+  if (status === "loading") {
+    return (
+      <FloatingPanelContent
+        className={styles.panel}
+        titleId="waitlist-title"
+        header={<FloatingPanelHeader>Almost there</FloatingPanelHeader>}
+      >
+        <FloatingPanelBody className={styles.body}>
+          <div className={styles.submitting} role="status" aria-live="polite">
+            <span className={styles.spinner} aria-hidden />
+            <h3 id="waitlist-title" className={styles.stepHeading}>
+              {waitlistOnboarding.steps.submitting.heading}
+            </h3>
+            <p className={styles.stepSupporting}>
+              {waitlistOnboarding.steps.submitting.body}
+            </p>
+          </div>
+        </FloatingPanelBody>
+      </FloatingPanelContent>
+    );
+  }
 
   if (status === "success") {
     return (
@@ -349,6 +400,10 @@ export function WaitlistPanel({
       </FloatingPanelContent>
     );
   }
+
+  const multiHasSelection =
+    currentQuestion?.mode === "multi" &&
+    (answers[currentQuestion.id]?.length ?? 0) > 0;
 
   return (
     <FloatingPanelContent
@@ -418,40 +473,51 @@ export function WaitlistPanel({
           </div>
         ) : null}
 
-        {step === "details" && audience ? (
+        {step === "question" && currentQuestion ? (
           <div className={styles.step}>
             <h3 id="waitlist-title" className={styles.stepHeading}>
-              {waitlistOnboarding.steps.details.headingByAudience[audience]}
+              {currentQuestion.prompt}
             </h3>
             <p className={styles.stepSupporting}>
-              {waitlistOnboarding.steps.details.supportingByAudience[audience]}
+              {currentQuestion.mode === "multi"
+                ? waitlistOnboarding.steps.details.multiHint
+                : waitlistOnboarding.steps.details.supporting}
             </p>
-            <div className={styles.questionStack}>
-              {questions.map((question) => (
-                <fieldset key={question.id} className={styles.question}>
-                  <legend>{question.prompt}</legend>
-                  <div className={styles.chipRow}>
-                    {question.options.map((option) => {
-                      const selected = (answers[question.id] ?? []).includes(
+            <div
+              className={styles.optionGrid}
+              role={currentQuestion.mode === "single" ? "radiogroup" : "group"}
+              aria-label={currentQuestion.prompt}
+            >
+              {currentQuestion.options.map((option) => {
+                const selected = (answers[currentQuestion.id] ?? []).includes(
+                  option.id,
+                );
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    className={`${styles.optionButton} ${selected ? styles.optionSelected : ""}`}
+                    aria-pressed={
+                      currentQuestion.mode === "multi" ? selected : undefined
+                    }
+                    role={
+                      currentQuestion.mode === "single" ? "radio" : undefined
+                    }
+                    aria-checked={
+                      currentQuestion.mode === "single" ? selected : undefined
+                    }
+                    onClick={() =>
+                      selectAnswer(
+                        currentQuestion.id,
                         option.id,
-                      );
-                      return (
-                        <button
-                          key={option.id}
-                          type="button"
-                          className={`${styles.chip} ${selected ? styles.optionSelected : ""}`}
-                          aria-pressed={selected}
-                          onClick={() =>
-                            selectAnswer(question.id, option.id, question.mode)
-                          }
-                        >
-                          {option.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </fieldset>
-              ))}
+                        currentQuestion.mode,
+                      )
+                    }
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         ) : null}
@@ -484,12 +550,18 @@ export function WaitlistPanel({
             ) : null}
           </div>
           {step === "email" ? (
+            <Button type="button" onClick={handleEmailContinue}>
+              {waitlistOnboarding.steps.email.submit}
+            </Button>
+          ) : step === "question" && currentQuestion?.mode === "multi" ? (
             <Button
               type="button"
-              disabled={status === "loading"}
-              onClick={handleEmailContinue}
+              disabled={!multiHasSelection}
+              onClick={handleQuestionContinue}
             >
-              {waitlistOnboarding.steps.email.submit}
+              {isLastQuestion
+                ? "Join waitlist"
+                : waitlistOnboarding.nav.continue}
             </Button>
           ) : (
             <span className={styles.footerHint}>Tap to continue</span>
