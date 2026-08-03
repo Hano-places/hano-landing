@@ -75,11 +75,12 @@ export function EarlyAccessSection() {
               <div className={styles.formInner}>
                 <h3 className={styles.formTitle}>{earlyAccess.formTitle}</h3>
                 <p className={styles.formSupporting}>{earlyAccess.description}</p>
-                <WaitlistOnboarding
-                  cta={earlyAccess.cta}
-                  source="early-access"
-                  fullWidth
-                />
+                <div className={styles.formCta}>
+                  <WaitlistOnboarding
+                    cta={earlyAccess.cta}
+                    source="early-access"
+                  />
+                </div>
                 <p className={styles.formTrust}>{earlyAccess.trustMessage}</p>
               </div>
             </div>

@@ -56,6 +56,12 @@
   line-height: var(--leading-relaxed);
 }
 
+.formCta {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .formTrust {
   margin: 1rem 0 0;
   text-align: center;
