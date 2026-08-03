@@ -42,6 +42,7 @@ export const MOCK = {
   iphone: "/mockups/iPhone mockup.png",
   notification: "/mockups/notification-mobile.png",
   listedOrders: "/mockups/listed-orders.png",
+  ordersCategory: "/mockups/orders-category.png",
   previewMenu: "/mockups/preview-menu.png",
   review: "/mockups/reeview.png",
   reviewFlat: "/mockups/reeview-flat.png",

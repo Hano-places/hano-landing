@@ -8,7 +8,7 @@ export const site = {
   email: "hello@hano.now",
   appStoreUrl: "https://apps.apple.com/",
   playStoreUrl: "https://play.google.com/store",
-  whatsappUrl: "https://chat.whatsapp.com/LNgPuM4rJQnHcBgswbJlQh",
+  whatsappUrl: "https://whatsapp.com/channel/0029Vb8AZXxK0IBoP4MwSN3V",
   social: {
     instagram: "https://instagram.com/",
     tiktok: "https://tiktok.com/",
@@ -327,31 +327,31 @@ export const testimonials = {
 export const howItWorks = {
   id: "how-it-works",
   headline: {
-    before: "We've mapped the",
-    emphasis: "hard part",
-    after: ", now it's your turn to",
-    emphasis2: "explore",
+    before: "Everything you need to",
+    emphasis: "discover",
+    after: ", decide, and",
+    emphasis2: "dine",
   },
   supporting:
-    "Whether you're looking for your next meal or planning a special night out, everything is designed to flow effortlessly.",
+    "Menus, rankings, orders, reviews, and more, so finding the right place in Kigali feels effortless.",
   cards: [
     {
-      title: "Discover",
-      description: "Browse places, categories, and what's trending nearby.",
+      title: "Menus",
+      description: "Explore full menus before you go and spot dishes worth ordering.",
       variant: "gray" as const,
       size: "large" as const,
       layers: [
         {
-          src: MOCK.iphone,
+          src: MOCK.previewMenu,
           role: "main",
           align: "bottom-right-phone",
-          alt: "Hano home screen",
+          alt: "Restaurant menu preview",
         },
       ],
     },
     {
-      title: "Explore",
-      description: "See details, ratings, and distance at a glance.",
+      title: "Rankings",
+      description: "See what's trending and which spots locals rate highest.",
       variant: "violet" as const,
       size: "small" as const,
       layers: [
@@ -359,27 +359,27 @@ export const howItWorks = {
           src: MOCK.homeRecent,
           role: "main",
           align: "bottom-right",
-          alt: "Top places list",
+          alt: "Restaurant rankings list",
         },
       ],
     },
     {
-      title: "Save",
-      description: "Keep spots you love on your personal shortlist.",
+      title: "Orders",
+      description: "Know what to order with dishes people actually recommend.",
       variant: "green" as const,
       size: "small" as const,
       layers: [
         {
-          src: MOCK.previewMenu,
+          src: MOCK.listedOrders,
           role: "main",
           align: "bottom-right-phone",
-          alt: "Menu preview",
+          alt: "Recommended dishes and orders",
         },
       ],
     },
     {
-      title: "Share",
-      description: "Recommend gems and help friends decide faster.",
+      title: "Reviews",
+      description: "Read honest feedback from diners and share your own takes.",
       variant: "gray" as const,
       size: "large" as const,
       layers: [
@@ -394,6 +394,34 @@ export const howItWorks = {
           role: "chip",
           align: "below-text-left",
           alt: "",
+        },
+      ],
+    },
+    {
+      title: "Discover",
+      description: "Browse places, categories, and what's nearby right now.",
+      variant: "violet" as const,
+      size: "medium" as const,
+      layers: [
+        {
+          src: MOCK.homePlaces,
+          role: "main",
+          align: "bottom-right",
+          alt: "Discover places nearby",
+        },
+      ],
+    },
+    {
+      title: "Categories",
+      description: "Jump into cafés, rooftops, bakeries, bars, and hidden gems.",
+      variant: "green" as const,
+      size: "medium" as const,
+      layers: [
+        {
+          src: MOCK.ordersCategory,
+          role: "main",
+          align: "bottom-right-phone",
+          alt: "Browse food categories",
         },
       ],
     },

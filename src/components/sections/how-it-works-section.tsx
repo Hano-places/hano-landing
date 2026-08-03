@@ -15,6 +15,7 @@ const variantClass = {
 const sizeClass = {
   large: styles.cardLarge,
   small: styles.cardSmall,
+  medium: styles.cardMedium,
 } as const;
 
 const roleClass = {
