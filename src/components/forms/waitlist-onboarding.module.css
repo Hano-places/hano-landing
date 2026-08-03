@@ -49,15 +49,19 @@
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-semibold);
-  color: #ffffff;
-  background: var(--color-brand-primary);
-  border: 1px solid var(--foundation-primary-primary-600);
+  color: var(--color-cta-text);
+  background: var(--color-cta);
+  border: 1px solid var(--color-cta);
   border-radius: var(--radius-pill);
   cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .trigger:hover {
-  background: var(--foundation-primary-primary-600);
+  background: var(--foundation-green-green-600);
+  border-color: var(--foundation-green-green-600);
 }
 
 .triggerFull {

@@ -13,6 +13,10 @@ export type WaitlistSheetRow = {
 /**
  * Appends a waitlist signup to Google Sheets via a deployed Apps Script web app.
  * Set WAITLIST_GOOGLE_SCRIPT_URL in the environment (see docs/waitlist-google-sheets.md).
+ *
+ * Apps Script quirks:
+ * - Prefer text/plain (not application/json) so the request isn't rejected.
+ * - The /exec URL 302-redirects; fetch must follow redirects.
  */
 export async function appendWaitlistToSheet(
   data: WaitlistSheetRow,
@@ -42,18 +46,20 @@ export async function appendWaitlistToSheet(
 
   const response = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    // text/plain avoids Apps Script rejecting application/json requests.
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(payload),
-    // Apps Script redirects; follow so we get the final response.
     redirect: "follow",
   });
 
-  if (!response.ok) {
-    const body = await response.text().catch(() => "");
-    throw new Error(
-      `Google Sheets webhook failed (${response.status}): ${body.slice(0, 200)}`,
-    );
+  // After the Apps Script 302, a successful write usually returns 200.
+  // Some runtimes surface the intermediate redirect; treat those as success too.
+  if (response.ok || response.status === 302 || response.status === 303) {
+    return { ok: true };
   }
 
-  return { ok: true };
+  const body = await response.text().catch(() => "");
+  throw new Error(
+    `Google Sheets webhook failed (${response.status}): ${body.slice(0, 200)}`,
+  );
 }

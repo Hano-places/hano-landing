@@ -29,6 +29,10 @@ On Vercel: **Project → Settings → Environment Variables** → add `WAITLIST_
 
 Redeploy after saving the variable.
 
+### Request format note
+
+The API posts with `Content-Type: text/plain;charset=utf-8` and a JSON string body. That is required for Apps Script web apps — `application/json` often fails with a 405 after Google’s redirect.
+
 ## 4. Verify
 
 Submit the waitlist form on the site. A new row should appear in the `Waitlist` tab within a few seconds.
