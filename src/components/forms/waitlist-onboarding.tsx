@@ -188,6 +188,7 @@ export function WaitlistPanel({
   const [email, setEmail] = useState(initialEmail);
   const [error, setError] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [alreadyJoined, setAlreadyJoined] = useState(false);
   const advanceTimerRef = useRef<number | null>(null);
 
   const clearAdvanceTimer = () => {
@@ -207,6 +208,7 @@ export function WaitlistPanel({
     setAnswers({});
     setError("");
     setStatus("idle");
+    setAlreadyJoined(false);
   }, [isOpen, initialEmail]);
 
   useEffect(() => () => clearAdvanceTimer(), []);
@@ -259,6 +261,11 @@ export function WaitlistPanel({
         body: JSON.stringify(result.data),
       });
       if (!res.ok) throw new Error("Failed");
+      const payloadJson = (await res.json().catch(() => null)) as {
+        success?: boolean;
+        duplicate?: boolean;
+      } | null;
+      setAlreadyJoined(Boolean(payloadJson?.duplicate));
       setStatus("success");
     } catch {
       setError("Something went wrong. Please try again.");
@@ -310,20 +317,14 @@ export function WaitlistPanel({
     };
     setAnswers(next);
 
-    // Multi-select: stay on step until Continue.
-    if (mode === "multi") return;
+    // Need at least one selection before advancing (multi can toggle off).
+    if ((next[questionId]?.length ?? 0) === 0) return;
 
-    // Single-select: paint selection, then advance or submit.
+    // Paint the selection, then auto-advance. Multi waits a beat for more taps.
     advanceTimerRef.current = window.setTimeout(() => {
       advanceTimerRef.current = null;
       finishOrAdvance(next);
-    }, 180);
-  };
-
-  const handleQuestionContinue = () => {
-    if (!currentQuestion) return;
-    if ((answers[currentQuestion.id]?.length ?? 0) === 0) return;
-    finishOrAdvance(answers);
+    }, mode === "multi" ? 550 : 180);
   };
 
   const handleSkip = () => {
@@ -376,11 +377,19 @@ export function WaitlistPanel({
   }
 
   if (status === "success") {
+    const successCopy = alreadyJoined
+      ? waitlistOnboarding.steps.alreadyJoined
+      : waitlistOnboarding.steps.success;
+
     return (
       <FloatingPanelContent
         className={styles.panel}
         titleId="waitlist-title"
-        header={<FloatingPanelHeader>You&apos;re in</FloatingPanelHeader>}
+        header={
+          <FloatingPanelHeader>
+            {alreadyJoined ? "Already joined" : "You're in"}
+          </FloatingPanelHeader>
+        }
       >
         <FloatingPanelBody className={styles.body}>
           <div className={styles.success}>
@@ -393,26 +402,20 @@ export function WaitlistPanel({
               priority
             />
             <h3 id="waitlist-title" className={styles.stepHeading}>
-              {waitlistOnboarding.steps.success.heading}
+              {successCopy.heading}
             </h3>
-            <p className={styles.stepSupporting}>
-              {waitlistOnboarding.steps.success.body}
-            </p>
+            <p className={styles.stepSupporting}>{successCopy.body}</p>
           </div>
         </FloatingPanelBody>
         <FloatingPanelFooter>
           <span />
           <Button type="button" onClick={closeFloatingPanel}>
-            {waitlistOnboarding.steps.success.close}
+            {successCopy.close}
           </Button>
         </FloatingPanelFooter>
       </FloatingPanelContent>
     );
   }
-
-  const multiHasSelection =
-    currentQuestion?.mode === "multi" &&
-    (answers[currentQuestion.id]?.length ?? 0) > 0;
 
   return (
     <FloatingPanelContent
@@ -560,16 +563,6 @@ export function WaitlistPanel({
           {step === "email" ? (
             <Button type="button" onClick={handleEmailContinue}>
               {waitlistOnboarding.steps.email.submit}
-            </Button>
-          ) : step === "question" && currentQuestion?.mode === "multi" ? (
-            <Button
-              type="button"
-              disabled={!multiHasSelection}
-              onClick={handleQuestionContinue}
-            >
-              {isLastQuestion
-                ? "Join waitlist"
-                : waitlistOnboarding.nav.continue}
             </Button>
           ) : (
             <span className={styles.footerHint}>Tap to continue</span>

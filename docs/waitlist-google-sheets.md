@@ -33,8 +33,16 @@ Redeploy after saving the variable.
 
 The API posts with `Content-Type: text/plain;charset=utf-8` and a JSON string body. That is required for Apps Script web apps — `application/json` often fails with a 405 after Google’s redirect.
 
-## 4. Verify
+## 4. Duplicate emails
 
-Submit the waitlist form on the site. A new row should appear in the `Waitlist` tab within a few seconds.
+The Apps Script checks column B (Email) before appending. If the email already exists (case-insensitive), it returns `{ success: true, duplicate: true }` and does **not** add another row. The site shows a success screen with “You're already on the list” and the same check illustration.
+
+After editing the script, create a **new deployment** (or Manage deployments → Edit → New version) so the live `/exec` URL picks up the change.
+
+## 5. Verify
+
+Submit the waitlist form on the site. A new row should appear in the `Waitlist` tab within a few seconds. Submitting the same email again should succeed without a second row.
 
 If `WAITLIST_GOOGLE_SCRIPT_URL` is missing, the API still returns success and logs the payload server-side so local/dev builds keep working.
+
+Intermittent Google 5xx/HTML error responses are retried automatically (4 attempts) from the API.

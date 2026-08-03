@@ -32,7 +32,7 @@ export const waitlistOnboarding = {
     },
     details: {
       supporting: "Tap an option to continue. You can skip anytime.",
-      multiHint: "Pick one or more, then continue.",
+      multiHint: "Tap what fits. We'll move on after your picks.",
     },
     submitting: {
       heading: "I'm adding you to the waitlist",
@@ -41,6 +41,11 @@ export const waitlistOnboarding = {
     success: {
       heading: "You're on the list",
       body: "Thanks for joining early. We'll email you when Hano is ready to download.",
+      close: "Sounds good",
+    },
+    alreadyJoined: {
+      heading: "You're already on the list",
+      body: "We've already got your email. We'll notify you when Hano launches.",
       close: "Sounds good",
     },
   },
