@@ -31,6 +31,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
+.env*
 
 # vercel
 .vercel
@@ -43,4 +44,5 @@ next-env.d.ts
 /hano-mobile-v2/
 /hano-web/
 /hano-api/
-config.bat
+# Editor workspace config is personal (and was used to auto-run tasks)
+.vscode/
