@@ -13,7 +13,7 @@ export function SharedItemPage({ preview, path }: { preview: SharePreview | null
     <SeoPageShell backHref="/" backLabel="← Hano">
       <article className={styles.card}>
         {/* eslint-disable-next-line @next/next/no-img-element -- remote, already sized 1200×630 by the API */}
-        <img className={styles.image} src={preview?.image ?? "/thumbnail/thumbnail.png"} alt="" width={1200} height={630} />
+        <img className={styles.image} src={preview?.image ?? "/thumbnail/og.jpg"} alt="" width={1200} height={630} />
         <div className={styles.body}>
           <h1 className={styles.title}>{preview?.title ?? "Open this in Hano"}</h1>
           <p className={styles.description}>

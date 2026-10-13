@@ -9,7 +9,7 @@ import {
   type CategorySegment,
 } from "@/lib/places-slug";
 
-const DEFAULT_OG_IMAGE = "/thumbnail/thumbnail.png";
+const DEFAULT_OG_IMAGE = "/thumbnail/og.jpg";
 const MAX_DESCRIPTION_LENGTH = 160;
 
 export type FAQItem = {
@@ -85,7 +85,7 @@ export function buildPageMetadata({
         {
           url: ogImage,
           width: 1200,
-          height: 631,
+          height: 630,
           alt: title,
         },
       ],
