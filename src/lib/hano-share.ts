@@ -12,6 +12,8 @@ export type SharePreview = {
   imageHeight: number;
   url: string;
   path: string;
+  /** A claimed place's own address (https://orbitos.hano.now): the canonical link. */
+  site?: string;
 };
 
 const API = (process.env.HANO_API_URL ?? "https://api.hano.now").replace(/\/$/, "");
@@ -42,6 +44,11 @@ export function shareMetadata(preview: SharePreview | null, path: string): Metad
     });
   }
   const base = buildPageMetadata({ path: preview.path, title: preview.title, description: preview.description, ogImage: preview.image });
+  // A claimed place's own address is its home on the web; shares of /p/<slug> point there too.
+  if (preview.site) {
+    base.alternates = { ...base.alternates, canonical: preview.site };
+    base.openGraph = { ...base.openGraph, url: preview.site };
+  }
   const image = { url: preview.image, width: preview.imageWidth, height: preview.imageHeight, alt: preview.title, type: "image/jpeg" };
   return {
     ...base,
