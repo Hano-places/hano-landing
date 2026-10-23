@@ -1,0 +1,234 @@
+/* Hano brand: forest #001814, volt #C8FF62, bone #F8F8F2. Mobile first. */
+.page {
+  --forest: #001814;
+  --forest-2: #0b2622;
+  --volt: #c8ff62;
+  --volt-ink: #3d5a10;
+  --bone: #f8f8f2;
+  --line: #e4e7dd;
+  --muted: #546462;
+  max-width: 880px;
+  margin: 12px auto 96px;
+  color: var(--forest);
+  display: grid;
+  gap: 28px;
+}
+
+/* Photos */
+.gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  height: clamp(220px, 46vw, 420px);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background: var(--forest-2);
+}
+.single { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+.cover { grid-row: 1 / span 2; width: 100%; height: 100%; object-fit: cover; display: block; }
+.single .cover { grid-row: auto; }
+.blank { background: linear-gradient(135deg, #0b2622, #1d3b35); }
+.thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+.morePhotos {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(0, 24, 20, 0.72);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+/* Name */
+.header { display: grid; gap: 14px; }
+.identity { display: flex; gap: 14px; align-items: center; }
+.logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px rgba(0, 24, 20, 0.18);
+  margin-top: -44px;
+  background: #fff;
+}
+.logoBlank {
+  display: grid;
+  place-items: center;
+  background: var(--forest);
+  color: var(--volt);
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.name { font-size: clamp(1.6rem, 4.6vw, 2.3rem); line-height: 1.1; margin: 0; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.verified {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--volt);
+  color: var(--forest);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.meta { margin: 4px 0 0; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--bone);
+  border: 1px solid var(--line);
+}
+.open { background: #e9fbd0; border-color: #c8ff62; color: var(--volt-ink); }
+.closed { background: #fdeceb; border-color: #f6cfcb; color: #a8322a; }
+.offerChip { background: var(--forest); color: var(--volt); border-color: var(--forest); }
+.star { color: #e3a008; }
+
+/* App card */
+.appCard, .finalCta {
+  background: var(--forest);
+  color: #f2f7f4;
+  border-radius: 24px;
+  padding: 22px;
+  display: grid;
+  gap: 16px;
+  box-shadow: 0 18px 40px rgba(0, 24, 20, 0.18);
+}
+.appTitle, .finalTitle { margin: 0; font-size: 1.15rem; font-weight: 700; color: #fff; }
+.finalTitle { font-size: 1.4rem; }
+.appBody { margin: 6px 0 0; color: rgba(242, 247, 244, 0.8); line-height: 1.5; }
+.appActions { display: flex; gap: 10px; flex-wrap: wrap; }
+.primary, .secondary, .stickyButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px 20px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.primary { background: var(--volt); color: var(--forest); }
+.secondary { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.22); }
+
+/* Sections */
+.section { display: grid; gap: 14px; }
+.h2 { font-size: 1.3rem; margin: 0; letter-spacing: -0.01em; }
+.h3 { font-size: 1rem; margin: 6px 0 0; color: var(--muted); font-weight: 600; }
+.count { font-size: 0.9rem; font-weight: 500; color: var(--muted); margin-left: 6px; }
+.muted { margin: 2px 0 0; color: var(--muted); line-height: 1.45; font-size: 0.92rem; }
+.small { margin: 6px 0 0; color: var(--muted); font-size: 0.82rem; }
+.about { margin: 0; line-height: 1.6; }
+
+/* Offers */
+.offers { display: grid; gap: 12px; }
+.offer {
+  display: flex;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 14px;
+  background: #fff;
+}
+.offerPhoto { width: 92px; height: 92px; border-radius: 14px; object-fit: cover; flex: none; }
+.offerBody { min-width: 0; }
+.offerBadge {
+  display: inline-block;
+  background: var(--volt);
+  color: var(--forest);
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.offerTitle { margin: 8px 0 0; font-weight: 700; font-size: 1.02rem; }
+
+/* Menu */
+.menuSection { display: grid; gap: 8px; }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.unavailable { opacity: 0.55; }
+.itemText { min-width: 0; }
+.itemName { margin: 0; font-weight: 600; }
+.price { margin: 6px 0 0; font-weight: 700; font-size: 0.92rem; }
+.itemPhoto { width: 84px; height: 84px; border-radius: 14px; object-fit: cover; flex: none; }
+.inlineCta {
+  justify-self: start;
+  font-weight: 700;
+  color: var(--forest);
+  background: var(--volt);
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 0.82rem; padding: 5px 10px; border-radius: 999px; background: var(--bone); border: 1px solid var(--line); }
+
+/* Reviews */
+.reviews { display: grid; gap: 12px; }
+.review { margin: 0; padding: 16px; border-radius: 18px; background: var(--bone); border: 1px solid var(--line); }
+.review p { margin: 0; line-height: 1.5; }
+.reviewStars { color: #e3a008; letter-spacing: 2px; margin-bottom: 6px !important; }
+
+/* Visit */
+.visit { grid-template-columns: 1fr; gap: 28px; }
+.hours { border-collapse: collapse; width: 100%; max-width: 360px; }
+.hours th, .hours td { text-align: left; padding: 7px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+.hours th { width: 64px; color: var(--muted); }
+.today th, .today td { font-weight: 800; color: var(--forest); }
+.contactRow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.contact {
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--forest);
+  font-weight: 600;
+  text-decoration: none;
+}
+.contact:hover, .secondary:hover { filter: brightness(0.97); }
+
+/* Phones: an always-visible way into the app */
+.stickyBar {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 999px;
+  background: rgba(0, 24, 20, 0.92);
+  color: #fff;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0, 24, 20, 0.3);
+}
+.stickyLogo { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.stickyText { margin: 0; flex: 1; font-size: 0.92rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stickyButton { background: var(--volt); color: var(--forest); padding: 10px 16px; }
+
+@media (min-width: 760px) {
+  .appCard { grid-template-columns: 1fr auto; align-items: center; }
+  .visit { grid-template-columns: 1fr 1fr; }
+  .offers { grid-template-columns: 1fr 1fr; }
+  .stickyBar { display: none; }
+  .logo { width: 84px; height: 84px; margin-top: -60px; }
+}

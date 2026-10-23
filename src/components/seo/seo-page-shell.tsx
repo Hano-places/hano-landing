@@ -11,12 +11,15 @@ type SeoPageShellProps = {
   children: ReactNode;
   backHref?: string;
   backLabel?: string;
+  /** The floating download button; pages with their own app bar (place pages) turn it off. */
+  showFab?: boolean;
 };
 
 export function SeoPageShell({
   children,
   backHref = "/places",
   backLabel = "← Back to places",
+  showFab = true,
 }: SeoPageShellProps) {
   return (
     <>
@@ -30,7 +33,7 @@ export function SeoPageShell({
         </Container>
         <Footer />
       </MainWrapper>
-      <AppDownloadFab />
+      {showFab ? <AppDownloadFab /> : null}
     </>
   );
 }
