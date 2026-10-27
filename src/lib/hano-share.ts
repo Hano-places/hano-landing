@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 
 /** Kinds of link the Hano app shares (mirrors the app's `shareLinks`). */
-export type ShareKind = "place" | "post" | "user" | "map" | "list" | "promo" | "review";
+export type ShareKind = "place" | "post" | "user" | "map" | "list" | "invite" | "promo" | "review";
 
 export type SharePreview = {
   title: string;
