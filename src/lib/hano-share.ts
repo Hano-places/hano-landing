@@ -27,10 +27,17 @@ export async function getSharePreview(kind: ShareKind, id: string): Promise<Shar
   try {
     const res = await fetch(`${API}/v1/share/${kind}/${encodeURIComponent(id)}`, { next: { revalidate: 300 } });
     if (!res.ok) return null;
-    return (await res.json()) as SharePreview;
+    const preview = (await res.json()) as SharePreview;
+    return { ...preview, image: edgeImage(preview.image) };
   } catch {
     return null;
   }
+}
+
+/** The API's thumbnail address, served through hano.now/og/… so it comes from Vercel's edge. */
+function edgeImage(image: string) {
+  const m = image.match(/\/v1\/share\/([a-z]+)\/([^/]+)\/image\.jpg(\?.*)?$/);
+  return m ? `https://hano.now/og/${m[1]}/${m[2]}.jpg${m[3] ?? ""}` : image;
 }
 
 /** Open Graph / Twitter metadata so WhatsApp, X, Facebook, iMessage etc. show a rich preview with the photo. */
