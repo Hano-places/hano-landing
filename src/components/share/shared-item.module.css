@@ -1,56 +1,106 @@
-.card {
-  max-width: 560px;
-  margin: 24px auto 48px;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #001814;
+/* A shared link's page: one dark screen, the preview card in the middle, nothing else in the way. */
+.page {
+  min-height: 100dvh;
+  background: radial-gradient(120% 60% at 50% 0%, #0b2f27 0%, #001814 60%);
   color: #f2f7f4;
-  box-shadow: 0 20px 48px rgba(0, 24, 20, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.top {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f2f7f4;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.brand img {
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(200, 255, 98, 0.35);
+}
+
+.topOpen {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #001814;
+  background: #c8ff62;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #072620;
+  border: 1px solid rgba(200, 255, 98, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
 .image {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1200 / 630;
   object-fit: cover;
   background: #0b2622;
 }
 
 .body {
-  padding: 20px 20px 24px;
+  padding: 18px 18px 20px;
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
+/* Set explicitly: the site's heading colour is dark and would vanish on this card. */
 .title {
-  font-size: 1.5rem;
-  line-height: 1.2;
-  font-weight: 600;
   margin: 0;
+  color: #f2f7f4;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .description {
   margin: 0;
-  color: rgba(242, 247, 244, 0.75);
+  color: rgba(242, 247, 244, 0.72);
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .primary,
 .secondary {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 0 20px;
   border-radius: 999px;
   font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
 }
 
@@ -60,17 +110,19 @@
 }
 
 .secondary {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   color: #f2f7f4;
 }
 
-@media (max-width: 480px) {
-  .card {
-    margin: 16px 0 32px;
-    border-radius: 20px;
-  }
-  .primary,
-  .secondary {
-    flex: 1 1 100%;
-  }
+.note {
+  margin: auto 0 0;
+  padding-top: 28px;
+  font-size: 0.8rem;
+  color: rgba(242, 247, 244, 0.45);
+}
+
+/* Dark behind the phone's status bar and overscroll too, not the site's light page colour. */
+:global(html):has(.page),
+:global(body):has(.page) {
+  background: #001814;
 }

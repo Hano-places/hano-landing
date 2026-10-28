@@ -2,7 +2,7 @@
 import { SeoPageShell } from "@/components/seo/seo-page-shell";
 import { money, openStatus, WEEK, type Place, type Promo, type Review } from "@/lib/hano-places";
 
-import { OpenInApp } from "./open-in-app";
+import { AutoOpenApp, OpenInApp } from "./open-in-app";
 import styles from "./place-page.module.css";
 
 const DAY_LABEL: Record<string, string> = { monday: "Mon", tuesday: "Tue", wednesday: "Wed", thursday: "Thu", friday: "Fri", saturday: "Sat", sunday: "Sun" };
@@ -34,6 +34,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
 
   return (
     <SeoPageShell backHref="/places" backLabel="← Places on Hano" showFab={false}>
+      <AutoOpenApp path={`p/${place.slug}`} />
       <article className={styles.page}>
         {/* Photos */}
         <div className={`${styles.gallery} ${more.length ? "" : styles.single}`}>
