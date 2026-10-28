@@ -13,7 +13,7 @@ export function SharedItemPage({ preview, path }: { preview: SharePreview | null
   const target = path.replace(/^\//, "");
   return (
     <main className={styles.page}>
-      <AutoOpenApp path={target} />
+      {preview ? <AutoOpenApp path={target} /> : null}
       <header className={styles.top}>
         <Link href="/" className={styles.brand}>
           {/* eslint-disable-next-line @next/next/no-img-element -- tiny static logo */}
@@ -25,26 +25,44 @@ export function SharedItemPage({ preview, path }: { preview: SharePreview | null
         </OpenInApp>
       </header>
 
-      <article className={styles.card}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- remote, already sized 1200×630 by the API */}
-        <img className={styles.image} src={preview?.image ?? "/thumbnail/og.jpg"} alt="" width={1200} height={630} />
-        <div className={styles.body}>
-          <h1 className={styles.title}>{preview?.title ?? "Open this in Hano"}</h1>
-          {preview?.description || !preview ? (
-            <p className={styles.description}>
-              {preview?.description ?? "This link isn’t available any more, or it’s private. Discover places worth visiting in Rwanda on Hano."}
-            </p>
-          ) : null}
-          <div className={styles.actions}>
-            <OpenInApp path={target} className={styles.primary}>
-              Open in Hano
-            </OpenInApp>
-            <Link className={styles.secondary} href="/download">
-              Get the app
-            </Link>
+      {preview ? (
+        <article className={styles.card}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- remote, already sized 1200×630 by the API */}
+          <img className={styles.image} src={preview.image} alt="" width={1200} height={630} />
+          <div className={styles.body}>
+            <h1 className={styles.title}>{preview.title}</h1>
+            {preview.description ? <p className={styles.description}>{preview.description}</p> : null}
+            <div className={styles.actions}>
+              <OpenInApp path={target} className={styles.primary}>
+                Open in Hano
+              </OpenInApp>
+              <Link className={styles.secondary} href="/download">
+                Get the app
+              </Link>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      ) : (
+        // Deleted, private or mistyped: say so plainly and point somewhere useful.
+        <article className={styles.card}>
+          <div className={styles.missing}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- tiny static logo */}
+            <img src="/brand-logo/svg/logo.svg" alt="" width={56} height={56} />
+          </div>
+          <div className={styles.body}>
+            <h1 className={styles.title}>This link isn’t available</h1>
+            <p className={styles.description}>It may have been removed or made private. There’s plenty more to discover on Hano.</p>
+            <div className={styles.actions}>
+              <Link className={styles.primary} href="/places">
+                Explore places
+              </Link>
+              <OpenInApp path={target} className={styles.secondary}>
+                Open Hano
+              </OpenInApp>
+            </div>
+          </div>
+        </article>
+      )}
 
       <p className={styles.note}>Hano · places worth visiting in Rwanda</p>
     </main>

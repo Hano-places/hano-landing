@@ -13,6 +13,7 @@ import {
   categoryNeighborhoodPath,
   categorySegmentLabel,
   dishRankingPath,
+  isDishTag,
   neighborhoodSlugFromLocation,
   placeCategorySegment,
 } from "@/lib/places-slug";
@@ -238,7 +239,7 @@ export function PlaceDetailPage({ place, relatedPlaces }: PlaceDetailPageProps) 
               </Link>
             </li>
           ) : null}
-          {place.tags.slice(0, 3).map((tag) => (
+          {place.tags.filter(isDishTag).slice(0, 3).map((tag) => (
             <li key={tag}>
               <Link href={dishRankingPath(tag, "kigali")} className={styles.explorePill}>
                 Top rated {tag} in Kigali

@@ -30,6 +30,14 @@
 .cover { grid-row: 1 / span 2; width: 100%; height: 100%; object-fit: cover; display: block; }
 .single .cover { grid-row: auto; }
 .blank { background: linear-gradient(135deg, #0b2622, #1d3b35); }
+/* No photos yet: a short brand band under the logo instead of an empty frame. */
+.noPhotos {
+  height: clamp(96px, 16vw, 150px);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(200, 255, 92, 0.18), transparent 45%),
+    linear-gradient(135deg, #0b2622, #1d3b35);
+}
+.noPhotos .blank { background: none; }
 .thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
 .morePhotos {
   position: absolute;

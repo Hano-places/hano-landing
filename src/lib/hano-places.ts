@@ -73,6 +73,12 @@ async function get<T>(path: string): Promise<T | null> {
 
 export const getPlace = (slug: string) => get<Place>(`/places/${encodeURIComponent(slug)}`);
 
+/** Every place in the app, for the sitemap and the full list on /places. */
+export async function listPlaces(): Promise<Place[]> {
+  const res = await get<{ places: Place[] }>("/places?limit=2000");
+  return res?.places ?? [];
+}
+
 /** Offers running now at this place (scheduled and ended ones are left out). */
 export async function getPlacePromos(place: Place): Promise<Promo[]> {
   const res = await get<Promo[] | { promos: Promo[] }>(`/promos?city=${encodeURIComponent(place.city.toLowerCase())}`);

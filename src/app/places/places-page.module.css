@@ -61,3 +61,93 @@
 .directorySection {
   padding: 0 0 var(--section-padding-y);
 }
+
+.allSection {
+  padding: 1rem 0 4rem;
+}
+
+.allTitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.allSupporting {
+  margin: 0.5rem 0 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.group {
+  border-top: 1px solid var(--color-border);
+}
+
+.group:last-of-type {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.groupSummary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 0;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-heading);
+  cursor: pointer;
+  list-style: none;
+}
+
+.groupSummary::-webkit-details-marker {
+  display: none;
+}
+
+.groupSummary::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+}
+
+.group[open] .groupSummary::after {
+  content: "–";
+}
+
+.groupCount {
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  background: var(--color-surface-green);
+  font-size: var(--text-sm);
+  color: var(--color-green-700);
+}
+
+.allList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: 0.25rem 1.5rem;
+  padding: 0 0 1.25rem;
+  list-style: none;
+}
+
+.allLink {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+}
+
+.allLink:hover .allName {
+  color: var(--color-green-700);
+  text-decoration: underline;
+}
+
+.allName {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-heading);
+}
+
+.allArea {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}

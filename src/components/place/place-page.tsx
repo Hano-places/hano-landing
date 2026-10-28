@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element -- photos are remote (Hano's CDN), already sized */
+import Link from "next/link";
 import { SeoPageShell } from "@/components/seo/seo-page-shell";
 import { money, openStatus, WEEK, type Place, type Promo, type Review } from "@/lib/hano-places";
 
@@ -37,7 +38,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
       <AutoOpenApp path={`p/${place.slug}`} />
       <article className={styles.page}>
         {/* Photos */}
-        <div className={`${styles.gallery} ${more.length ? "" : styles.single}`}>
+        <div className={`${styles.gallery} ${more.length ? "" : styles.single} ${cover ? "" : styles.noPhotos}`}>
           {cover ? <img className={styles.cover} src={cover} alt={`${place.name}`} /> : <div className={`${styles.cover} ${styles.blank}`} />}
           {more.slice(0, 2).map((src, i) => (
             <img key={src} className={styles.thumb} src={src} alt={`${place.name} photo ${i + 2}`} />
@@ -82,9 +83,9 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
             <OpenInApp slug={place.slug} className={styles.primary}>
               Open in Hano
             </OpenInApp>
-            <a className={styles.secondary} href="/download">
+            <Link className={styles.secondary} href="/download">
               Get the app
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -243,9 +244,9 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
             <OpenInApp slug={place.slug} className={styles.primary}>
               Open in Hano
             </OpenInApp>
-            <a className={styles.secondary} href="/download">
+            <Link className={styles.secondary} href="/download">
               Get the app
-            </a>
+            </Link>
           </div>
         </section>
       </article>

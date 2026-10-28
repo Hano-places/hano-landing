@@ -63,6 +63,15 @@
   background: #0b2622;
 }
 
+.missing {
+  display: grid;
+  place-items: center;
+  height: 140px;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(200, 255, 98, 0.16), transparent 60%),
+    #0b2622;
+}
+
 .body {
   padding: 18px 18px 20px;
   display: grid;
