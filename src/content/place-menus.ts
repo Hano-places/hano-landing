@@ -170,7 +170,6 @@ export const curatedMenusById: Record<
     ],
   },
   "yt-burger": {
-    menuUrl: "https://www.ytburger.com/",
     menu: [
       {
         name: "Burgers & wine",
@@ -234,7 +233,7 @@ export const curatedMenusById: Record<
     ],
   },
   "poivre-noir": {
-    menuUrl: "https://poivrenoirbistro.com/",
+    menuUrl: "https://www.poivrenoirbistro.com/",
     menu: [
       {
         name: "Bistro",

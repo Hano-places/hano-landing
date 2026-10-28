@@ -272,7 +272,6 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Gourmet burgers, natural wines, and a lively bistro vibe in Gishushu.",
     image: IMG.gourmetBurger,
-    website: "https://www.ytburger.com/",
     tags: ["burgers", "wine", "bistro"],
     hours: daily("11 AM – 11 PM"),
   },
@@ -317,7 +316,7 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Contemporary bistro plates, wine pairings, and private dining in Kimihurura.",
     image: IMG.serene,
-    website: "https://poivrenoirbistro.com/",
+    website: "https://www.poivrenoirbistro.com/",
     tags: ["bistro", "wine", "private dining"],
     hours: {
       monday: "Closed",

@@ -906,6 +906,5 @@ export const placeMediaById: Record<string, PlaceMediaBundle> = {
               "source": "official"
           }
       ],
-      "menuUrl": "https://www.ytburger.com/#menu"
   },
 };
