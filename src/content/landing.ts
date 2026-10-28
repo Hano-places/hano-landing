@@ -6,8 +6,9 @@ export const site = {
   url: "https://hano.now",
   tagline: "Discover Restaurants Around You",
   email: "hello@hano.now",
-  appStoreUrl: "https://apps.apple.com/",
-  playStoreUrl: "https://play.google.com/store",
+  // Hano's own listings; they open once the app is public in each store.
+  appStoreUrl: "https://apps.apple.com/app/id6822756665",
+  playStoreUrl: "https://play.google.com/store/apps/details?id=rw.hano.app",
   whatsappUrl: "https://whatsapp.com/channel/0029Vb8AZXxK0IBoP4MwSN3V",
   social: {
     instagram: "https://instagram.com/",
@@ -26,7 +27,7 @@ export const navLinks = [
 ] as const;
 
 export const hero = {
-  badge: "Now on iOS & Android",
+  badge: "Coming soon to iOS & Android",
   headline: {
     before: "Discover. Explore. Eat.",
     emphasis: "Finally",
@@ -657,8 +658,8 @@ export const footer = {
       links: [
         { label: site.email, href: `mailto:${site.email}` },
         {
-          label: "Instagram",
-          href: site.social.instagram,
+          label: "WhatsApp channel",
+          href: site.whatsappUrl,
           external: true,
         },
       ],
