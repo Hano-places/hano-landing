@@ -28,6 +28,8 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
   const c = place.contacts ?? {};
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${place.location.latitude},${place.location.longitude}`;
   const [cover, ...more] = place.photos;
+  // Profile picture: the business's logo, otherwise its first photo.
+  const picture = place.logo ?? cover;
   // Openly licensed photos on show (the first three) are credited under the gallery.
   const credits = (place.photoCredits ?? []).slice(0, 3).filter((c) => c !== null);
   // An offer without its own photo shows the dish it features.
@@ -66,7 +68,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
         {/* Name and essentials */}
         <header className={styles.header}>
           <div className={styles.identity}>
-            {place.logo ? <img className={styles.logo} src={place.logo} alt={`${place.name} logo`} /> : <div className={`${styles.logo} ${styles.logoBlank}`}>{place.name[0]}</div>}
+            {picture ? <img className={styles.logo} src={picture} alt={place.logo ? `${place.name} logo` : place.name} /> : <div className={`${styles.logo} ${styles.logoBlank}`}>{place.name[0]}</div>}
             <div>
               <h1 className={styles.name}>
                 {place.name}
@@ -270,7 +272,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
 
       {/* Always-there way into the app on phones */}
       <div className={styles.stickyBar}>
-        {place.logo ? <img className={styles.stickyLogo} src={place.logo} alt="" /> : null}
+        {picture ? <img className={styles.stickyLogo} src={picture} alt="" /> : null}
         <p className={styles.stickyText}>
           <strong>{place.name}</strong> on Hano
         </p>
