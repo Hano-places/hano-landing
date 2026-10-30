@@ -28,6 +28,8 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
   const c = place.contacts ?? {};
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${place.location.latitude},${place.location.longitude}`;
   const [cover, ...more] = place.photos;
+  // Openly licensed photos on show (the first three) are credited under the gallery.
+  const credits = (place.photoCredits ?? []).slice(0, 3).filter((c) => c !== null);
   // An offer without its own photo shows the dish it features.
   const itemPhoto = new Map(sections.flatMap((sec) => sec.items).filter((it) => it.photo).map((it) => [it.id, it.photo as string]));
   const offerPhoto = (p: Promo) => p.photo ?? p.itemIds?.map((id) => itemPhoto.get(id)).find(Boolean);
@@ -45,6 +47,21 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
           ))}
           {place.photos.length > 3 ? <span className={styles.morePhotos}>+{place.photos.length - 3} photos in the app</span> : null}
         </div>
+        {credits.length ? (
+          <p className={styles.credits}>
+            Photos:{" "}
+            {credits.map((c, i) => (
+              <span key={c.source}>
+                {i ? ", " : ""}
+                <a href={c.source} target="_blank" rel="noopener noreferrer">
+                  {c.author}
+                </a>{" "}
+                ({c.license})
+              </span>
+            ))}{" "}
+            via Wikimedia Commons
+          </p>
+        ) : null}
 
         {/* Name and essentials */}
         <header className={styles.header}>

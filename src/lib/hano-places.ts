@@ -33,6 +33,8 @@ export type Place = {
   location: { latitude: number; longitude: number };
   description: string;
   photos: string[];
+  /** Author and licence of openly licensed photos, by position in `photos`. */
+  photoCredits?: ({ author: string; license: string; source: string } | null)[];
   logo?: string;
   site?: string;
   tags: string[];
