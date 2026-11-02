@@ -650,6 +650,7 @@ export const footer = {
       links: [
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },
+        { label: "Community Guidelines", href: "/community-guidelines" },
         { label: "Cookies", href: "/cookies" },
       ],
     },

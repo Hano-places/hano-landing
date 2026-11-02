@@ -34,6 +34,8 @@ export function getStaticSitemapPaths(): {
     { path: "/business", lastModified: now, priority: 0.9 },
     { path: "/privacy", lastModified: now, priority: 0.3 },
     { path: "/terms", lastModified: now, priority: 0.3 },
+    { path: "/community-guidelines", lastModified: now, priority: 0.3 },
+    { path: "/business-terms", lastModified: now, priority: 0.3 },
     { path: "/cookies", lastModified: now, priority: 0.3 },
     { path: "/contact", lastModified: now, priority: 0.4 },
     { path: "/guides/ultimate-kigali-food-guide", lastModified: now, priority: 0.7 },

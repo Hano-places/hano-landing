@@ -7,8 +7,8 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/terms",
-  title: "Terms of Service",
-  description: `Terms of service for using ${site.name}, the hospitality discovery platform for Kigali.`,
+  title: "Terms of Use (EULA)",
+  description: `Terms of Use and end-user licence agreement for the ${site.name} app and website.`,
 });
 
 export default function TermsPage() {
