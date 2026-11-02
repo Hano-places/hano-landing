@@ -21,7 +21,8 @@ const stars = (n: number) => "★★★★★".slice(0, Math.round(n)) + "☆☆
  * (the full menu, checking in, saving, points).
  */
 export function PlacePage({ place, promos, rating }: { place: Place; promos: Promo[]; rating: { average: number; count: number; reviews: Review[] } }) {
-  const status = openStatus(place.hours);
+  const hoursStatus = openStatus(place.hours);
+  const status = place.closed ? { ...hoursStatus, open: false, label: "Permanently closed" } : hoursStatus;
   const sections = (place.menu?.sections ?? []).filter((s) => s.items.length);
   const menuCount = sections.reduce((n, s) => n + s.items.length, 0);
   const hiddenItems = sections.reduce((n, s) => n + Math.max(0, s.items.length - ITEMS_PER_SECTION), 0);

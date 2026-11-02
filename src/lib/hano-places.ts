@@ -44,6 +44,8 @@ export type Place = {
   priceLevel?: 1 | 2 | 3 | 4;
   claimStatus?: "unclaimed" | "pending" | "claimed";
   verified?: boolean;
+  /** Closed for good (still listed, shown as closed). */
+  closed?: boolean;
 };
 
 export type Promo = {
