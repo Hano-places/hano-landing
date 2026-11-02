@@ -20,7 +20,7 @@
     "@vis.gl/react-google-maps": "^1.8.3",
     "geist": "^1.7.2",
     "motion": "^12.40.0",
-    "next": "16.2.9",
+    "next": "16.4.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "swiper": "^12.2.0",
@@ -32,7 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.9",
+    "eslint-config-next": "16.4.3",
     "sharp": "^0.35.1",
     "typescript": "^5"
   }
