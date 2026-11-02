@@ -33,6 +33,8 @@ export type Place = {
   location: { latitude: number; longitude: number };
   description: string;
   photos: string[];
+  /** Linked Google listing: places without photos of their own show Google's (credited). */
+  googlePlaceId?: string;
   /** Author and licence of openly licensed photos, by position in `photos`. */
   photoCredits?: ({ author: string; license: string; source: string } | null)[];
   logo?: string;
@@ -74,6 +76,10 @@ async function get<T>(path: string): Promise<T | null> {
     return null;
   }
 }
+
+/** Google's photo for a linked place with none of its own, served through the Hano API. */
+export const googleCover = (place: Pick<Place, "photos" | "googlePlaceId">) =>
+  !place.photos.length && place.googlePlaceId ? `${API}/v1/places/google/${encodeURIComponent(place.googlePlaceId)}/cover` : undefined;
 
 export const getPlace = (slug: string) => get<Place>(`/places/${encodeURIComponent(slug)}`);
 

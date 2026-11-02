@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- photos are remote (Hano's CDN), already sized */
 import Link from "next/link";
 import { SeoPageShell } from "@/components/seo/seo-page-shell";
-import { money, openStatus, WEEK, type Place, type Promo, type Review } from "@/lib/hano-places";
+import { googleCover, money, openStatus, WEEK, type Place, type Promo, type Review } from "@/lib/hano-places";
 
 import { AutoOpenApp, OpenInApp } from "./open-in-app";
 import styles from "./place-page.module.css";
@@ -28,7 +28,9 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
   const hiddenItems = sections.reduce((n, s) => n + Math.max(0, s.items.length - ITEMS_PER_SECTION), 0);
   const c = place.contacts ?? {};
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${place.location.latitude},${place.location.longitude}`;
-  const [cover, ...more] = place.photos;
+  // Places without photos of their own show Google's (credited below).
+  const fromGoogle = googleCover(place);
+  const [cover, ...more] = fromGoogle ? [fromGoogle] : place.photos;
   // Profile picture: the business's logo, otherwise its first photo.
   const picture = place.logo ?? cover;
   // Openly licensed photos on show (the first three) are credited under the gallery.
@@ -50,6 +52,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
           ))}
           {place.photos.length > 3 ? <span className={styles.morePhotos}>+{place.photos.length - 3} photos in the app</span> : null}
         </div>
+        {fromGoogle ? <p className={styles.credits}>Photo: Google</p> : null}
         {credits.length ? (
           <p className={styles.credits}>
             Photos:{" "}
