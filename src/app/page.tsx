@@ -2,16 +2,16 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MainWrapper } from "@/components/layout/main-wrapper";
 import { AppDownloadFab } from "@/components/layout/app-download-fab";
-import { HeroSection } from "@/components/sections/hero-section";
-import { ProblemSection } from "@/components/sections/problem-section";
-import { SolutionSection } from "@/components/sections/solution-section";
 import { FeaturedRestaurantsSection } from "@/components/sections/featured-restaurants";
-import { CategoryMarqueeSection } from "@/components/sections/category-marquee";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { HowItWorksSection } from "@/components/sections/how-it-works-section";
-import { CommunitySection } from "@/components/sections/community-section";
 import { EarlyAccessSection } from "@/components/sections/early-access-section";
-import { FinalCtaSection } from "@/components/sections/final-cta-section";
+import {
+  BusinessV2,
+  FeaturesV2,
+  FinalV2,
+  HeroV2,
+  StripV2,
+  WebVsAppV2,
+} from "@/components/v2/home-v2";
 import { JsonLd } from "@/components/seo/json-ld";
 import { faq } from "@/content/landing";
 import {
@@ -34,17 +34,15 @@ export default function Home() {
       />
       <Header />
       <MainWrapper>
-        <HeroSection />
+        <HeroV2 />
         <main>
-          <ProblemSection />
-          <SolutionSection />
+          <StripV2 />
+          <FeaturesV2 />
+          <WebVsAppV2 />
           <FeaturedRestaurantsSection />
-          <CategoryMarqueeSection />
-          <TestimonialsSection />
-          <HowItWorksSection />
-          <CommunitySection />
+          <BusinessV2 />
           <EarlyAccessSection />
-          <FinalCtaSection />
+          <FinalV2 />
         </main>
         <Footer />
       </MainWrapper>
