@@ -6,7 +6,7 @@ import Link from "next/link";
 import { hero } from "@/content/landing";
 import { IMG } from "@/content/images";
 import { publicImageSrc } from "@/lib/public-image";
-import { WaitlistOnboarding } from "@/components/forms/waitlist-onboarding";
+import { StoreButtons } from "@/components/ui/store-buttons";
 import { HeroAppBadge } from "@/components/ui/hero-app-badge";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -37,11 +37,9 @@ export function HeroSection() {
               {hero.headline.after}
             </h1>
             <p className={styles.subheadline}>{hero.subheadline}</p>
-            <WaitlistOnboarding cta={hero.cta} source="hero" variant="email" />
+            <StoreButtons size="lg" />
             <p className={styles.subheadline}>
               <Link href="/restaurants">Explore restaurants</Link>
-              {" · "}
-              <Link href="/download">{hero.secondaryCta}</Link>
               {" · "}
               <Link href="/business">List your business</Link>
             </p>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { earlyAccess, faq } from "@/content/landing";
-import { WaitlistOnboarding } from "@/components/forms/waitlist-onboarding";
+import { StoreButtons } from "@/components/ui/store-buttons";
 import { Accordion } from "@/components/ui/accordion";
 import { Container } from "@/components/ui/container";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
@@ -76,10 +76,7 @@ export function EarlyAccessSection() {
                 <h3 className={styles.formTitle}>{earlyAccess.formTitle}</h3>
                 <p className={styles.formSupporting}>{earlyAccess.description}</p>
                 <div className={styles.formCta}>
-                  <WaitlistOnboarding
-                    cta={earlyAccess.cta}
-                    source="early-access"
-                  />
+                  <StoreButtons size="lg" className={styles.storeRow} />
                 </div>
                 <p className={styles.formTrust}>{earlyAccess.trustMessage}</p>
               </div>

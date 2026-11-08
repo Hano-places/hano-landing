@@ -1,56 +1,41 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { waitlistOnboarding } from "@/content/waitlist";
-import {
-  FloatingPanelRoot,
-  useFloatingPanel,
-} from "@/components/ui/floating-panel";
-import { WaitlistPanel } from "@/components/forms/waitlist-onboarding";
+import { useEffect, useState } from "react";
+import { site } from "@/content/landing";
 import {
   AppStoreDownloadBadge,
   PlayStoreDownloadBadge,
 } from "@/components/ui/store-logos";
 import styles from "./app-download-fab.module.css";
 
-function FabTriggers({ nearFooter }: { nearFooter: boolean }) {
-  const { openFloatingPanel } = useFloatingPanel();
-  const groupRef = useRef<HTMLDivElement>(null);
-
-  const openWaitlist = () => {
-    openFloatingPanel(
-      groupRef.current?.getBoundingClientRect() ?? null,
-      waitlistOnboarding.titleApp,
-      "centered",
-    );
-  };
-
+function FabLinks({ nearFooter }: { nearFooter: boolean }) {
   return (
     <div
-      ref={groupRef}
       className={`${styles.fab} ${nearFooter ? styles.fabHidden : ""}`}
       role="group"
       aria-label="Download the Hano app"
       aria-hidden={nearFooter}
     >
-      <button
-        type="button"
+      <a
+        href={site.appStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className={styles.storeBtn}
-        aria-label="Download on the App Store"
-        onClick={openWaitlist}
+        aria-label="Download Hano on the App Store"
         tabIndex={nearFooter ? -1 : undefined}
       >
         <AppStoreDownloadBadge className={styles.badgeContent} />
-      </button>
-      <button
-        type="button"
+      </a>
+      <a
+        href={site.playStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className={`${styles.storeBtn} ${styles.storeBtnOfficial}`}
-        aria-label="Get it on Google Play"
-        onClick={openWaitlist}
+        aria-label="Get Hano on Google Play"
         tabIndex={nearFooter ? -1 : undefined}
       >
         <PlayStoreDownloadBadge className={styles.badgeImage} />
-      </button>
+      </a>
     </div>
   );
 }
@@ -86,13 +71,6 @@ export function AppDownloadFab() {
   }, []);
 
   return (
-    <FloatingPanelRoot className={styles.shell}>
-      <FabTriggers nearFooter={nearFooter} />
-      <WaitlistPanel
-        source="app-download-fab"
-        initialEmail=""
-        intent="app"
-      />
-    </FloatingPanelRoot>
+    <FabLinks nearFooter={nearFooter} />
   );
 }

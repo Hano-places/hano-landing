@@ -6,7 +6,6 @@ export const site = {
   url: "https://hano.now",
   tagline: "Discover Restaurants Around You",
   email: "hello@hano.now",
-  // Hano's own listings; they open once the app is public in each store.
   appStoreUrl: "https://apps.apple.com/app/id6822756665",
   playStoreUrl: "https://play.google.com/store/apps/details?id=rw.hano.app",
   whatsappUrl: "https://whatsapp.com/channel/0029Vb8AZXxK0IBoP4MwSN3V",
@@ -27,7 +26,7 @@ export const navLinks = [
 ] as const;
 
 export const hero = {
-  badge: "Coming soon to iOS & Android",
+  badge: "Now on iOS & Android",
   headline: {
     before: "Discover. Explore. Eat.",
     emphasis: "Finally",
@@ -35,11 +34,11 @@ export const hero = {
   },
   subheadline:
     "Instantly find restaurants, cafés, bakeries, and hidden gems across Kigali, with curated recommendations from people you trust.",
-  cta: "Join Early Access",
+  cta: "Download Hano",
   secondaryCta: "Explore Restaurants",
-  socialProof: "500+ food lovers already signed up for early access",
+  socialProof: "Free to download. Join food lovers across Kigali.",
   metrics: [
-    { value: "500+", label: "Early Members" },
+    { value: "Free", label: "On iOS & Android" },
     { value: "100+", label: "Restaurants Listed" },
     { value: "1,000+", label: "Recommendations" },
     { value: "50+", label: "Neighborhood Favorites" },
@@ -435,7 +434,7 @@ export const community = {
   description:
     "Help build Kigali's most useful restaurant discovery platform. Share recommendations, discover new places, and connect with people who enjoy exploring the city's food scene.",
   benefits: [
-    "Early access to new features",
+    "First to try new features",
     "Exclusive recommendations",
     "Restaurant updates",
     "Hidden gem discoveries",
@@ -478,8 +477,8 @@ export const comingSoon = {
       bg: "lavender" as const,
     },
     {
-      title: "Mobile App",
-      description: "Take Hano with you wherever you go.",
+      title: "Events",
+      description: "See what's happening at places near you.",
       bg: "mint" as const,
     },
   ],
@@ -488,30 +487,28 @@ export const comingSoon = {
 export const earlyAccess = {
   id: "early-access",
   headline: {
-    before: "Be among the",
-    emphasis: "first",
-    after: "to join Hano",
+    before: "Good to",
+    emphasis: "know",
+    after: "before you go",
   },
   description:
-    "We're building a better way to discover restaurants in Kigali. Join the waitlist today and get early access when we launch.",
+    "Find places, check in, share moments and see where your friends go. Free on iPhone and Android.",
   benefits: [
-    "Priority access before launch",
-    "Product updates",
-    "Community invitations",
-    "Early testing opportunities",
-    "Exclusive announcements",
+    "Places across Kigali",
+    "Check-ins and moments",
+    "Friends' favorites",
+    "Points and badges",
   ],
-  formTitle: "Join the Hano Early Access Waitlist",
-  trustMessage:
-    "No spam. Only updates related to Hano and upcoming launches.",
-  cta: "Join Early Access",
+  formTitle: "Get the Hano app",
+  trustMessage: "Free to download and free to use.",
+  cta: "Download Hano",
 } as const;
 
 export const faq = {
   id: "faq",
   headline: {
     before: "Questions before you",
-    emphasis: "join",
+    emphasis: "download",
   },
   items: [
     {
@@ -526,27 +523,27 @@ export const faq = {
     },
     {
       question: "Is Hano free to use?",
-      answer: "Yes. Core discovery features will be free for users.",
+      answer: "Yes. Hano is free to download and free to use.",
     },
     {
-      question: "When will Hano launch?",
+      question: "Where can I get Hano?",
       answer:
-        "We are currently building the platform and growing the community. Early access members will receive updates first.",
+        "Hano is available now on the App Store for iPhone and on Google Play for Android. Download it free and sign up in a minute.",
     },
     {
-      question: "Will there be a mobile app?",
+      question: "Is there a mobile app?",
       answer:
-        "Yes. A mobile application is part of the Hano roadmap and will be available after launch.",
+        "Yes. Hano is a mobile app for iPhone and Android. You can also browse places and restaurants on hano.now.",
     },
     {
       question: "Can I contribute recommendations?",
       answer:
-        "Absolutely. Community recommendations will play an important role in helping people discover great restaurants.",
+        "Absolutely. Check in, rate places and share photos in the app to help others discover great spots.",
     },
     {
       question: "Can restaurants join Hano?",
       answer:
-        "Yes. Restaurants will be able to create profiles, showcase information, and connect with potential customers.",
+        "Yes. Businesses can claim their place on Hano, keep their details up to date, and connect with customers. See hano.now/business.",
     },
     {
       question: "How are restaurants selected?",
@@ -571,28 +568,26 @@ export const faq = {
     {
       question: "How can I stay updated?",
       answer:
-        "You can join the waitlist, join the WhatsApp community, follow our social channels, or subscribe to updates.",
+        "Download the app, join the WhatsApp community, or follow our social channels.",
     },
     {
       question: "How can I support Hano?",
       answer:
-        "You can support us by joining the waitlist, sharing Hano with friends, following our social channels, providing feedback, and recommending restaurants.",
+        "Download the app, share Hano with friends, rate the places you visit, and send us feedback.",
     },
     {
       question: "How will my information be used?",
       answer:
-        "Your information will only be used for product updates, launch announcements, community invitations, and early access opportunities. We respect user privacy and will never sell personal information.",
+        "We use your information to run Hano and never sell personal information. See our Privacy Policy for details.",
     },
   ],
 } as const;
 
 export const finalCta = {
-  id: "join-waitlist",
+  id: "download",
   headline: {
     parts: [
-      { text: "Ready to ", emphasis: false },
-      { text: "join", emphasis: true },
-      { text: " the ", emphasis: false },
+      { text: "Ready for the ", emphasis: false },
       { text: "next", emphasis: true },
       { text: " era of ", emphasis: false },
       { text: "food", emphasis: true },
@@ -602,9 +597,9 @@ export const finalCta = {
     ],
   },
   supporting:
-    "Join the early waitlist and get notified the moment we go live.",
-  cta: "Join Early Access",
-  socialProof: "500+ food lovers already signed up for early access",
+    "Hano is live. Download it free on iPhone and Android.",
+  cta: "Download Hano",
+  socialProof: "Free on the App Store and Google Play",
   floatingImages: [
     IMG.gourmetBurger,
     IMG.elegantTable,
@@ -619,9 +614,7 @@ export const footer = {
   tagline:
     "From the team building Hano, made by people who love discovering great food.",
   subscribe: {
-    title: "Get launch updates",
-    placeholder: "Enter your email",
-    cta: "Join waitlist",
+    title: "Get the app",
   },
   columns: [
     {

@@ -117,3 +117,7 @@
     height: 90px;
   }
 }
+
+.storeRow {
+  justify-content: center;
+}
