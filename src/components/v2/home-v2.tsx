@@ -69,7 +69,7 @@ export function HeroV2() {
           </p>
         </div>
         <div className={styles.heroPhones}>
-          <Phone src={SCREEN.post} alt="A post on Hano: photos from Kurry Kingdom" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
+          <Phone src={SCREEN.map} alt="The Hano map of Kigali" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
           <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
         </div>
       </Container>

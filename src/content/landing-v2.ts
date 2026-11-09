@@ -11,6 +11,7 @@ export const SCREEN = {
   leaderboard: "/app/leaderboard.webp",
   profile: "/app/profile-livia.webp",
   search: "/app/search.webp",
+  burgerPlanet: "/app/place-burger-planet.webp",
   slides: [
     "/app/feed-livia-1.webp",
     "/app/feed-livia-2.webp",
@@ -22,8 +23,8 @@ export const SCREEN = {
   ],
 } as const;
 
-/** Framed screenshots are 1326×2742; served at 720 wide. */
-export const PHONE = { width: 720, height: 1489 } as const;
+/** Screens in a real iPhone frame (1380×2780 with side buttons); served at 720 wide. */
+export const PHONE = { width: 720, height: 1450 } as const;
 
 export const heroV2 = {
   eyebrow: "Free on iPhone & Android",
@@ -44,7 +45,7 @@ export const featuresV2 = [
     title: "See where your friends go",
     body: "Photos and reviews from people you follow. Their ring lights up when there’s something new.",
     points: ["Friends’ check-ins and posts", "Photos from the place itself", "Like, comment and react"],
-    screens: [SCREEN.feed, SCREEN.postSalim],
+    screens: [SCREEN.postSalim, SCREEN.burgerPlanet],
   },
   {
     id: "places",
