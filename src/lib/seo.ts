@@ -9,7 +9,7 @@ import {
   type CategorySegment,
 } from "@/lib/places-slug";
 
-const DEFAULT_OG_IMAGE = "/thumbnail/og.jpg";
+const DEFAULT_OG_IMAGE = "/thumbnail/og-v2.jpg";
 const MAX_DESCRIPTION_LENGTH = 160;
 
 export type FAQItem = {
