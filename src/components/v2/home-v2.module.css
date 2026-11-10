@@ -328,8 +328,11 @@
 /* ---------- Final call to action ---------- */
 
 .final {
+  position: relative;
   overflow: hidden;
   padding: 4rem 0 0;
+  /* Breathing room before the footer card (also dark), so the two don't run together. */
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
   color: #fff;
   background:
     radial-gradient(50rem 26rem at 10% 100%, rgba(200, 255, 98, 0.14), transparent 60%),
@@ -356,6 +359,9 @@
 }
 
 .finalPhone {
+  /* The phone rises out of the section; its lower part fades into the background instead of a hard cut. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent 96%);
   width: 62%;
   max-width: 19rem;
   margin: 0 auto -6rem;
