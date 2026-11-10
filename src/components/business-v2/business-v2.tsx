@@ -15,6 +15,7 @@ import { PHONE, SCREEN } from "@/content/landing-v2";
 import { site } from "@/content/landing";
 import { Accordion } from "@/components/ui/accordion";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
+import { InsightsChart } from "./insights-chart";
 import { StoreButtons } from "@/components/ui/store-buttons";
 import styles from "./business-v2.module.css";
 
@@ -157,31 +158,39 @@ export function BizGrowth() {
             <span key={k}>{k}</span>
           ))}
         </div>
-        {/* An illustration of an offer going out, not a real one. */}
-        <div className={styles.notice} aria-hidden>
-          <span className={styles.noticeIcon}>%</span>
-          <div>
-            <p className={styles.noticeTitle}>Your place: Happy hour · 5–7pm</p>
-            <p className={styles.noticeBody}>Sent to everyone who saved you</p>
+        <p className={styles.runsLabel}>Runs for</p>
+        <div className={styles.lengths}>
+          {bizOffers.lengths.map((l) => (
+            <span key={l}>{l}</span>
+          ))}
+        </div>
+        {/* An example of what people see on their lock screen when an offer goes live (not a real place). */}
+        <div className={styles.lock} aria-label="Example notification">
+          <p className={styles.lockTime}>9:41</p>
+          <div className={styles.notice}>
+            <span className={styles.noticeIcon}>%</span>
+            <div>
+              <p className={styles.noticeTitle}>Your place · Happy hour, 5–7pm</p>
+              <p className={styles.noticeBody}>2-for-1 cocktails tonight only</p>
+            </div>
+            <span className={styles.noticeWhen}>now</span>
           </div>
+          <div className={`${styles.notice} ${styles.noticeBack}`}>
+            <span className={styles.noticeIcon}>★</span>
+            <div>
+              <p className={styles.noticeTitle}>A place you saved has a new dish</p>
+              <p className={styles.noticeBody}>Tap to see it on the menu</p>
+            </div>
+            <span className={styles.noticeWhen}>2h</span>
+          </div>
+          <p className={styles.lockNote}>Sent to everyone who saved your place</p>
         </div>
       </div>
       <div className={`${styles.growthBox} ${styles.insightsBox}`}>
         <span className={styles.kicker}>{bizInsights.kicker}</span>
         <h2 className={styles.h2}>{bizInsights.title}</h2>
         <p className={styles.lead}>{bizInsights.body}</p>
-        <div className={styles.statGrid} aria-hidden>
-          {bizInsights.stats.map((s, i) => (
-            <div key={s} className={styles.statTile}>
-              <span>{s}</span>
-              <div className={styles.bars}>
-                {[38, 52, 44, 66, 58, 80, 72].map((h, j) => (
-                  <i key={j} style={{ height: `${Math.max(18, h - i * 6)}%` }} className={j === 5 ? styles.barOn : ""} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <InsightsChart />
         <p className={styles.small}>{bizInsights.share}</p>
       </div>
     </section>

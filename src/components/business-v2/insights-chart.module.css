@@ -1,0 +1,163 @@
+.card {
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(0, 24, 20, 0.06);
+}
+
+.tab {
+  flex: 1 1 auto;
+  padding: 0.5rem 0.8rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--foundation-green-green-400);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tabOn {
+  color: var(--foundation-primary-primary-500);
+  background: var(--foundation-green-green-500);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0.25rem 0.25rem;
+}
+
+.big {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1;
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.caption {
+  margin: 0.35rem 0 0;
+  font-size: var(--text-sm);
+  color: var(--foundation-green-green-400);
+}
+
+.example {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--foundation-green-green-400);
+  background: rgba(0, 24, 20, 0.06);
+}
+
+.chartWrap {
+  position: relative;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid {
+  stroke: rgba(0, 24, 20, 0.08);
+  stroke-dasharray: 4 6;
+}
+
+.bar {
+  fill: rgba(0, 24, 20, 0.16);
+  transition: fill 0.2s ease, y 0.4s ease, height 0.4s ease;
+}
+
+.barOn {
+  fill: var(--foundation-green-green-500);
+  transition: fill 0.2s ease, y 0.4s ease, height 0.4s ease;
+}
+
+.line {
+  fill: none;
+  stroke: var(--foundation-green-green-500);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.dot {
+  fill: #fff;
+  stroke: var(--foundation-green-green-500);
+  stroke-width: 2;
+}
+
+.dotOn {
+  fill: var(--foundation-green-green-500);
+  stroke: var(--foundation-primary-primary-500);
+  stroke-width: 3;
+}
+
+.guide {
+  stroke: rgba(0, 24, 20, 0.2);
+  stroke-dasharray: 3 4;
+  pointer-events: none;
+}
+
+.day,
+.dayOn {
+  font-size: 12px;
+  fill: var(--foundation-green-green-400);
+}
+
+.dayOn {
+  font-weight: 700;
+  fill: var(--foundation-green-green-500);
+}
+
+.svg rect[tabindex]:focus {
+  outline: none;
+}
+
+.tip {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.75rem;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  color: #fff;
+  background: var(--foundation-green-green-500);
+  box-shadow: 0 10px 24px rgba(0, 24, 20, 0.25);
+  transform: translate(-50%, calc(-100% - 12px));
+  pointer-events: none;
+  transition: left 0.15s ease, top 0.15s ease;
+}
+
+.tip strong {
+  color: var(--foundation-primary-primary-500);
+}
+
+.tip .tipValue {
+  font-size: var(--text-sm);
+  color: #fff;
+}
+
+.tip span {
+  font-size: var(--text-xs);
+  color: var(--foundation-green-green-100);
+}

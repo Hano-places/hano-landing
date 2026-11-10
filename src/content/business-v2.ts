@@ -53,6 +53,7 @@ export const bizOffers = {
   title: "Fill quiet nights with an offer",
   body: "Run a discount, a new dish, a happy hour, an event or a special, for a day or up to three months. Everyone who saved your place gets told the moment it goes live.",
   kinds: ["Discount", "New item", "Happy hour", "Event", "Special"],
+  lengths: ["1 day", "1 week", "2 weeks", "1 month", "3 months"],
 } as const;
 
 export const bizInsights = {
