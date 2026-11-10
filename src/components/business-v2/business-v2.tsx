@@ -1,3 +1,5 @@
+import { Link01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -56,7 +58,8 @@ export function BizHero() {
           <p className={styles.heroSub}>{bizHero.sub}</p>
           <div className={styles.ctaRow}>
             <a href="#claim" className={styles.primaryBtn}>
-              Claim your place <span aria-hidden>→</span>
+              <HugeiconsIcon icon={Link01Icon} size={20} color="currentColor" strokeWidth={2} aria-hidden />
+              Claim your place
             </a>
             <a href={`mailto:${site.email}?subject=Hano%20for%20my%20business`} className={styles.ghostBtn}>
               Talk to us
