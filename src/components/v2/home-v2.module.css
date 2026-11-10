@@ -55,8 +55,9 @@
 /* ---------- Boxed layout: every section is a rounded box inset from the page edges ---------- */
 
 .boxes {
-  --box-gutter: clamp(0.5rem, 1.5vw, 1rem);
-  --box-radius: clamp(1.5rem, 3vw, 2.5rem);
+  /* Same proportions as meandu.com: 12px gaps, 24px corners (a little tighter on phones). */
+  --box-gutter: 8px;
+  --box-radius: 20px;
   /* The boxed header is taller than the default bar. */
   --header-height: 80px;
   display: flex;
@@ -308,7 +309,7 @@
 .compareCard {
   padding: 1.75rem;
   border: 1px solid var(--color-border-soft);
-  border-radius: 1.5rem;
+  border-radius: 16px;
   background: #fff;
 }
 
@@ -489,6 +490,8 @@
 
 @media (min-width: 900px) {
   .boxes {
-    --header-height: 92px;
+    --box-gutter: 12px;
+    --box-radius: 24px;
+    --header-height: 96px;
   }
 }

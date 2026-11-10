@@ -67,7 +67,7 @@
 
 .card {
   overflow: hidden;
-  border-radius: 1.75rem;
+  border-radius: var(--box-radius, 20px);
   background: var(--color-surface-primary-25);
 }
 
@@ -130,7 +130,7 @@
   .media {
     position: relative;
     overflow: hidden;
-    border-radius: 2rem;
+    border-radius: var(--box-radius, 24px);
     background:
       radial-gradient(34rem 24rem at 50% 0%, rgba(200, 255, 98, 0.24), transparent 70%),
       var(--foundation-green-green-500);
@@ -201,7 +201,7 @@
     flex: 0 0 auto;
     flex-direction: column;
     border: 1px solid #e6e9df;
-    border-radius: 1.5rem;
+    border-radius: 16px;
     background: #f7f8f3;
     transition: background 0.3s ease;
   }
