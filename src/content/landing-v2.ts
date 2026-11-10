@@ -62,11 +62,11 @@ export const stepsV2 = [
     screens: [SCREEN.place],
   },
   {
-    id: "map",
-    title: "Explore the city around you",
-    body: "Restaurants, cafés, nightlife and more on one map, with what’s trending near you.",
-    points: ["Filters by kind of place", "Your own map of visits"],
-    screens: [SCREEN.map],
+    id: "search",
+    title: "Find exactly what you’re craving",
+    body: "Search places, dishes and people. Browse what’s trending, new places and offers, or explore it all on the map.",
+    points: ["Dishes across every menu", "Trending and new this week"],
+    screens: [SCREEN.search],
   },
   {
     id: "points",

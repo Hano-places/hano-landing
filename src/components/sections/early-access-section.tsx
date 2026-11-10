@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { PHONE, SCREEN } from "@/content/landing-v2";
 import { earlyAccess, faq } from "@/content/landing";
 import { StoreButtons } from "@/components/ui/store-buttons";
 import { Accordion } from "@/components/ui/accordion";
@@ -80,6 +82,11 @@ export function EarlyAccessSection() {
                 </div>
                 <p className={styles.formTrust}>{earlyAccess.trustMessage}</p>
               </div>
+            </div>
+            {/* Two small tilted phones in their own box, filling the rest of the column. */}
+            <div className={styles.phonesCard} aria-hidden>
+              <Image src={SCREEN.burgerPlanet} alt="" width={PHONE.width} height={PHONE.height} sizes="200px" className={`${styles.miniPhone} ${styles.miniLeft}`} />
+              <Image src={SCREEN.leaderboard} alt="" width={PHONE.width} height={PHONE.height} sizes="200px" className={`${styles.miniPhone} ${styles.miniRight}`} />
             </div>
           </div>
         </div>

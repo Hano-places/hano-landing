@@ -88,6 +88,17 @@
     align-self: start;
   }
 
+  /* Same height as the FAQ column; the phones box takes whatever the store card leaves. */
+  .rightPin {
+    height: calc(100dvh - var(--header-height) - 4rem);
+  }
+
+  .phonesCard {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 14rem;
+  }
+
   .leftPin {
     display: flex;
     flex-direction: column;
@@ -119,6 +130,43 @@
     background-color: var(--color-border);
     border-radius: var(--radius-pill);
   }
+}
+
+.rightPin {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.phonesCard {
+  position: relative;
+  overflow: hidden;
+  height: 17rem;
+  border-radius: var(--box-radius, 1.75rem);
+  background:
+    radial-gradient(22rem 14rem at 50% 0%, rgba(200, 255, 98, 0.22), transparent 70%),
+    var(--foundation-green-green-500);
+}
+
+.miniPhone {
+  position: absolute;
+  top: 2rem;
+  width: 34%;
+  max-width: 11rem;
+  height: auto;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.35));
+  user-select: none;
+}
+
+.miniLeft {
+  left: 50%;
+  transform: translateX(-92%) rotate(-8deg);
+}
+
+.miniRight {
+  left: 50%;
+  top: 3rem;
+  transform: translateX(-8%) rotate(8deg);
 }
 
 .storeRow {
