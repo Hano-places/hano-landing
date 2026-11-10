@@ -4,10 +4,8 @@ import {
   PHONE,
   SCREEN,
   businessV2,
-  featuresV2,
   finalV2,
   heroV2,
-  stripV2,
   webVsApp,
 } from "@/content/landing-v2";
 import { Container } from "@/components/ui/container";
@@ -69,60 +67,9 @@ export function HeroV2() {
           </p>
         </div>
         <div className={styles.heroPhones}>
-          <Phone src={SCREEN.map} alt="The Hano map of Kigali" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
+          <Phone src={SCREEN.profile} alt="A Hano profile with points and badges" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
           <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
         </div>
-      </Container>
-    </section>
-  );
-}
-
-export function StripV2() {
-  return (
-    <section className={styles.strip} aria-labelledby="strip-heading">
-      <Container>
-        <h2 id="strip-heading" className={styles.h2}>
-          {stripV2.title}
-        </h2>
-        <p className={styles.lead}>{stripV2.sub}</p>
-      </Container>
-      <div className={styles.stripTrack} role="list">
-        {SCREEN.slides.map((src, i) => (
-          <div key={src} role="listitem" className={styles.stripItem}>
-            <Phone src={src} alt={`Photo ${i + 1} of 7 from a review of Kurry Kingdom`} sizes="(max-width: 720px) 62vw, 260px" />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function FeaturesV2() {
-  return (
-    <section className={styles.features} aria-label="What you can do with Hano">
-      <Container>
-        {featuresV2.map((f, i) => (
-          <article key={f.id} id={f.id} className={`${styles.feature} ${i % 2 ? styles.featureFlip : ""}`}>
-            <div className={styles.featureCopy}>
-              <span className={styles.kicker}>{f.kicker}</span>
-              <h2 className={styles.h2}>{f.title}</h2>
-              <p className={styles.lead}>{f.body}</p>
-              <ul className={styles.points}>
-                {f.points.map((p) => (
-                  <li key={p}>
-                    <Check />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <span className={styles.appOnly}>In the app</span>
-            </div>
-            <div className={styles.featurePhones}>
-              <Phone src={f.screens[0]} alt={`${f.title}: Hano app screen`} className={styles.featureFront} />
-              <Phone src={f.screens[1]} alt="" className={styles.featureBack} sizes="(max-width: 720px) 45vw, 260px" />
-            </div>
-          </article>
-        ))}
       </Container>
     </section>
   );
@@ -206,4 +153,14 @@ export function FinalV2() {
       </Container>
     </section>
   );
+}
+
+/** The homepage's boxed layout: sections sit as rounded boxes on a soft background. */
+export function Boxes({ children }: { children: React.ReactNode }) {
+  return <div className={styles.boxes}>{children}</div>;
+}
+
+/** A plain white rounded box for sections that bring their own content. */
+export function Box({ children }: { children: React.ReactNode }) {
+  return <div className={styles.boxPlain}>{children}</div>;
 }

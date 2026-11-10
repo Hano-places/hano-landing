@@ -52,10 +52,31 @@
   color: var(--color-text);
 }
 
+/* ---------- Boxed layout: every section is a rounded box inset from the page edges ---------- */
+
+.boxes {
+  --box-gutter: clamp(0.5rem, 1.5vw, 1rem);
+  --box-radius: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--box-gutter);
+  padding-bottom: var(--box-gutter);
+  background: #eef0e8;
+}
+
+.boxPlain {
+  margin: 0 var(--box-gutter);
+  overflow: hidden;
+  border-radius: var(--box-radius);
+  background: #fff;
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
   overflow: hidden;
+  margin: var(--box-gutter) var(--box-gutter) 0;
+  border-radius: var(--box-radius);
   padding: 2.5rem 0 0;
   color: #fff;
   background:
@@ -243,8 +264,18 @@
 /* ---------- Web vs app ---------- */
 
 .compare {
+  margin: 0 var(--box-gutter);
   padding: 4.5rem 0;
-  background: var(--color-surface-primary-25);
+  border-radius: var(--box-radius);
+  background: #fff;
+}
+
+.compareCard {
+  background: var(--color-surface-primary-25) !important;
+}
+
+.compareApp {
+  background: var(--foundation-green-green-500) !important;
 }
 
 .compareGrid {
@@ -293,16 +324,16 @@
 /* ---------- Business ---------- */
 
 .business {
-  padding: 3.5rem 0;
+  margin: 0 var(--box-gutter);
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  border-radius: var(--box-radius);
+  background: var(--foundation-primary-primary-500);
 }
 
 .businessInner {
   display: grid;
   gap: 1.5rem;
   align-items: center;
-  padding: 2rem;
-  border-radius: 1.75rem;
-  background: var(--foundation-primary-primary-500);
 }
 
 .businessInner .lead {
@@ -331,8 +362,8 @@
   position: relative;
   overflow: hidden;
   padding: 4rem 0 0;
-  /* Breathing room before the footer card (also dark), so the two don't run together. */
-  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  margin: 0 var(--box-gutter);
+  border-radius: var(--box-radius);
   color: #fff;
   background:
     radial-gradient(50rem 26rem at 10% 100%, rgba(200, 255, 98, 0.14), transparent 60%),
@@ -419,7 +450,6 @@
 
   .businessInner {
     grid-template-columns: 1fr auto;
-    padding: 2.75rem 3rem;
   }
 
   .finalGrid {

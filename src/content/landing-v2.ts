@@ -33,43 +33,47 @@ export const heroV2 = {
   desktopHint: "On a computer? Open hano.now/get on your phone.",
 } as const;
 
-export const stripV2 = {
-  title: "Real places. Real people.",
-  sub: "Every post on Hano is someone who was actually there. Swipe through their photos, then go see for yourself.",
+export const storyV2 = {
+  title: "How Hano works",
+  sub: "Scroll through what you can do. Everything you see here is the real app.",
 } as const;
 
-export const featuresV2 = [
+/** One step per screen in the "How Hano works" scroll; the first plays a review's photos. */
+export const stepsV2 = [
+  {
+    id: "real",
+    title: "Real places. Real people.",
+    body: "Every post on Hano is someone who was actually there. Swipe through their photos, then go see for yourself.",
+    points: ["Photos from the visit itself", "Stars and a few honest words", "No ads dressed up as reviews"],
+    screens: SCREEN.slides,
+  },
   {
     id: "feed",
-    kicker: "Your feed",
     title: "See where your friends go",
     body: "Photos and reviews from people you follow. Their ring lights up when there’s something new.",
-    points: ["Friends’ check-ins and posts", "Photos from the place itself", "Like, comment and react"],
-    screens: [SCREEN.postSalim, SCREEN.burgerPlanet],
+    points: ["Friends’ check-ins and posts", "Like, comment and react"],
+    screens: [SCREEN.postSalim],
   },
   {
     id: "places",
-    kicker: "Every place",
     title: "Everything before you go",
     body: "Photos, menu, hours and directions. See who’s been and what they posted.",
-    points: ["Menus and opening hours", "Directions, call and website", "A board of visitors’ photos"],
-    screens: [SCREEN.place, SCREEN.visitors],
+    points: ["Menus with prices", "Directions, call and website"],
+    screens: [SCREEN.place],
   },
   {
     id: "map",
-    kicker: "The map",
     title: "Explore the city around you",
-    body: "Restaurants, cafés, nightlife and more, on one map. Switch to My Map to see everywhere you’ve been.",
-    points: ["What’s trending near you", "Filters by kind of place", "Your own map of visits"],
-    screens: [SCREEN.map, SCREEN.search],
+    body: "Restaurants, cafés, nightlife and more on one map, with what’s trending near you.",
+    points: ["Filters by kind of place", "Your own map of visits"],
+    screens: [SCREEN.map],
   },
   {
     id: "points",
-    kicker: "Points & badges",
     title: "Get rewarded for exploring",
-    body: "Check in, review and share to earn Hano points. Climb the Kigali leaderboard and collect badges.",
-    points: ["Points for every visit", "Weekly Top Explorers", "Badges as you go"],
-    screens: [SCREEN.leaderboard, SCREEN.profile],
+    body: "Check in, review and share photos to earn points. Climb the weekly Top Explorers and collect badges.",
+    points: ["Points for every visit", "A fresh board every Monday"],
+    screens: [SCREEN.leaderboard],
   },
 ] as const;
 
