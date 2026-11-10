@@ -80,7 +80,7 @@ export function Header({ boxed = false }: { boxed?: boolean } = {}) {
     <header ref={headerRef} className={`${styles.header} ${boxed ? styles.boxed : ""}`}>
       <Container className={styles.inner}>
         <Link href="/" aria-label="Hano home">
-          <Logo />
+          <Logo size={boxed ? "md" : "sm"} />
         </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">

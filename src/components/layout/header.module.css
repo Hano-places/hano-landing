@@ -130,7 +130,31 @@
 }
 
 .boxed .mobileNav {
+  margin-top: 0.5rem;
   border-bottom: 0;
-  border-radius: 0 0 var(--box-radius) var(--box-radius);
-  background: transparent;
+  border-radius: var(--box-radius);
+  background: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 24, 20, 0.12);
+}
+
+/* A roomier bar: bigger logo, links and button. */
+.boxed .inner {
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+}
+
+@media (min-width: 900px) {
+  .boxed .nav {
+    gap: 2.5rem;
+  }
+
+  .boxed .navLink {
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+
+  .boxed .ctaLink {
+    padding: 0.85rem 1.6rem;
+    font-size: var(--text-base);
+    font-weight: 600;
+  }
 }
