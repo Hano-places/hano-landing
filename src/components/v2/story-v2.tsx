@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PHONE, stepsV2, storyV2 } from "@/content/landing-v2";
 import styles from "./story-v2.module.css";
+import { Arrow } from "@/components/ui/arrow";
 
 /**
  * "How Hano works": a big rounded box with one phone on the left, numbered steps on the right.
@@ -109,7 +110,7 @@ export function StoryV2() {
                       </ul>
                       {i < n - 1 ? (
                         <span className={styles.next}>
-                          Next: {stepsV2[i + 1].title} <span aria-hidden>↓</span>
+                          Next: {stepsV2[i + 1].title} <Arrow dir="down" size={16} />
                         </span>
                       ) : null}
                     </div>

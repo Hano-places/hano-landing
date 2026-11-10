@@ -6,6 +6,7 @@ import { MainWrapper } from "@/components/layout/main-wrapper";
 import { AppDownloadFab } from "@/components/layout/app-download-fab";
 import { Container } from "@/components/ui/container";
 import styles from "./seo-page-shell.module.css";
+import { Arrow } from "@/components/ui/arrow";
 
 type SeoPageShellProps = {
   children: ReactNode;
@@ -27,7 +28,7 @@ export function SeoPageShell({
       <MainWrapper>
         <Container className={styles.container}>
           <Link href={backHref} className={styles.backLink}>
-            {backLabel}
+            <Arrow dir="left" /> {backLabel.replace(/^←\s*/, "")}
           </Link>
           {children}
         </Container>

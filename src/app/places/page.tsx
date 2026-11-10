@@ -17,6 +17,7 @@ import {
   buildPageMetadata,
 } from "@/lib/seo";
 import styles from "./places-page.module.css";
+import { Arrow } from "@/components/ui/arrow";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/places",
@@ -65,7 +66,7 @@ export default async function PlacesPage() {
         <section className={styles.hero}>
           <Container>
             <Link href="/" className={styles.backLink}>
-              ← Back to home
+              <Arrow dir="left" /> Back to home
             </Link>
             <p className={styles.eyebrow}>{placesPage.title}</p>
             <h1 className={styles.headline}>{placesPage.headline}</h1>

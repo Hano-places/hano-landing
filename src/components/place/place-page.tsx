@@ -5,6 +5,7 @@ import { googleCover, money, openStatus, WEEK, type Place, type Promo, type Revi
 
 import { AutoOpenApp, OpenInApp } from "./open-in-app";
 import styles from "./place-page.module.css";
+import { Arrow } from "@/components/ui/arrow";
 
 const DAY_LABEL: Record<string, string> = { monday: "Mon", tuesday: "Tue", wednesday: "Wed", thursday: "Thu", friday: "Fri", saturday: "Sat", sunday: "Sun" };
 /** On the web a menu shows a taste; the whole menu (and planning an order) is in the app. */
@@ -163,7 +164,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
             ))}
             {hiddenItems ? (
               <OpenInApp slug={place.slug} className={styles.inlineCta}>
-                See all {menuCount} items and plan your order in Hano →
+                See all {menuCount} items and plan your order in Hano <Arrow />
               </OpenInApp>
             ) : null}
           </section>

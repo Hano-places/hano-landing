@@ -7,6 +7,7 @@ import { placeUrlFromParts } from "@/lib/places-slug";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import styles from "./featured-restaurants.module.css";
+import { Arrow } from "@/components/ui/arrow";
 
 export function FeaturedRestaurantsSection() {
   return (
@@ -23,7 +24,7 @@ export function FeaturedRestaurantsSection() {
           <p className={styles.supporting}>{featuredRestaurants.supporting}</p>
           <Link href={featuredRestaurants.viewAllHref} className={styles.viewAll}>
             {featuredRestaurants.viewAllLabel}
-            <span aria-hidden="true">→</span>
+            <Arrow />
           </Link>
         </div>
         <div className={styles.trackWrap}>

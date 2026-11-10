@@ -12,6 +12,7 @@ import { Container } from "@/components/ui/container";
 import { SerifEmphasis } from "@/components/ui/serif-emphasis";
 import { StoreButtons } from "@/components/ui/store-buttons";
 import styles from "./home-v2.module.css";
+import { Arrow } from "@/components/ui/arrow";
 
 function Phone({
   src,
@@ -97,7 +98,7 @@ export function WebVsAppV2() {
               ))}
             </ul>
             <Link href="/places" className={styles.textLink}>
-              Explore places <span aria-hidden>→</span>
+              Explore places <Arrow />
             </Link>
           </div>
           <div className={`${styles.compareCard} ${styles.compareApp}`}>
