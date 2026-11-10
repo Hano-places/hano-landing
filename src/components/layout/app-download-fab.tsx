@@ -40,7 +40,14 @@ function FabLinks({ nearFooter }: { nearFooter: boolean }) {
   );
 }
 
+/** Off for now: the floating store buttons are hidden on every page. Set to true to bring them back. */
+const SHOW_FAB = false;
+
 export function AppDownloadFab() {
+  return SHOW_FAB ? <FloatingStoreButtons /> : null;
+}
+
+function FloatingStoreButtons() {
   const [nearFooter, setNearFooter] = useState(false);
 
   useEffect(() => {
