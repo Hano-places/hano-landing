@@ -117,3 +117,20 @@
     display: inline-flex;
   }
 }
+
+/* Homepage: a rounded bar inset from the page edges, sticky with a little space above. */
+.boxed {
+  top: var(--box-gutter);
+  margin: var(--box-gutter) var(--box-gutter) 0;
+  border: 0;
+  border-radius: var(--box-radius);
+  background-color: color-mix(in srgb, #fff 92%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 24, 20, 0.06);
+}
+
+.boxed .mobileNav {
+  border-bottom: 0;
+  border-radius: 0 0 var(--box-radius) var(--box-radius);
+  background: transparent;
+}

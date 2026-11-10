@@ -26,9 +26,9 @@ export default function Home() {
           buildFAQSchema(faq.items),
         ]}
       />
-      <Header />
       <MainWrapper>
         <Boxes>
+          <Header boxed />
           <HeroV2 />
           <main style={{ display: "contents" }}>
             <StoryV2 />
@@ -42,8 +42,8 @@ export default function Home() {
             </Box>
             <FinalV2 />
           </main>
+          <Footer boxed />
         </Boxes>
-        <Footer />
       </MainWrapper>
       <AppDownloadFab />
     </>

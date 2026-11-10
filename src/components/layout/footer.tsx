@@ -29,9 +29,10 @@ function FooterLink({
   return <a href={href}>{label}</a>;
 }
 
-export function Footer() {
+/** `boxed`: full width with the homepage's box gutter, like the sections above it. */
+export function Footer({ boxed = false }: { boxed?: boolean } = {}) {
   return (
-    <footer className={styles.footer} data-site-footer>
+    <footer className={`${styles.footer} ${boxed ? styles.boxed : ""}`} data-site-footer>
       <div className={styles.shell}>
         <Container>
           <div className={styles.box}>

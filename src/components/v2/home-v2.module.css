@@ -71,23 +71,30 @@
   background: #fff;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: a light box with the words, a dark box with the phones ---------- */
 
-.hero {
-  overflow: hidden;
-  margin: var(--box-gutter) var(--box-gutter) 0;
-  border-radius: var(--box-radius);
-  padding: 2.5rem 0 0;
-  color: #fff;
-  background:
-    radial-gradient(60rem 30rem at 85% 10%, rgba(200, 255, 98, 0.16), transparent 60%),
-    var(--foundation-green-green-500);
+.heroSplit {
+  display: grid;
+  gap: var(--box-gutter);
+  margin: 0 var(--box-gutter);
 }
 
-.heroGrid {
-  display: grid;
-  gap: 2.5rem;
+.heroCopyBox {
+  display: flex;
   align-items: center;
+  padding: clamp(2.25rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  border-radius: var(--box-radius);
+  background: #fbfcf6;
+}
+
+.heroMediaBox {
+  position: relative;
+  overflow: hidden;
+  min-height: 24rem;
+  border-radius: var(--box-radius);
+  background:
+    radial-gradient(40rem 26rem at 60% 0%, rgba(200, 255, 98, 0.22), transparent 65%),
+    var(--foundation-green-green-500);
 }
 
 .heroCopy {
@@ -107,14 +114,17 @@
 
 .heroTitle {
   margin: 0 0 1.25rem;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   line-height: 1.02;
   font-weight: var(--font-weight-display);
   letter-spacing: -0.03em;
-  color: #fff;
+  color: var(--color-heading);
 }
 
-.heroTitle :global(.serif-emphasis),
+.heroTitle :global(.serif-emphasis) {
+  color: var(--foundation-green-green-400);
+}
+
 .finalTitle :global(.serif-emphasis) {
   color: var(--foundation-primary-primary-500);
 }
@@ -124,6 +134,10 @@
   max-width: 32rem;
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.final .heroSub {
   color: var(--foundation-green-green-100);
 }
 
@@ -131,23 +145,28 @@
   display: none;
   margin: 1rem 0 0;
   font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.final .desktopHint {
   color: var(--foundation-green-green-200);
 }
 
 .heroLinks {
   margin: 1.25rem 0 0;
   font-size: var(--text-sm);
-  color: var(--foundation-green-green-200);
+  color: var(--color-text-secondary);
 }
 
 .heroLinks a {
-  color: #fff;
+  color: var(--color-heading);
+  font-weight: var(--font-weight-semibold);
   text-underline-offset: 3px;
 }
 
 .heroPhones {
-  position: relative;
-  height: 25rem;
+  position: absolute;
+  inset: 2.5rem 0 0;
   margin: 0 auto;
   width: 100%;
   max-width: 26rem;
@@ -156,7 +175,7 @@
 .heroFront,
 .heroBack {
   position: absolute;
-  bottom: -3rem;
+  top: 0;
 }
 
 .heroFront {
@@ -167,7 +186,7 @@
 
 .heroBack {
   right: 4%;
-  bottom: -1rem;
+  top: 2.5rem;
   width: 48%;
   transform: rotate(6deg);
   opacity: 0.95;
@@ -415,17 +434,17 @@
 }
 
 @media (min-width: 900px) {
-  .hero {
-    padding-top: 4.5rem;
+  .heroSplit {
+    grid-template-columns: 1.15fr 1fr;
+    min-height: min(46rem, calc(100vh - var(--header-height) - 3rem));
   }
 
-  .heroGrid {
-    grid-template-columns: 1.1fr 1fr;
-    min-height: 38rem;
+  .heroMediaBox {
+    min-height: 34rem;
   }
 
   .heroPhones {
-    height: 36rem;
+    inset: 3.5rem 0 0;
     max-width: 32rem;
   }
 

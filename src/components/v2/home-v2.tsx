@@ -50,8 +50,8 @@ function Check() {
 
 export function HeroV2() {
   return (
-    <section className={styles.hero} aria-labelledby="hero-heading">
-      <Container className={styles.heroGrid}>
+    <section className={styles.heroSplit} aria-labelledby="hero-heading">
+      <div className={styles.heroCopyBox}>
         <div className={styles.heroCopy}>
           <span className={styles.eyebrow}>{heroV2.eyebrow}</span>
           <h1 id="hero-heading" className={styles.heroTitle}>
@@ -66,11 +66,13 @@ export function HeroV2() {
             <Link href="/business">For businesses</Link>
           </p>
         </div>
+      </div>
+      <div className={styles.heroMediaBox}>
         <div className={styles.heroPhones}>
           <Phone src={SCREEN.profile} alt="A Hano profile with points and badges" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
           <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

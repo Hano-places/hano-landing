@@ -107,6 +107,11 @@ export function StoryV2() {
                           <li key={p}>{p}</li>
                         ))}
                       </ul>
+                      {i < n - 1 ? (
+                        <span className={styles.next}>
+                          Next: {stepsV2[i + 1].title} <span aria-hidden>↓</span>
+                        </span>
+                      ) : null}
                     </div>
                   </div>
                 </li>

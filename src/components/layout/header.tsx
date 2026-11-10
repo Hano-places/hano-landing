@@ -32,7 +32,8 @@ function MenuCloseIcon() {
   );
 }
 
-export function Header() {
+/** `boxed`: the homepage's look, a rounded bar inset from the edges like the sections under it. */
+export function Header({ boxed = false }: { boxed?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
@@ -76,7 +77,7 @@ export function Header() {
   }, [menuOpen]);
 
   return (
-    <header ref={headerRef} className={styles.header}>
+    <header ref={headerRef} className={`${styles.header} ${boxed ? styles.boxed : ""}`}>
       <Container className={styles.inner}>
         <Link href="/" aria-label="Hano home">
           <Logo />

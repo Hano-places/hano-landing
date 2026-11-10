@@ -200,3 +200,29 @@
     max-width: none;
   }
 }
+
+/* Homepage: the footer box spans the page like the section boxes, with the same gutter and radius. */
+.boxed {
+  padding: 0 var(--box-gutter);
+}
+
+.boxed .shell {
+  padding-inline: 0;
+}
+
+.boxed .shell > * {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.boxed .box {
+  border: 0;
+  border-radius: var(--box-radius);
+  box-shadow: none;
+}
+
+.boxed .box > * {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
