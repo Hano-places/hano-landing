@@ -73,6 +73,7 @@
 
 .cardMedia {
   display: flex;
+  align-items: flex-start;
   justify-content: center;
   height: 22rem;
   padding-top: 2rem;
@@ -83,8 +84,10 @@
 }
 
 .cardMedia .phone {
+  flex-shrink: 0;
   width: 62%;
   max-width: 15rem;
+  height: auto;
 }
 
 .cardCopy {

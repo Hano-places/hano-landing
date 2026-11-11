@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/content/landing";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
+import { Arrow } from "@/components/ui/arrow";
+import { StoreButtons } from "@/components/ui/store-buttons";
 import { Logo } from "./logo";
 import styles from "./header.module.css";
 
@@ -34,14 +37,15 @@ function MenuCloseIcon() {
 
 /** `boxed`: the homepage's look, a rounded bar inset from the edges like the sections under it. */
 export function Header({ boxed = false }: { boxed?: boolean } = {}) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  // The page the menu was opened on: navigating anywhere else closes it.
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const menuOpen = openOn === pathname;
+  const setMenuOpen = (open: boolean | ((o: boolean) => boolean)) =>
+    setOpenOn((typeof open === "function" ? open(menuOpen) : open) ? pathname : null);
   const activeId = useActiveSection(sectionIds);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -53,23 +57,27 @@ export function Header({ boxed = false }: { boxed?: boolean } = {}) {
       if (!(target instanceof Node)) {
         return;
       }
-      if (headerRef.current?.contains(target)) {
+      if (headerRef.current?.contains(target) || panelRef.current?.contains(target)) {
         return;
       }
-      setMenuOpen(false);
+      setOpenOn(null);
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setMenuOpen(false);
+        setOpenOn(null);
       }
     };
+
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
 
     document.addEventListener("mousedown", handlePointerDown);
     document.addEventListener("touchstart", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      document.body.style.overflow = overflow;
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("touchstart", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
@@ -123,31 +131,42 @@ export function Header({ boxed = false }: { boxed?: boolean } = {}) {
         </div>
       </Container>
 
-      {menuOpen ? (
-        <nav
-          id="mobile-navigation"
-          className={styles.mobileNav}
-          aria-label="Mobile navigation"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.mobileLink}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/download"
-            className={`${styles.ctaLink} ${styles.mobileCta}`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Download App
-          </Link>
-        </nav>
-      ) : null}
+      {/* Rendered on <body>: the bar's blur would otherwise trap a fixed panel inside it and let the page show through. */}
+      {menuOpen
+        ? createPortal(
+            <div className={styles.menuLayer}>
+              <div className={styles.scrim} aria-hidden onClick={() => setMenuOpen(false)} />
+              <div ref={panelRef} id="mobile-navigation" className={styles.panel} role="dialog" aria-modal="true" aria-label="Menu">
+                <div className={styles.panelTop}>
+                  <Link href="/" aria-label="Hano home" onClick={() => setMenuOpen(false)} className={styles.panelLogo}>
+                    <Logo size="sm" tone="light" />
+                  </Link>
+                  <button type="button" className={styles.closeBtn} aria-label="Close menu" onClick={() => setMenuOpen(false)}>
+                    <MenuCloseIcon />
+                  </button>
+                </div>
+                <nav className={styles.mobileNav} aria-label="Mobile navigation">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`${styles.mobileLink} ${pathname === link.href ? styles.mobileLinkActive : ""}`}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.label}
+                      <Arrow dir="right" size={20} />
+                    </Link>
+                  ))}
+                </nav>
+                <div className={styles.panelFoot}>
+                  <p>Get the app</p>
+                  <StoreButtons />
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }
