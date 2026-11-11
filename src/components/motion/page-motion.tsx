@@ -12,7 +12,6 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
  * - `data-reveal`: fades and rises in when it scrolls into view.
  * - `data-reveal-stagger`: its children do the same, one after another.
  * - `data-parallax="-40"`: drifts that many pixels while it crosses the screen.
- * - `data-float`: bobs gently (hero phones).
  * - `data-magnetic`: leans toward the pointer on hover (mouse only).
  * Anything already on screen at load is left alone, so nothing flashes; reduced motion turns it all off.
  */
@@ -49,10 +48,6 @@ export function PageMotion() {
             ease: "none",
             scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: 0.6 },
           });
-        });
-
-        gsap.utils.toArray<HTMLElement>("[data-float]").forEach((el, i) => {
-          gsap.to(el, { y: -10, duration: 2.6 + i * 0.4, ease: "sine.inOut", yoyo: true, repeat: -1, delay: i * 0.3 });
         });
       });
 

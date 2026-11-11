@@ -84,8 +84,8 @@ export function BizHero() {
       </div>
       <div className={styles.heroMediaBox}>
         <div className={styles.heroPhones}>
-          <Phone src={SCREEN.placeJp} alt="A verified place page in the Hano app" className={styles.heroFront} priority data-float />
-          <Phone src={SCREEN.post} alt="" className={styles.heroBack} data-float />
+          <Phone src={SCREEN.placeJp} alt="A verified place page in the Hano app" className={styles.heroFront} priority />
+          <Phone src={SCREEN.post} alt="" className={styles.heroBack} />
         </div>
         <div className={`${styles.chip} ${styles.chipTop}`}>
           <span className={styles.chipDot} />

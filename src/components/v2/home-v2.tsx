@@ -72,8 +72,8 @@ export function HeroV2() {
       </div>
       <div className={styles.heroMediaBox}>
         <div className={styles.heroPhones}>
-          <Phone src={SCREEN.profile} alt="A Hano profile with points and badges" data-float className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
-          <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority data-float className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
+          <Phone src={SCREEN.profile} alt="A Hano profile with points and badges" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
+          <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
         </div>
       </div>
     </section>
