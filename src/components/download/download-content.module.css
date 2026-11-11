@@ -86,6 +86,7 @@
   width: 46%;
   max-width: 17.5rem;
   height: auto;
+  aspect-ratio: 720 / 1450;
   filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35));
 }
 
@@ -121,6 +122,7 @@
 
 .featureShot {
   display: flex;
+  align-items: flex-start;
   justify-content: center;
   height: 15rem;
   padding-top: 1.5rem;
@@ -132,9 +134,11 @@
 
 .featurePhone {
   flex-shrink: 0;
+  align-self: flex-start;
   width: 62%;
   max-width: 14rem;
   height: auto;
+  aspect-ratio: 720 / 1450;
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
