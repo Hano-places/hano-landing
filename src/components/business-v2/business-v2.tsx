@@ -21,7 +21,13 @@ import { InsightsChart } from "./insights-chart";
 import { StoreButtons } from "@/components/ui/store-buttons";
 import styles from "./business-v2.module.css";
 
-function Phone({ src, alt, className, priority }: { src: string; alt: string; className?: string; priority?: boolean }) {
+function Phone({
+  src,
+  alt,
+  className,
+  priority,
+  ...data
+}: { src: string; alt: string; className?: string; priority?: boolean } & Record<`data-${string}`, string | boolean>) {
   return (
     <Image
       src={src}
@@ -31,6 +37,7 @@ function Phone({ src, alt, className, priority }: { src: string; alt: string; cl
       priority={priority}
       sizes="(max-width: 720px) 60vw, 300px"
       className={`${styles.phone} ${className ?? ""}`}
+      {...data}
     />
   );
 }
@@ -57,7 +64,7 @@ export function BizHero() {
           </h1>
           <p className={styles.heroSub}>{bizHero.sub}</p>
           <div className={styles.ctaRow}>
-            <a href="#claim" className={styles.primaryBtn}>
+            <a href="#claim" data-magnetic className={styles.primaryBtn}>
               <HugeiconsIcon icon={Link01Icon} size={20} color="currentColor" strokeWidth={2} aria-hidden />
               Claim your place
             </a>
@@ -77,8 +84,8 @@ export function BizHero() {
       </div>
       <div className={styles.heroMediaBox}>
         <div className={styles.heroPhones}>
-          <Phone src={SCREEN.placeJp} alt="A verified place page in the Hano app" className={styles.heroFront} priority />
-          <Phone src={SCREEN.post} alt="" className={styles.heroBack} />
+          <Phone src={SCREEN.placeJp} alt="A verified place page in the Hano app" className={styles.heroFront} priority data-float />
+          <Phone src={SCREEN.post} alt="" className={styles.heroBack} data-float />
         </div>
         <div className={`${styles.chip} ${styles.chipTop}`}>
           <span className={styles.chipDot} />
@@ -101,13 +108,13 @@ export function BizHero() {
 export function BizValues() {
   return (
     <section className={styles.box} aria-labelledby="biz-values">
-      <h2 id="biz-values" className={`${styles.h2} ${styles.center}`}>
+      <h2 data-reveal id="biz-values" className={`${styles.h2} ${styles.center}`}>
         Where Kigali decides where to go
       </h2>
-      <p className={`${styles.lead} ${styles.center}`}>
+      <p data-reveal className={`${styles.lead} ${styles.center}`}>
         Hano is a guide made by the people who go out. When they look for somewhere to eat or drink, make sure your place is the one they pick.
       </p>
-      <ol className={styles.values}>
+      <ol data-reveal-stagger className={styles.values}>
         {bizValues.map((v, i) => (
           <li key={v.title} className={styles.valueCard}>
             <span className={styles.num}>{i + 1}</span>
@@ -126,7 +133,7 @@ export function BizFeatures() {
     <>
       {bizFeatures.map((f, i) => (
         <section key={f.title} className={`${styles.featureSplit} ${i % 2 ? styles.flip : ""}`} aria-label={f.kicker}>
-          <div className={styles.featureCopyBox}>
+          <div data-reveal-stagger className={styles.featureCopyBox}>
             <span className={styles.kicker}>{f.kicker}</span>
             <h2 className={styles.h2}>{f.title}</h2>
             <p className={styles.lead}>{f.body}</p>
@@ -140,7 +147,7 @@ export function BizFeatures() {
             </ul>
           </div>
           <div className={styles.featureMediaBox}>
-            <Phone src={f.screen} alt={`${f.title}: Hano app screen`} className={styles.featurePhone} />
+            <Phone src={f.screen} alt={`${f.title}: Hano app screen`} className={styles.featurePhone} data-parallax="-40" />
           </div>
         </section>
       ))}
@@ -151,7 +158,7 @@ export function BizFeatures() {
 /** Offers and insights side by side, as two boxes. */
 export function BizGrowth() {
   return (
-    <section className={styles.growth} aria-label="Offers and insights">
+    <section data-reveal-stagger className={styles.growth} aria-label="Offers and insights">
       <div className={`${styles.growthBox} ${styles.offersBox}`}>
         <span className={`${styles.kicker} ${styles.kickerDark}`}>{bizOffers.kicker}</span>
         <h2 className={styles.h2}>{bizOffers.title}</h2>
@@ -204,14 +211,14 @@ export function BizGrowth() {
 export function BizSteps() {
   return (
     <section id="claim" className={styles.stepsBox} aria-labelledby="biz-steps">
-      <div className={styles.stepsHead}>
+      <div data-reveal className={styles.stepsHead}>
         <h2 id="biz-steps" className={styles.h2}>
           Live on Hano in three steps
         </h2>
         <p className={styles.lead}>Everything happens in the app, from claiming your place to posting your first offer.</p>
         <StoreButtons size="lg" />
       </div>
-      <ol className={styles.steps}>
+      <ol data-reveal-stagger className={styles.steps}>
         {bizSteps.map((s, i) => (
           <li key={s.title} className={styles.step}>
             <span className={styles.stepNum}>{i + 1}</span>
@@ -230,13 +237,13 @@ export function BizSteps() {
 export function BizPromise() {
   return (
     <section className={styles.promiseBox} aria-labelledby="biz-promise">
-      <h2 id="biz-promise" className={`${styles.h2} ${styles.center} ${styles.onDark}`}>
+      <h2 data-reveal id="biz-promise" className={`${styles.h2} ${styles.center} ${styles.onDark}`}>
         {bizPromise.title}
       </h2>
       <p className={`${styles.lead} ${styles.center} ${styles.onDarkSoft}`}>
         Guests trust Hano because it can’t be bought. That’s exactly why a good place wins here.
       </p>
-      <div className={styles.promiseGrid}>
+      <div data-reveal-stagger className={styles.promiseGrid}>
         {bizPromise.points.map((p) => (
           <div key={p.title} className={styles.promiseCard}>
             <h3>{p.title}</h3>
@@ -250,7 +257,7 @@ export function BizPromise() {
 
 export function BizFaq() {
   return (
-    <section className={styles.faqBox} aria-labelledby="biz-faq">
+    <section data-reveal-stagger className={styles.faqBox} aria-labelledby="biz-faq">
       <div>
         <h2 id="biz-faq" className={styles.h2}>
           Questions from owners
@@ -267,7 +274,7 @@ export function BizFaq() {
 export function BizFinal() {
   return (
     <section className={styles.finalBox} aria-labelledby="biz-final">
-      <div className={styles.finalCopy}>
+      <div data-reveal className={styles.finalCopy}>
         <h2 id="biz-final" className={styles.finalTitle}>
           {bizFinal.title.before} <SerifEmphasis>{bizFinal.title.emphasis}</SerifEmphasis>
           {bizFinal.title.after}
@@ -280,7 +287,7 @@ export function BizFinal() {
           <a href={`mailto:${site.email}?subject=Hano%20for%20my%20business`}>Talk to us</a>
         </p>
       </div>
-      <div className={styles.finalPhone}>
+      <div data-parallax="-50" className={styles.finalPhone}>
         <Phone src={SCREEN.burgerPlanet} alt="A place page on Hano" />
       </div>
     </section>

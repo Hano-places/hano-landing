@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { navLinks } from "@/content/landing";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { Container } from "@/components/ui/container";
@@ -131,42 +133,123 @@ export function Header({ boxed = false }: { boxed?: boolean } = {}) {
         </div>
       </Container>
 
-      {/* Rendered on <body>: the bar's blur would otherwise trap a fixed panel inside it and let the page show through. */}
-      {menuOpen
-        ? createPortal(
-            <div className={styles.menuLayer}>
-              <div className={styles.scrim} aria-hidden onClick={() => setMenuOpen(false)} />
-              <div ref={panelRef} id="mobile-navigation" className={styles.panel} role="dialog" aria-modal="true" aria-label="Menu">
-                <div className={styles.panelTop}>
-                  <Link href="/" aria-label="Hano home" onClick={() => setMenuOpen(false)} className={styles.panelLogo}>
-                    <Logo size="sm" tone="light" />
-                  </Link>
-                  <button type="button" className={styles.closeBtn} aria-label="Close menu" onClick={() => setMenuOpen(false)}>
-                    <MenuCloseIcon />
-                  </button>
-                </div>
-                <nav className={styles.mobileNav} aria-label="Mobile navigation">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={`${styles.mobileLink} ${pathname === link.href ? styles.mobileLinkActive : ""}`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {link.label}
-                      <Arrow dir="right" size={20} />
-                    </Link>
-                  ))}
-                </nav>
-                <div className={styles.panelFoot}>
-                  <p>Get the app</p>
-                  <StoreButtons />
-                </div>
-              </div>
-            </div>,
-            document.body,
-          )
-        : null}
+      <MenuPanel open={menuOpen} pathname={pathname} panelRef={panelRef} onClose={() => setOpenOn(null)} />
     </header>
+  );
+}
+
+const noop = () => () => {};
+
+/**
+ * The phone/tablet menu, rendered on <body> (the bar's blur would otherwise trap a fixed panel inside it).
+ * It stays mounted and a GSAP timeline plays forward to open and backward to close: the page blurs,
+ * the panel unfolds from the corner the button is in, then the links rise in one after another.
+ */
+function MenuPanel({
+  open,
+  pathname,
+  panelRef,
+  onClose,
+}: {
+  open: boolean;
+  pathname: string;
+  panelRef: React.RefObject<HTMLDivElement | null>;
+  onClose: () => void;
+}) {
+  const mounted = useSyncExternalStore(noop, () => true, () => false);
+  const layer = useRef<HTMLDivElement>(null);
+  const tl = useRef<gsap.core.Timeline | null>(null);
+
+  useGSAP(
+    () => {
+      if (!layer.current) return;
+      const q = gsap.utils.selector(layer);
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      tl.current = gsap
+        .timeline({ paused: true, defaults: { ease: "expo.out" } })
+        .fromTo(
+          q("[data-scrim]"),
+          { opacity: 0, backdropFilter: "blur(0px)", webkitBackdropFilter: "blur(0px)" },
+          { opacity: 1, backdropFilter: "blur(14px)", webkitBackdropFilter: "blur(14px)", duration: 0.5, ease: "power2.out" },
+          0,
+        )
+        .fromTo(
+          q("[data-panel]"),
+          { clipPath: "inset(0% 0% 100% 45% round 24px)", y: -8 },
+          { clipPath: "inset(0% 0% 0% 0% round 24px)", y: 0, duration: 0.8 },
+          0,
+        )
+        .fromTo(q("[data-close]"), { scale: 0.4, rotate: -120, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.6 }, 0.15)
+        .fromTo(q("[data-item]"), { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.055 }, 0.18)
+        .fromTo(q("[data-foot]"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.45);
+      if (reduce) tl.current.timeScale(20);
+    },
+    { scope: layer, dependencies: [mounted] },
+  );
+
+  useEffect(() => {
+    const t = tl.current;
+    const el = layer.current;
+    if (!t || !el) return;
+    if (open) {
+      t.eventCallback("onReverseComplete", null);
+      gsap.set(el, { visibility: "visible" });
+      t.timeScale(t.timeScale() > 2 ? t.timeScale() : 1).play();
+      // Focus the panel so keyboard users land inside it.
+      panelRef.current?.focus({ preventScroll: true });
+    } else if (t.progress() > 0) {
+      t.eventCallback("onReverseComplete", () => gsap.set(el, { visibility: "hidden" }));
+      t.timeScale(t.timeScale() > 2 ? t.timeScale() : 1.7).reverse();
+    }
+  }, [open, mounted, panelRef]);
+
+  if (!mounted) return null;
+
+  return createPortal(
+    <div ref={layer} className={styles.menuLayer} aria-hidden={!open} inert={!open}>
+      <div data-scrim className={styles.scrim} onClick={onClose} />
+      <div
+        ref={panelRef}
+        data-panel
+        id="mobile-navigation"
+        className={styles.panel}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        tabIndex={-1}
+      >
+        <div className={styles.panelTop}>
+          <Link href="/" aria-label="Hano home" onClick={onClose} className={styles.panelLogo}>
+            <Logo size="sm" tone="light" />
+          </Link>
+          <button type="button" data-close className={styles.closeBtn} aria-label="Close menu" onClick={onClose}>
+            <MenuCloseIcon />
+          </button>
+        </div>
+        <nav className={styles.mobileNav} aria-label="Mobile navigation">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              data-item
+              className={`${styles.mobileLink} ${pathname === link.href ? styles.mobileLinkActive : ""}`}
+              onClick={onClose}
+            >
+              <span className={styles.roll}>
+                <span data-text={link.label}>{link.label}</span>
+              </span>
+              <span className={styles.linkArrow} aria-hidden>
+                <Arrow dir="right" size={18} />
+              </span>
+            </Link>
+          ))}
+        </nav>
+        <div data-foot className={styles.panelFoot}>
+          <p>Get the app</p>
+          <StoreButtons />
+        </div>
+      </div>
+    </div>,
+    document.body,
   );
 }

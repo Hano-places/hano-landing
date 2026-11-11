@@ -64,7 +64,7 @@ export function StoryV2() {
 
   return (
     <section className={styles.box} aria-labelledby="story-heading">
-      <div className={styles.head}>
+      <div data-reveal className={styles.head}>
         <h2 id="story-heading" className={styles.title}>
           {storyV2.title}
         </h2>
@@ -123,7 +123,7 @@ export function StoryV2() {
       </div>
 
       {/* Phones: one card per step. */}
-      <ol className={styles.stack}>
+      <ol data-reveal-stagger className={styles.stack}>
         {stepsV2.map((s, i) => (
           <li key={s.id} className={styles.card}>
             <div className={styles.cardMedia}>

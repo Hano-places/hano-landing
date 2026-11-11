@@ -20,13 +20,14 @@ function Phone({
   priority,
   className,
   sizes = "(max-width: 720px) 60vw, 320px",
+  ...data
 }: {
   src: string;
   alt: string;
   priority?: boolean;
   className?: string;
   sizes?: string;
-}) {
+} & Record<`data-${string}`, string | boolean>) {
   return (
     <Image
       src={src}
@@ -36,6 +37,7 @@ function Phone({
       priority={priority}
       sizes={sizes}
       className={`${styles.phone} ${className ?? ""}`}
+      {...data}
     />
   );
 }
@@ -70,8 +72,8 @@ export function HeroV2() {
       </div>
       <div className={styles.heroMediaBox}>
         <div className={styles.heroPhones}>
-          <Phone src={SCREEN.profile} alt="A Hano profile with points and badges" className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
-          <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
+          <Phone src={SCREEN.profile} alt="A Hano profile with points and badges" data-float className={styles.heroBack} sizes="(max-width: 720px) 45vw, 280px" />
+          <Phone src={SCREEN.feed} alt="The Hano feed with friends’ check-ins" priority data-float className={styles.heroFront} sizes="(max-width: 720px) 55vw, 320px" />
         </div>
       </div>
     </section>
@@ -82,11 +84,11 @@ export function WebVsAppV2() {
   return (
     <section className={styles.compare} aria-labelledby="compare-heading">
       <Container>
-        <h2 id="compare-heading" className={`${styles.h2} ${styles.center}`}>
+        <h2 data-reveal id="compare-heading" className={`${styles.h2} ${styles.center}`}>
           {webVsApp.title}
         </h2>
-        <p className={`${styles.lead} ${styles.center}`}>{webVsApp.sub}</p>
-        <div className={styles.compareGrid}>
+        <p data-reveal className={`${styles.lead} ${styles.center}`}>{webVsApp.sub}</p>
+        <div data-reveal-stagger className={styles.compareGrid}>
           <div className={styles.compareCard}>
             <h3 className={styles.compareLabel}>{webVsApp.web.label}</h3>
             <ul className={styles.points}>
@@ -122,7 +124,7 @@ export function WebVsAppV2() {
 export function BusinessV2() {
   return (
     <section className={styles.business} aria-labelledby="business-heading">
-      <Container className={styles.businessInner}>
+      <Container data-reveal-stagger className={styles.businessInner}>
         <div>
           <h2 id="business-heading" className={styles.h2}>
             {businessV2.title}
@@ -141,7 +143,7 @@ export function FinalV2() {
   return (
     <section className={styles.final} aria-labelledby="final-heading">
       <Container className={styles.finalGrid}>
-        <div className={styles.finalCopy}>
+        <div data-reveal className={styles.finalCopy}>
           <h2 id="final-heading" className={styles.finalTitle}>
             {finalV2.title.before} <SerifEmphasis>{finalV2.title.emphasis}</SerifEmphasis>
             {finalV2.title.after}
@@ -150,7 +152,7 @@ export function FinalV2() {
           <StoreButtons size="lg" />
           <p className={styles.desktopHint}>{heroV2.desktopHint}</p>
         </div>
-        <div className={styles.finalPhone}>
+        <div data-parallax="-50" className={styles.finalPhone}>
           <Phone src={SCREEN.placeJp} alt="A place page in the Hano app" sizes="(max-width: 720px) 60vw, 300px" />
         </div>
       </Container>

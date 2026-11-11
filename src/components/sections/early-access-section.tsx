@@ -84,7 +84,7 @@ export function EarlyAccessSection() {
               </div>
             </div>
             {/* Two small tilted phones in their own box, filling the rest of the column. */}
-            <div className={styles.phonesCard} aria-hidden>
+            <div data-reveal className={styles.phonesCard} aria-hidden>
               <Image src={SCREEN.burgerPlanet} alt="" width={PHONE.width} height={PHONE.height} sizes="200px" className={`${styles.miniPhone} ${styles.miniLeft}`} />
               <Image src={SCREEN.leaderboard} alt="" width={PHONE.width} height={PHONE.height} sizes="200px" className={`${styles.miniPhone} ${styles.miniRight}`} />
             </div>

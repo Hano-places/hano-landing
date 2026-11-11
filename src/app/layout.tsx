@@ -6,6 +6,7 @@ import { site } from "@/content/landing";
 import { BRAND } from "@/content/images";
 import { AnalyticsScripts } from "@/components/seo/analytics";
 import { buildPageMetadata } from "@/lib/seo";
+import { PageMotion } from "@/components/motion/page-motion";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -69,6 +70,7 @@ export default function RootLayout({
     >
       <body className={instrumentSans.className}>
         {children}
+        <PageMotion />
         <Analytics />
         <AnalyticsScripts />
       </body>

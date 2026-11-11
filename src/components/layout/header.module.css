@@ -21,6 +21,7 @@
 }
 
 .navLink {
+  position: relative;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   transition: color var(--transition-fast);
@@ -31,9 +32,24 @@
   color: var(--color-text);
 }
 
-.navLinkActive {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--foundation-primary-primary-500, #c8ff62);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
 .actions {
@@ -50,7 +66,18 @@
   height: 2.5rem;
   background: none;
   border: none;
+  border-radius: 999px;
   color: var(--color-text);
+  transition: background-color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.menuBtn:hover {
+  background: rgba(0, 24, 20, 0.06);
+  transform: rotate(45deg);
+}
+
+.menuBtn:active {
+  transform: scale(0.9);
 }
 
 .desktopCta {
@@ -134,15 +161,14 @@
   inset: 0;
   z-index: 1000;
   padding: 8px;
+  visibility: hidden;
 }
 
 .scrim {
   position: absolute;
   inset: 0;
-  background: rgba(0, 24, 20, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  animation: fadeIn 0.2s ease;
+  background: rgba(0, 24, 20, 0.4);
+  opacity: 0;
 }
 
 .panel {
@@ -159,7 +185,7 @@
   background-color: #001814;
   background-image: radial-gradient(28rem 18rem at 100% 0%, rgba(200, 255, 98, 0.12), transparent 70%);
   box-shadow: 0 24px 60px rgba(0, 24, 20, 0.35);
-  animation: panelIn 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  outline: none;
 }
 
 .panelTop {
@@ -189,26 +215,124 @@
 }
 
 .panel .mobileLink {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9rem 0.25rem;
+  gap: 1rem;
+  padding: 0.85rem 0.25rem;
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   color: #fff;
   -webkit-text-fill-color: currentColor;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  transition: color 0.15s ease;
+  transition: padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.panel .mobileLink:hover,
+/* A soft volt wash that fills in from the left on hover. */
+.panel .mobileLink::before {
+  content: "";
+  position: absolute;
+  inset: 0.2rem -0.5rem;
+  z-index: -1;
+  border-radius: 14px;
+  background: rgba(200, 255, 98, 0.08);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mobileNav {
+  position: relative;
+  z-index: 0;
+}
+
+/* The label rolls up and a volt copy rolls in under it. */
+.roll {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.roll > span {
+  position: relative;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.roll > span::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #c8ff62;
+}
+
+.linkArrow {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.7);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
 .panel .mobileLinkActive {
   color: #c8ff62;
 }
 
-.panel .mobileLink svg {
-  opacity: 0.5;
+.panel .mobileLinkActive .linkArrow {
+  border-color: rgba(200, 255, 98, 0.5);
+  color: #c8ff62;
+}
+
+@media (hover: hover) {
+  .panel .mobileLink:hover {
+    padding-left: 0.75rem;
+  }
+
+  .panel .mobileLink:hover::before {
+    transform: scaleX(1);
+  }
+
+  .panel .mobileLink:hover .roll > span {
+    transform: translateY(-100%);
+  }
+
+  .panel .mobileLink:hover .linkArrow {
+    border-color: #c8ff62;
+    color: #001814;
+    background: #c8ff62;
+    transform: rotate(-45deg);
+  }
+
+  .closeBtn:hover {
+    transform: rotate(90deg) !important;
+  }
+}
+
+/* Touch: a quick press instead of hover. */
+.panel .mobileLink:active::before {
+  transform: scaleX(1);
+}
+
+.panel .mobileLink:focus-visible {
+  outline: 2px solid #c8ff62;
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+.closeBtn {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .panelFoot {
@@ -219,19 +343,6 @@
   margin: 0 0 0.75rem;
   font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.6);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes panelIn {
-  from {
-    opacity: 0;
-    transform: translateY(-12px) scale(0.98);
-  }
 }
 
 @media (min-width: 600px) {
@@ -245,12 +356,5 @@
     width: min(26rem, 100%);
     align-self: flex-start;
     border-radius: 24px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scrim,
-  .panel {
-    animation: none;
   }
 }

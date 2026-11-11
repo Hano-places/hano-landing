@@ -349,7 +349,8 @@
   left: 50%;
   width: 56%;
   max-width: 17rem;
-  transform: translateX(-50%);
+  /* \`translate\`, not \`transform\`, so the scroll parallax can move it without undoing the centring. */
+  translate: -50% 0;
 }
 
 /* ---------- Offers + insights ---------- */

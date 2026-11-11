@@ -17,7 +17,7 @@ export function FeaturedRestaurantsSection() {
       ariaLabelledBy="restaurants-heading"
     >
       <Container>
-        <div className={styles.header}>
+        <div data-reveal className={styles.header}>
           <h2 id="restaurants-heading" className={styles.headline}>
             {featuredRestaurants.headline}
           </h2>
@@ -28,7 +28,7 @@ export function FeaturedRestaurantsSection() {
           </Link>
         </div>
         <div className={styles.trackWrap}>
-          <div className={styles.track} role="list">
+          <div data-reveal-stagger className={styles.track} role="list">
             {featuredRestaurants.items.map((place) => (
               <div key={place.id} className={styles.trackItem} role="listitem">
                 <PlaceCutoutCard
