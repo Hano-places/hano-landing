@@ -88,6 +88,14 @@ export function Header({ boxed = false }: { boxed?: boolean } = {}) {
 
   return (
     <header ref={headerRef} className={`${styles.header} ${boxed ? styles.boxed : ""}`}>
+      {/* Phones and tablets: tapping anywhere on the bar opens the menu (the menu button stays the accessible control). */}
+      <button
+        type="button"
+        className={styles.barHit}
+        aria-hidden
+        tabIndex={-1}
+        onClick={() => setMenuOpen((open) => !open)}
+      />
       <Container className={styles.inner}>
         <Link href="/" aria-label="Hano home">
           <Logo size={boxed ? "md" : "sm"} />

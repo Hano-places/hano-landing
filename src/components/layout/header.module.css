@@ -107,7 +107,40 @@
   border-color: var(--foundation-primary-primary-300);
 }
 
+.barHit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* A little press feedback for the whole bar. */
+.header:has(.barHit:active) {
+  transform: scale(0.985);
+}
+
+.header {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .header:has(.barHit:hover) .menuBtn {
+    background: rgba(0, 24, 20, 0.06);
+    transform: rotate(45deg);
+  }
+}
+
 @media (min-width: 900px) {
+  .barHit {
+    display: none;
+  }
+
   .nav {
     display: flex;
   }
