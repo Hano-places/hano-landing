@@ -14,6 +14,8 @@ import { getHubSitemapPaths, getStaticSitemapPaths } from "@/lib/sitemap-paths";
 /** Cache tag for future on-demand revalidation when the backend API is live. */
 export const PLACES_TAG = "places";
 
+const HANO_API = (process.env.NEXT_PUBLIC_HANO_API_URL ?? "https://api.hano.now").replace(/\/$/, "");
+
 const DEFAULT_CITY = "Kigali";
 const DEFAULT_REGION = "Kigali City";
 const DEFAULT_COUNTRY = "RW";
@@ -131,7 +133,12 @@ export function enrichPlace(seed: PlaceSeed): Place {
   ];
 
   const curated = curatedMenusById[seed.id];
-  const image = media?.image ?? seed.image;
+  // A hand-picked photo from the place's Google listing, served through the Hano API (the key stays private).
+  const googlePlaceId = media?.googlePlaceId ?? seed.googlePlaceId;
+  const image =
+    googlePlaceId && seed.googlePhoto !== undefined
+      ? `${HANO_API}/v1/places/google/${encodeURIComponent(googlePlaceId)}/cover?i=${seed.googlePhoto}`
+      : (media?.image ?? seed.image);
   const gallery =
     media?.gallery && media.gallery.length > 0
       ? media.gallery
@@ -146,7 +153,7 @@ export function enrichPlace(seed: PlaceSeed): Place {
     address,
     geo,
     phone: media?.phone ?? seed.phone,
-    googlePlaceId: media?.googlePlaceId ?? seed.googlePlaceId,
+    googlePlaceId,
     reviews: defaultReviews(seed),
     menu: media?.menu ?? seed.menu ?? curated?.menu ?? [],
     menuUrl: media?.menuUrl ?? seed.menuUrl ?? curated?.menuUrl,

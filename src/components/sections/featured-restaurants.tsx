@@ -39,6 +39,7 @@ export function FeaturedRestaurantsSection() {
             ))}
           </div>
         </div>
+        <p className={styles.credit}>Photos: Google</p>
       </Container>
     </Section>
   );

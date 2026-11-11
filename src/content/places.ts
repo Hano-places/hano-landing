@@ -44,9 +44,11 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Rooftop Afro-fusion dining, craft cocktails, and one of Kigali's best night views.",
     image: IMG.nightView,
+    googlePlaceId: "ChIJ0RZGlIyn3BkR3ldI12yYuGQ",
+    googlePhoto: 7,
+    featured: true,
     website: "https://www.boho.rw/",
     tags: ["rooftop", "cocktails", "afro-fusion", "nightlife"],
-    featured: true,
     hours: {
       monday: "8 AM – 1 AM",
       tuesday: "8 AM – 1 AM",
@@ -68,9 +70,11 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Wood-fired pizza, sunset sessions, and poolside dining on the hills of Kigali.",
     image: IMG.outdoorDining,
+    googlePlaceId: "ChIJ4xdJmNem3BkRduSfESwuhgQ",
+    googlePhoto: 1,
+    featured: true,
     website: "https://www.pilipilirwanda.rw/",
     tags: ["pizza", "pool", "sunset", "lounge"],
-    featured: true,
     hours: daily("11 AM – 11 PM"),
   },
   {
@@ -84,9 +88,11 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Panoramic city views with thoughtfully prepared local and international cuisine.",
     image: IMG.elegantTable,
+    googlePlaceId: "ChIJHaaBQCek3BkRZ3RQfvHkOjM",
+    googlePhoto: 0,
+    featured: true,
     website: "https://heavenrwanda.com/",
     tags: ["views", "african", "hotel", "brunch"],
-    featured: true,
     hours: daily("6:30 AM – 10 PM"),
   },
   {
@@ -100,9 +106,10 @@ export const places: readonly PlaceSeed[] = [
     description:
       "All-day café, restaurant, and bar with a relaxed garden setting in the city center.",
     image: IMG.modernCafe,
+    googlePlaceId: "ChIJ-QkWUEWn3BkRWLgeCTKGNQw",
+    googlePhoto: 2,
     website: "https://casaverde.rw/",
     tags: ["garden", "coffee", "bar", "all-day"],
-    featured: true,
     hours: daily("7 AM – 11 PM"),
   },
   {
@@ -116,9 +123,11 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Farm-to-cup Rwandan specialty coffee from women-led cooperatives, plus barista training.",
     image: IMG.modernElegance,
+    googlePlaceId: "ChIJb3641Y6m3BkRowo-IDAoiF8",
+    googlePhoto: 0,
+    featured: true,
     website: "https://www.questioncoffee.com/",
     tags: ["specialty coffee", "training", "women-led", "farm to cup"],
-    featured: true,
     hours: {
       monday: "8 AM – 6 PM",
       tuesday: "8 AM – 6 PM",
@@ -140,9 +149,11 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Rwanda's premiere art gallery paired with omakase tasting menus and guest chef residencies.",
     image: IMG.portrait,
+    googlePlaceId: "ChIJfxF1ICel3BkRnFK7o8qpHHo",
+    googlePhoto: 4,
+    featured: true,
     website: "https://www.choosekigali.com/",
     tags: ["art", "tasting menu", "wine", "omakase"],
-    featured: true,
     hours: {
       monday: "Closed",
       tuesday: "6 PM – 11 PM",
@@ -164,9 +175,10 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Coffee shop and garden restaurant in Kiyovu, calm greenery and refined plates.",
     image: IMG.aerial,
+    googlePlaceId: "ChIJoVTxLL2n3BkRV9Y-fixso7Y",
+    googlePhoto: 2,
     website: "https://peacockgarden.net/",
     tags: ["garden", "coffee", "lunch", "healthy"],
-    featured: true,
     hours: daily("8 AM – 10 PM"),
   },
   {
@@ -180,8 +192,10 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Quiet rooftop café above Ikirezi Bookstore, coffee, light bites, and leafy views.",
     image: IMG.rooftop,
-    tags: ["rooftop", "bookstore", "quiet", "vegetarian"],
+    googlePlaceId: "ChIJETSOmPKm3BkR8qivGb2Scv8",
+    googlePhoto: 3,
     featured: true,
+    tags: ["rooftop", "bookstore", "quiet", "vegetarian"],
     hours: {
       monday: "8 AM – 6 PM",
       tuesday: "8 AM – 6 PM",
@@ -203,6 +217,9 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Seasonal contemporary African cuisine in Alliance Towers, reservations recommended.",
     image: IMG.sophisticated,
+    googlePlaceId: "ChIJxy9XfYil3BkRaqRGonWEgUU",
+    googlePhoto: 0,
+    featured: true,
     website: "https://www.nyurah.com/",
     tags: ["fine dining", "seasonal", "african", "vegan options"],
     hours: {
@@ -226,6 +243,8 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Contemporary fine dining with seasonal menus and an intimate Kimihurura setting.",
     image: IMG.elegantTable,
+    googlePlaceId: "ChIJ6TIz2i-n3BkRXlo4Bk2Lx3w",
+    googlePhoto: 7,
     website: "https://lilly-rwanda.com/",
     tags: ["seasonal", "date night", "wine"],
     hours: {
@@ -249,6 +268,8 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Elevated African fusion at Simba Center, tasting menus and a polished dining room.",
     image: IMG.joyfulScene,
+    googlePlaceId: "ChIJlz8jO6Kh3BkRw9UGdMjjZtY",
+    googlePhoto: 0,
     website: "https://www.leyoukounkoun.rw/",
     tags: ["african fusion", "tasting menu", "simba center"],
     hours: {
@@ -272,6 +293,8 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Gourmet burgers, natural wines, and a lively bistro vibe in Gishushu.",
     image: IMG.gourmetBurger,
+    googlePlaceId: "ChIJg53CPN-n3BkRdo2M84gyP9k",
+    googlePhoto: 2,
     tags: ["burgers", "wine", "bistro"],
     hours: daily("11 AM – 11 PM"),
   },
@@ -301,6 +324,9 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Upscale East African cuisine across two floors, a Kimihurura institution since 2006.",
     image: IMG.tropical,
+    googlePlaceId: "ChIJy4Thf4Gm3BkRcPneWsYkPw8",
+    googlePhoto: 1,
+    featured: true,
     website: "https://republounge.com/",
     tags: ["east african", "institution", "two floors"],
     hours: daily("12 PM – 10 PM"),
@@ -316,6 +342,8 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Contemporary bistro plates, wine pairings, and private dining in Kimihurura.",
     image: IMG.serene,
+    googlePlaceId: "ChIJC-HSjfam3BkR1-CFr0GZx-Y",
+    googlePhoto: 4,
     website: "https://www.poivrenoirbistro.com/",
     tags: ["bistro", "wine", "private dining"],
     hours: {
@@ -339,6 +367,8 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Kigali's original build-your-own burrito bar, tacos, bowls, and fast-casual Mexican.",
     image: IMG.burgers,
+    googlePlaceId: "ChIJIyFE4_Om3BkRBqg-iHQC6bk",
+    googlePhoto: 1,
     tags: ["mexican", "burritos", "fast casual", "budget"],
     hours: {
       monday: "Closed",
@@ -361,6 +391,8 @@ export const places: readonly PlaceSeed[] = [
     description:
       "French-inspired pastries, breads, and espresso, multiple locations across Kigali.",
     image: IMG.creamyDrink,
+    googlePlaceId: "ChIJ1QwZGvOm3BkRLaOT5PNi2z8",
+    googlePhoto: 3,
     website: "https://www.briocherwanda.com/",
     tags: ["bakery", "pastries", "coffee", "breakfast", "brunch"],
     hours: daily("7 AM – 9 PM"),
@@ -377,6 +409,7 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Pan-African plates celebrating regional flavors in a lively downtown setting.",
     image: IMG.pizzaInterior,
+    googlePlaceId: "ChIJxQLQiTGl3BkRf8Bc_uLN8xM",
     tags: ["pan-african", "local", "downtown"],
     hours: daily("11 AM – 10 PM"),
   },
@@ -391,6 +424,7 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Traditional injera platters, coffee ceremony, and shared Ethiopian dining.",
     image: IMG.cozy,
+    googlePlaceId: "ChIJuctp5fWm3BkR4Aqx-_WkSVY",
     tags: ["ethiopian", "injera", "coffee ceremony", "shared plates"],
     hours: daily("11 AM – 10 PM"),
   },
@@ -405,6 +439,7 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Grilled meats, cold drinks, and a casual after-work crowd near Kigali Heights.",
     image: IMG.beachDrink,
+    googlePlaceId: "ChIJ8UO7Ot2m3BkRa52MSl_N2K8",
     tags: ["grill", "nyama choma", "after work", "casual"],
     hours: daily("12 PM – 11 PM"),
   },
@@ -419,6 +454,7 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Wood-fired pizza, handmade pasta, and Italian wines in a cozy Kiyovu trattoria.",
     image: IMG.pizzaInterior,
+    googlePlaceId: "ChIJNeWGO1am3BkRFNyyraAavew",
     tags: ["italian", "pizza", "pasta", "wine"],
     website: "https://www.soleluna.company/",
     hours: {
@@ -442,6 +478,7 @@ export const places: readonly PlaceSeed[] = [
     description:
       "Relaxed café with board games, snacks, and coffee in the heart of downtown Kigali.",
     image: IMG.modernCafe,
+    googlePlaceId: "ChIJczGcySWk3BkRotC5fcShqFY",
     tags: ["games", "coffee", "casual", "downtown"],
     hours: daily("9 AM – 9 PM"),
   },

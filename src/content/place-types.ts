@@ -98,6 +98,8 @@ export type PlaceSeed = PlaceBase & {
   gallery?: readonly PlaceGalleryImage[];
   videos?: readonly PlaceVideo[];
   googlePlaceId?: string;
+  /** Which photo of the Google listing to show on cards (picked by hand; Google's first is often a menu or a logo). */
+  googlePhoto?: number;
   sameAs?: readonly string[];
   updatedAt?: string;
 };
