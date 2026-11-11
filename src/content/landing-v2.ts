@@ -33,7 +33,6 @@ export const heroV2 = {
   eyebrow: "Free on iPhone & Android",
   title: { before: "Find your next", emphasis: "favourite", after: "place in Kigali." },
   sub: "Real photos and reviews from people you follow. Check in, earn points, and see where your friends go.",
-  desktopHint: "On a computer? Open hano.now/get on your phone.",
 } as const;
 
 export const storyV2 = {
