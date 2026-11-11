@@ -153,7 +153,7 @@ export function FinalV2() {
           <p className={styles.desktopHint}>{heroV2.desktopHint}</p>
         </div>
         <div data-parallax="-50" className={styles.finalPhone}>
-          <Phone src={SCREEN.placeJp} alt="A place page in the Hano app" sizes="(max-width: 720px) 60vw, 300px" />
+          <Phone src={SCREEN.movenpick} alt="Mövenpick Kigali in the Hano app" sizes="(max-width: 720px) 60vw, 300px" />
         </div>
       </Container>
     </section>

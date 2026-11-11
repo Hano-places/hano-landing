@@ -12,6 +12,7 @@ import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { Arrow } from "@/components/ui/arrow";
 import { StoreButtons } from "@/components/ui/store-buttons";
+import { DownloadButton } from "@/components/download/download-modal";
 import { Logo } from "./logo";
 import styles from "./header.module.css";
 
@@ -122,12 +123,7 @@ export function Header({ boxed = false }: { boxed?: boolean } = {}) {
         </nav>
 
         <div className={styles.actions}>
-          <Link
-            href="/download"
-            className={`${styles.desktopCta} ${styles.ctaLink}`}
-          >
-            Download App
-          </Link>
+          <DownloadButton className={`${styles.desktopCta} ${styles.ctaLink}`}>Download App</DownloadButton>
           <button
             type="button"
             className={styles.menuBtn}
@@ -254,7 +250,7 @@ function MenuPanel({
         </nav>
         <div data-foot className={styles.panelFoot}>
           <p>Get the app</p>
-          <StoreButtons />
+          <StoreButtons source="menu" />
         </div>
       </div>
     </div>,

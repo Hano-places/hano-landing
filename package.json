@@ -18,6 +18,7 @@
     "@hugeicons/react": "^1.1.6",
     "@radix-ui/react-use-controllable-state": "^1.2.3",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "2.0.0",
     "@vis.gl/react-google-maps": "^1.8.3",
     "geist": "^1.7.2",
     "gsap": "3.15.0",

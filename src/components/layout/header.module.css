@@ -86,25 +86,32 @@
 
 .ctaLink {
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   padding: 0.625rem 1.25rem;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-green-800);
-  background-color: var(--foundation-primary-primary-100);
-  border: 1px solid var(--foundation-primary-primary-200);
+  font-weight: 600;
+  color: var(--foundation-primary-primary-500);
+  background-color: var(--foundation-green-green-500);
+  border: 1px solid var(--foundation-green-green-500);
   border-radius: var(--radius-pill);
+  box-shadow: 0 6px 18px -8px rgba(0, 24, 20, 0.6);
   transition:
     background-color var(--transition-fast),
-    border-color var(--transition-fast),
-    color var(--transition-fast);
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .ctaLink:hover {
-  color: var(--color-green-800);
-  background-color: var(--foundation-primary-primary-200);
-  border-color: var(--foundation-primary-primary-300);
+  color: var(--foundation-primary-primary-500);
+  background-color: color-mix(in srgb, var(--foundation-green-green-500) 88%, #ffffff);
+  box-shadow: 0 10px 24px -8px rgba(0, 24, 20, 0.7);
+  transform: translateY(-1px);
+}
+
+.ctaLink:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .barHit {

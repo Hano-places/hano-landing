@@ -6,6 +6,7 @@ export const SCREEN = {
   postSalim: "/app/post-salim-burger-planet.webp",
   place: "/app/place-kurry-kingdom.webp",
   placeJp: "/app/place-jp-signature.webp",
+  movenpick: "/app/place-movenpick.webp",
   visitors: "/app/place-kurry-kingdom-visitors.webp",
   map: "/app/map.webp",
   leaderboard: "/app/leaderboard.webp",
