@@ -1,25 +1,27 @@
 /** Copy and screens for the homepage. Screens are real captures from the Hano app (public/app). */
 
 export const SCREEN = {
-  feed: "/app/discover.webp",
-  post: "/app/post-livia-kurry-kingdom.webp",
+  feed: "/app/feed-manzi-2.webp",
+  post: "/app/post-uwase-kurry-kingdom.webp",
   postSalim: "/app/post-salim-burger-planet.webp",
   place: "/app/place-kurry-kingdom.webp",
   placeJp: "/app/place-jp-signature.webp",
   visitors: "/app/place-kurry-kingdom-visitors.webp",
   map: "/app/map.webp",
   leaderboard: "/app/leaderboard.webp",
-  profile: "/app/profile-livia.webp",
+  profile: "/app/profile-patrick.webp",
   search: "/app/search.webp",
   burgerPlanet: "/app/place-burger-planet.webp",
+  planMenu: "/app/plan-menu-pili-pili.webp",
+  plan: "/app/plan-pili-pili.webp",
+  /** Manzi's moment at Pili Pili, one screen per photo. */
   slides: [
-    "/app/feed-livia-1.webp",
-    "/app/feed-livia-2.webp",
-    "/app/feed-livia-3.webp",
-    "/app/feed-livia-4.webp",
-    "/app/feed-livia-5.webp",
-    "/app/feed-livia-6.webp",
-    "/app/feed-livia-7.webp",
+    "/app/feed-manzi-1.webp",
+    "/app/feed-manzi-2.webp",
+    "/app/feed-manzi-3.webp",
+    "/app/feed-manzi-4.webp",
+    "/app/feed-manzi-5.webp",
+    "/app/feed-manzi-6.webp",
   ],
 } as const;
 
@@ -38,7 +40,7 @@ export const storyV2 = {
   sub: "Scroll through what you can do. Everything you see here is the real app.",
 } as const;
 
-/** One step per screen in the "How Hano works" scroll; the first plays a review's photos. */
+/** One step per screen in the "How Hano works" scroll; steps with several screens play through them. */
 export const stepsV2 = [
   {
     id: "real",
@@ -60,6 +62,14 @@ export const stepsV2 = [
     body: "Photos, menu, hours and directions. See who’s been and what they posted.",
     points: ["Menus with prices", "Directions, call and website"],
     screens: [SCREEN.place],
+  },
+  {
+    id: "plan",
+    title: "Plan the night together",
+    body: "Pick dishes from the menu and watch the total against your budget. Invite friends and they add theirs. Here’s a night at Pili Pili.",
+    points: ["Menus with today’s prices", "A budget that keeps count", "Friends add their own dishes"],
+    screens: [SCREEN.planMenu, SCREEN.plan],
+    interval: 2600,
   },
   {
     id: "search",

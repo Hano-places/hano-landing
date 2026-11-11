@@ -14,7 +14,6 @@ import { Arrow } from "@/components/ui/arrow";
 export function StoryV2() {
   const track = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  const [slide, setSlide] = useState(0);
   const n = stepsV2.length;
 
   // Which step is showing, from how far through the section you've scrolled.
@@ -43,15 +42,6 @@ export function StoryV2() {
     };
   }, [n]);
 
-  // The first step plays the review's photos like someone swiping through them.
-  useEffect(() => {
-    if (active !== 0) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-    const t = setInterval(() => setSlide((s) => (s + 1) % stepsV2[0].screens.length), 1800);
-    return () => clearInterval(t);
-  }, [active]);
-
   const jump = (i: number) => {
     const el = track.current;
     if (!el) return;
@@ -59,8 +49,6 @@ export function StoryV2() {
     const top = el.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({ top: top + (travel * (i + 0.5)) / n, behavior: "smooth" });
   };
-
-  const screenFor = (i: number) => (i === 0 ? stepsV2[0].screens[slide] : stepsV2[i].screens[0]);
 
   return (
     <section className={styles.box} aria-labelledby="story-heading">
@@ -77,16 +65,9 @@ export function StoryV2() {
           <div className={styles.media}>
             {stepsV2.map((s, i) => (
               <div key={s.id} className={`${styles.mediaItem} ${i === active ? styles.mediaOn : ""}`} aria-hidden={i !== active}>
-                <Image src={screenFor(i)} alt={`${s.title}: Hano app screen`} width={PHONE.width} height={PHONE.height} sizes="340px" className={styles.phone} />
+                <Screens screens={s.screens} title={s.title} playing={i === active} interval={intervalOf(s)} sizes="340px" dots />
               </div>
             ))}
-            {active === 0 ? (
-              <div className={styles.dots} aria-hidden>
-                {stepsV2[0].screens.map((src, i) => (
-                  <span key={src} className={i === slide ? styles.dotOn : ""} />
-                ))}
-              </div>
-            ) : null}
           </div>
           <ol className={styles.steps}>
             {stepsV2.map((s, i) => {
@@ -127,7 +108,7 @@ export function StoryV2() {
         {stepsV2.map((s, i) => (
           <li key={s.id} className={styles.card}>
             <div className={styles.cardMedia}>
-              <Image src={s.screens[0]} alt={`${s.title}: Hano app screen`} width={PHONE.width} height={PHONE.height} sizes="60vw" className={styles.phone} />
+              <Screens screens={s.screens} title={s.title} interval={intervalOf(s)} sizes="60vw" />
             </div>
             <div className={styles.cardCopy}>
               <span className={styles.num}>{i + 1}</span>
@@ -138,5 +119,75 @@ export function StoryV2() {
         ))}
       </ol>
     </section>
+  );
+}
+
+const intervalOf = (step: (typeof stepsV2)[number]) => ("interval" in step ? step.interval : 1800);
+
+/**
+ * A step's screens. One screen just shows; several cross-fade from one to the next like someone
+ * using the app: while `playing` (the active step on wide screens) or, without it, while on screen.
+ * Reduced motion keeps the first screen.
+ */
+function Screens({
+  screens,
+  title,
+  playing,
+  interval,
+  sizes,
+  dots = false,
+}: {
+  screens: readonly string[];
+  title: string;
+  playing?: boolean;
+  interval: number;
+  sizes: string;
+  dots?: boolean;
+}) {
+  const box = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [shown, setShown] = useState(0);
+  const many = screens.length > 1;
+  const run = many && (playing ?? visible);
+
+  // Without a `playing` flag (the phone cards), play only while the card is on screen.
+  useEffect(() => {
+    if (!many || playing !== undefined || !box.current) return;
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.4 });
+    io.observe(box.current);
+    return () => io.disconnect();
+  }, [many, playing]);
+
+  useEffect(() => {
+    if (!run || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = setInterval(() => setShown((n) => (n + 1) % screens.length), interval);
+    return () => clearInterval(t);
+  }, [run, interval, screens.length]);
+
+  if (!many) {
+    return <Image src={screens[0]} alt={`${title}: Hano app screen`} width={PHONE.width} height={PHONE.height} sizes={sizes} className={styles.phone} />;
+  }
+  return (
+    <div ref={box} className={styles.frames}>
+      {screens.map((src, j) => (
+        <Image
+          key={src}
+          src={src}
+          alt={j === shown ? `${title}: Hano app screen` : ""}
+          aria-hidden={j !== shown}
+          width={PHONE.width}
+          height={PHONE.height}
+          sizes={sizes}
+          className={`${styles.phone} ${styles.frame} ${j === shown ? styles.frameOn : ""}`}
+        />
+      ))}
+      {dots && playing ? (
+        <div className={styles.dots} aria-hidden>
+          {screens.map((src, j) => (
+            <span key={src} className={j === shown ? styles.dotOn : ""} />
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
