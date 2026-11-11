@@ -41,9 +41,6 @@ export function DownloadContent() {
             Find restaurants, cafés and places across Rwanda. Check in, share moments and see where your friends go.
           </p>
           <StoreButtons size="lg" className={styles.stores} source="download_page" />
-          <p className={styles.hint}>
-            On a computer? Open <strong>hano.now/get</strong> on your phone and it takes you to the right store.
-          </p>
         </div>
         <div className={styles.heroArt} aria-hidden>
           <Image src={SCREEN.plan} alt="" width={PHONE.width} height={PHONE.height} sizes="(max-width: 899px) 40vw, 240px" className={`${styles.phone} ${styles.phoneBack}`} />

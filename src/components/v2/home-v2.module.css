@@ -144,17 +144,6 @@
   color: var(--foundation-green-green-100);
 }
 
-.desktopHint {
-  display: none;
-  margin: 1rem 0 0;
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-}
-
-.final .desktopHint {
-  color: var(--foundation-green-green-200);
-}
-
 .heroLinks {
   margin: 1.25rem 0 0;
   font-size: var(--text-sm);
@@ -449,10 +438,6 @@
   .heroPhones {
     inset: 3.5rem 0 0;
     max-width: 32rem;
-  }
-
-  .desktopHint {
-    display: block;
   }
 
   .feature {

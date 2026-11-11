@@ -71,9 +71,6 @@ function Panel() {
         </h2>
         <p className={styles.sub}>Find places, check in, and plan nights out with friends.</p>
         <StoreButtons size="lg" className={styles.stores} source="download_modal" />
-        <p className={styles.hint}>
-          On a computer? Open <strong>hano.now/get</strong> on your phone.
-        </p>
         <Link
           href="/download"
           className={styles.more}

@@ -103,15 +103,7 @@ div.modal {
   margin-top: 0.75rem;
 }
 
-.hint {
-  margin: 0.5rem 0 0;
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-}
 
-.hint strong {
-  color: var(--color-heading);
-}
 
 .more {
   font-size: var(--text-sm);

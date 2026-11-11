@@ -62,7 +62,6 @@ export function HeroV2() {
           </h1>
           <p className={styles.heroSub}>{heroV2.sub}</p>
           <StoreButtons size="lg" />
-          <p className={styles.desktopHint}>{heroV2.desktopHint}</p>
           <p className={styles.heroLinks}>
             <Link href="/places">Explore places</Link>
             <span aria-hidden> · </span>
@@ -150,7 +149,6 @@ export function FinalV2() {
           </h2>
           <p className={styles.heroSub}>{finalV2.sub}</p>
           <StoreButtons size="lg" />
-          <p className={styles.desktopHint}>{heroV2.desktopHint}</p>
         </div>
         <div data-parallax="-50" className={styles.finalPhone}>
           <Phone src={SCREEN.movenpick} alt="Mövenpick Kigali in the Hano app" sizes="(max-width: 720px) 60vw, 300px" />
