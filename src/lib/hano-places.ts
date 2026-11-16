@@ -153,3 +153,65 @@ export function openStatus(hours: Place["hours"], now = new Date()) {
 }
 
 export const money = (rwf: number) => `RWF ${rwf.toLocaleString("en-US")}`;
+
+/* ─── Moments: visitors' photo posts ───────────────────────────────── */
+
+type ApiPost = {
+  id: string;
+  type: string;
+  authorId: string;
+  placeId?: string;
+  caption?: string;
+  stars?: number;
+  media: { id: string; uri: string; width?: number; height?: number }[];
+  createdAt: string;
+  likeCount: number;
+  commentCount: number;
+};
+type ApiUser = { id: string; username: string; displayName: string; avatar?: string; avatarHue?: number };
+
+/** One visitor post, ready for the web: photos, who, words, counts. */
+export type Moment = {
+  id: string;
+  photos: { src: string; width?: number; height?: number }[];
+  author?: { name: string; username?: string; avatar?: string };
+  caption?: string;
+  stars?: number;
+  at?: string;
+  likes?: number;
+  comments?: number;
+};
+
+const toMoments = (posts: ApiPost[], users: ApiUser[]): Moment[] => {
+  const byId = new Map(users.map((u) => [u.id, u]));
+  return posts
+    .filter((p) => p.media.length)
+    .map((p) => {
+      const u = byId.get(p.authorId);
+      return {
+        id: p.id,
+        photos: p.media.map((m) => ({ src: m.uri, width: m.width, height: m.height })),
+        author: u ? { name: u.displayName || u.username || "Hano explorer", username: u.username || undefined, avatar: u.avatar } : undefined,
+        caption: p.caption,
+        stars: p.stars,
+        at: p.createdAt,
+        likes: p.likeCount,
+        comments: p.commentCount,
+      };
+    });
+};
+
+/** Photos people shared from this place, newest first. */
+export async function getPlaceMoments(place: Pick<Place, "id">): Promise<Moment[]> {
+  const res = await get<{ posts: ApiPost[]; users: ApiUser[] }>(`/places/${place.id}/activity`);
+  return toMoments(res?.posts ?? [], res?.users ?? []);
+}
+
+/** One public post (private or removed ones come back empty), with its place's slug. */
+export async function getPostMoment(id: string): Promise<{ moment: Moment; placeId?: string } | null> {
+  const res = await get<{ posts: ApiPost[]; users: ApiUser[] }>(`/posts/${encodeURIComponent(id)}`);
+  const post = res?.posts?.[0];
+  if (!post) return null;
+  const [moment] = toMoments([post], res?.users ?? []);
+  return moment ? { moment, placeId: post.placeId } : null;
+}

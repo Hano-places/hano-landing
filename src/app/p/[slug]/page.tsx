@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PlacePage } from "@/components/place/place-page";
 import { SharedItemPage } from "@/components/share/shared-item-page";
-import { getPlace, getPlacePromos, getPlaceReviews } from "@/lib/hano-places";
+import { getPlace, getPlaceMoments, getPlacePromos, getPlaceReviews } from "@/lib/hano-places";
 import { getSharePreview, shareMetadata } from "@/lib/hano-share";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -21,6 +21,6 @@ export default async function SharedPlacePage({ params }: Props) {
   const { slug } = await params;
   const place = await getPlace(slug);
   if (!place) return <SharedItemPage preview={await getSharePreview("place", slug)} path={`/p/${slug}`} />;
-  const [promos, rating] = await Promise.all([getPlacePromos(place), getPlaceReviews(place)]);
-  return <PlacePage place={place} promos={promos} rating={rating} />;
+  const [promos, rating, moments] = await Promise.all([getPlacePromos(place), getPlaceReviews(place), getPlaceMoments(place)]);
+  return <PlacePage place={place} promos={promos} rating={rating} moments={moments} />;
 }

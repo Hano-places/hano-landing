@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element -- photos are remote (Hano's CDN), already sized */
 import Link from "next/link";
 import { SeoPageShell } from "@/components/seo/seo-page-shell";
-import { googleCover, money, openStatus, WEEK, type Place, type Promo, type Review } from "@/lib/hano-places";
+import { MomentsStrip, PhotosButton } from "@/components/moments/moments";
+import { googleCover, money, openStatus, WEEK, type Moment, type Place, type Promo, type Review } from "@/lib/hano-places";
 
-import { AutoOpenApp, OpenInApp } from "./open-in-app";
+import { OpenInApp } from "./open-in-app";
 import styles from "./place-page.module.css";
 import { Arrow } from "@/components/ui/arrow";
 
 const DAY_LABEL: Record<string, string> = { monday: "Mon", tuesday: "Tue", wednesday: "Wed", thursday: "Thu", friday: "Fri", saturday: "Sat", sunday: "Sun" };
-/** On the web a menu shows a taste; the whole menu (and planning an order) is in the app. */
-const ITEMS_PER_SECTION = 4;
 
 const until = (iso?: string) =>
   iso ? `Until ${new Date(iso).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "Africa/Kigali" })}` : "Running now";
@@ -17,16 +16,15 @@ const until = (iso?: string) =>
 const stars = (n: number) => "★★★★★".slice(0, Math.round(n)) + "☆☆☆☆☆".slice(0, 5 - Math.round(n));
 
 /**
- * A place's page on the web: everything people need to decide to go (photos, offers, menu,
- * hours, how to get there, what others say), with a clear way into the app for the rest
- * (the full menu, checking in, saving, points).
+ * A place's page on the web: everything people need to decide to go (photos, visitors' moments,
+ * offers, the whole menu, hours, how to get there, what others say), all readable without the
+ * app. The app is offered for what only it does (checking in, saving, liking, planning an order).
  */
-export function PlacePage({ place, promos, rating }: { place: Place; promos: Promo[]; rating: { average: number; count: number; reviews: Review[] } }) {
+export function PlacePage({ place, promos, rating, moments }: { place: Place; promos: Promo[]; rating: { average: number; count: number; reviews: Review[] }; moments: Moment[] }) {
   const hoursStatus = openStatus(place.hours);
   const status = place.closed ? { ...hoursStatus, open: false, label: "Permanently closed" } : hoursStatus;
   const sections = (place.menu?.sections ?? []).filter((s) => s.items.length);
   const menuCount = sections.reduce((n, s) => n + s.items.length, 0);
-  const hiddenItems = sections.reduce((n, s) => n + Math.max(0, s.items.length - ITEMS_PER_SECTION), 0);
   const c = place.contacts ?? {};
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${place.location.latitude},${place.location.longitude}`;
   // Places without photos of their own show Google's (credited below).
@@ -43,7 +41,6 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
 
   return (
     <SeoPageShell backHref="/places" backLabel="← Places on Hano" showFab={false}>
-      <AutoOpenApp path={`p/${place.slug}`} />
       <article className={styles.page}>
         {/* Photos */}
         <div className={`${styles.gallery} ${more.length ? "" : styles.single} ${cover ? "" : styles.noPhotos}`}>
@@ -51,7 +48,11 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
           {more.slice(0, 2).map((src, i) => (
             <img key={src} className={styles.thumb} src={src} alt={`${place.name} photo ${i + 2}`} />
           ))}
-          {place.photos.length > 3 ? <span className={styles.morePhotos}>+{place.photos.length - 3} photos in the app</span> : null}
+          {place.photos.length > 3 ? (
+            <PhotosButton photos={place.photos} placeName={place.name} appPath={`p/${place.slug}`} className={styles.morePhotos}>
+              See all {place.photos.length} photos
+            </PhotosButton>
+          ) : null}
         </div>
         {fromGoogle ? <p className={styles.credits}>Photo: Google</p> : null}
         {credits.length ? (
@@ -97,21 +98,8 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
           </div>
         </header>
 
-        {/* The app, up front */}
-        <section className={styles.appCard}>
-          <div>
-            <p className={styles.appTitle}>Get the full {place.name} experience in Hano</p>
-            <p className={styles.appBody}>See the whole menu and plan your order within budget, check in to earn points, save it for later and get its offers first.</p>
-          </div>
-          <div className={styles.appActions}>
-            <OpenInApp slug={place.slug} className={styles.primary}>
-              Open in Hano
-            </OpenInApp>
-            <Link className={styles.secondary} href="/download">
-              Get the app
-            </Link>
-          </div>
-        </section>
+        {/* Visitors' moments */}
+        <MomentsStrip moments={moments} placeName={place.name} appPath={`p/${place.slug}`} />
 
         {/* Offers */}
         {promos.length ? (
@@ -146,7 +134,7 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
                   {s.name}
                 </h3>
                 <ul className={styles.items}>
-                  {s.items.slice(0, ITEMS_PER_SECTION).map((it) => (
+                  {s.items.map((it) => (
                     <li key={it.id} className={`${styles.item} ${it.available ? "" : styles.unavailable}`}>
                       <div className={styles.itemText}>
                         <p className={styles.itemName}>{it.name}</p>
@@ -162,11 +150,9 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
                 </ul>
               </div>
             ))}
-            {hiddenItems ? (
-              <OpenInApp slug={place.slug} className={styles.inlineCta}>
-                See all {menuCount} items and plan your order in Hano <Arrow />
-              </OpenInApp>
-            ) : null}
+            <OpenInApp slug={place.slug} className={styles.inlineCta}>
+              Plan your order within budget in Hano <Arrow />
+            </OpenInApp>
           </section>
         ) : null}
 
@@ -268,8 +254,8 @@ export function PlacePage({ place, promos, rating }: { place: Place; promos: Pro
             <OpenInApp slug={place.slug} className={styles.primary}>
               Open in Hano
             </OpenInApp>
-            <Link className={styles.secondary} href="/download">
-              Get the app
+            <Link className={styles.secondary} href="/places">
+              Explore more places
             </Link>
           </div>
         </section>

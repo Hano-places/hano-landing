@@ -8,6 +8,7 @@ import { BRAND } from "@/content/images";
 import { AnalyticsScripts } from "@/components/seo/analytics";
 import { buildPageMetadata } from "@/lib/seo";
 import { PageMotion } from "@/components/motion/page-motion";
+import { RefCapture } from "@/components/referral/ref-capture";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -72,6 +73,7 @@ export default function RootLayout({
       <body className={instrumentSans.className}>
         {children}
         <PageMotion />
+        <RefCapture />
         <Analytics />
         <SpeedInsights />
         <AnalyticsScripts />

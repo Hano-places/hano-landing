@@ -5,8 +5,12 @@ import {
   AppStoreDownloadBadge,
   PlayStoreDownloadBadge,
 } from "@/components/ui/store-logos";
+import { useSyncExternalStore } from "react";
+import { currentRef, playUrl } from "@/lib/referral";
 import { track } from "@/lib/track";
 import styles from "./store-buttons.module.css";
+
+const noop = () => () => {};
 
 type StoreButtonsProps = {
   className?: string;
@@ -18,7 +22,9 @@ type StoreButtonsProps = {
 
 /** The official App Store and Google Play buttons, linking to Hano's store listings. */
 export function StoreButtons({ className, size = "md", tabIndex, source = "page" }: StoreButtonsProps) {
-  const click = (store: "app_store" | "google_play") => track("Store Click", { store, source, page: window.location.pathname });
+  // A referral code from this visit or a recent one (the server renders without it).
+  const ref = useSyncExternalStore(noop, currentRef, () => undefined);
+  const click = (store: "app_store" | "google_play") => track("Store Click", { store, source, page: window.location.pathname, ref: ref ?? null });
   return (
     <div
       className={`${styles.row} ${size === "lg" ? styles.lg : ""} ${className ?? ""}`}
@@ -37,7 +43,7 @@ export function StoreButtons({ className, size = "md", tabIndex, source = "page"
         <AppStoreDownloadBadge className={styles.badgeContent} />
       </a>
       <a
-        href={site.playStoreUrl}
+        href={playUrl(ref)}
         target="_blank"
         rel="noopener noreferrer"
         className={`${styles.storeBtn} ${styles.storeBtnOfficial}`}
