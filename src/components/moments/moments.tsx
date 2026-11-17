@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { OpenInApp } from "@/components/place/open-in-app";
+import { AppIcon, Stars } from "@/components/ui/app-icon";
 import { StoreButtons } from "@/components/ui/store-buttons";
 import type { Moment } from "@/lib/hano-places";
 import { track } from "@/lib/track";
@@ -55,11 +56,19 @@ export function MomentsStrip({ moments, placeName, appPath, title = "Moments fro
         {moments.slice(0, TILES).map((m, i) => (
           <button key={m.id} type="button" className={styles.tile} onClick={() => open(i)} aria-label={`Open ${m.author?.name ?? "a visitor"}’s photo${m.caption ? `: ${m.caption}` : ""}`}>
             <img src={m.photos[0].src} alt="" loading={i < 4 ? "eager" : "lazy"} className={styles.tileImg} />
-            {m.photos.length > 1 ? <span className={styles.tileMulti} aria-hidden>{m.photos.length}</span> : null}
+            {m.photos.length > 1 ? (
+              <span className={styles.tileMulti} aria-hidden>
+                <AppIcon name="photo" size={13} />
+                {m.photos.length}
+              </span>
+            ) : null}
             <span className={styles.tileFoot}>
               {m.author?.avatar ? <img src={m.author.avatar} alt="" className={styles.tileAvatar} /> : <span className={`${styles.tileAvatar} ${styles.avatarBlank}`}>{m.author?.name[0] ?? "H"}</span>}
               <span className={styles.tileName}>{m.author?.name.split(" ")[0] ?? "Visitor"}</span>
-              <span className={styles.tileLikes}>♥ {count(m.likes)}</span>
+              <span className={styles.tileLikes}>
+                <AppIcon name="like" size={14} filled />
+                {count(m.likes)}
+              </span>
             </span>
           </button>
         ))}
@@ -177,7 +186,7 @@ export function MomentsViewer({ moments, start, placeName, appPath, onClose, asP
           </Link>
         ) : (
           <button type="button" className={styles.round} onClick={close} aria-label="Close">
-            ✕
+            <AppIcon name="close" size={20} />
           </button>
         )}
         <p className={styles.topTitle}>
@@ -209,7 +218,7 @@ export function MomentsViewer({ moments, start, placeName, appPath, onClose, asP
                 <p className={styles.cardBody}>Follow the people behind these moments, save {placeName} for later and check in to earn points.</p>
                 <StoreButtons className={styles.cardStores} source="moments_card" />
                 <button type="button" className={styles.cardLater} onClick={() => go(1)}>
-                  Keep watching ↓
+                  Keep watching <AppIcon name="chevronDown" size={18} />
                 </button>
               </div>
             ) : (
@@ -234,10 +243,10 @@ export function MomentsViewer({ moments, start, placeName, appPath, onClose, asP
 
       <div className={styles.nav} aria-hidden={false}>
         <button type="button" className={styles.round} onClick={() => go(-1)} disabled={active === 0} aria-label="Previous">
-          ↑
+          <AppIcon name="chevronUp" size={22} />
         </button>
         <button type="button" className={styles.round} onClick={() => go(1)} disabled={active === slides.length - 1} aria-label="Next">
-          ↓
+          <AppIcon name="chevronDown" size={22} />
         </button>
       </div>
       {toast ? <p className={styles.toast}>{toast}</p> : null}
@@ -282,15 +291,21 @@ function MomentSlide({ moment, near, onLike, onComment, onShare }: { moment: Mom
 
       <div className={styles.rail}>
         <button type="button" className={styles.railBtn} onClick={onLike} aria-label={`Like (${moment.likes ?? 0})`}>
-          <span className={styles.railIcon}>♥</span>
+          <span className={styles.railIcon}>
+            <AppIcon name="like" size={30} />
+          </span>
           {count(moment.likes)}
         </button>
         <button type="button" className={styles.railBtn} onClick={onComment} aria-label={`Comments (${moment.comments ?? 0})`}>
-          <span className={styles.railIcon}>💬</span>
+          <span className={styles.railIcon}>
+            <AppIcon name="comment" size={30} />
+          </span>
           {count(moment.comments)}
         </button>
         <button type="button" className={styles.railBtn} onClick={onShare} aria-label="Share">
-          <span className={styles.railIcon}>↗</span>
+          <span className={styles.railIcon}>
+            <AppIcon name="share" size={28} />
+          </span>
           Share
         </button>
       </div>
@@ -307,7 +322,7 @@ function MomentSlide({ moment, near, onLike, onComment, onShare }: { moment: Mom
           )}
           <span className={styles.when}>{ago(moment.at)}</span>
         </div>
-        {moment.stars ? <p className={styles.stars} aria-label={`${moment.stars} out of 5`}>{"★".repeat(moment.stars)}{"☆".repeat(5 - moment.stars)}</p> : null}
+        {moment.stars ? <Stars value={moment.stars} size={15} className={styles.stars} /> : null}
         {moment.caption ? (
           <p className={`${styles.caption} ${more ? styles.captionOpen : ""}`} onClick={() => setMore((v) => !v)}>
             {moment.caption}

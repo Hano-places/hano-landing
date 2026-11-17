@@ -106,7 +106,7 @@
 .open { background: #e9fbd0; border-color: #c8ff62; color: var(--volt-ink); }
 .closed { background: #fdeceb; border-color: #f6cfcb; color: #a8322a; }
 .offerChip { background: var(--forest); color: var(--volt); border-color: var(--forest); }
-.star { color: #e3a008; }
+.star { color: #e3a008; vertical-align: -2px; }
 
 /* App card */
 .appCard, .finalCta {
@@ -240,7 +240,7 @@
 .reviews { display: grid; gap: 12px; }
 .review { margin: 0; padding: 16px; border-radius: 18px; background: var(--bone); border: 1px solid var(--line); }
 .review p { margin: 0; line-height: 1.5; }
-.reviewStars { color: #e3a008; letter-spacing: 2px; margin-bottom: 6px !important; }
+.reviewStars { display: flex; color: #e3a008; margin-bottom: 6px; }
 
 /* Visit */
 .visit { grid-template-columns: 1fr; gap: 28px; }

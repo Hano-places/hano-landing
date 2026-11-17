@@ -7,13 +7,13 @@ import { googleCover, money, openStatus, WEEK, type Moment, type Place, type Pro
 import { OpenInApp } from "./open-in-app";
 import styles from "./place-page.module.css";
 import { Arrow } from "@/components/ui/arrow";
+import { AppIcon, Stars } from "@/components/ui/app-icon";
 
 const DAY_LABEL: Record<string, string> = { monday: "Mon", tuesday: "Tue", wednesday: "Wed", thursday: "Thu", friday: "Fri", saturday: "Sat", sunday: "Sun" };
 
 const until = (iso?: string) =>
   iso ? `Until ${new Date(iso).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "Africa/Kigali" })}` : "Running now";
 
-const stars = (n: number) => "★★★★★".slice(0, Math.round(n)) + "☆☆☆☆☆".slice(0, 5 - Math.round(n));
 
 /**
  * A place's page on the web: everything people need to decide to go (photos, visitors' moments,
@@ -134,7 +134,7 @@ export function PlacePage({
             {status.label ? <span className={`${styles.chip} ${status.open ? styles.open : status.open === false ? styles.closed : ""}`}>{status.label}</span> : null}
             {rating.count ? (
               <span className={styles.chip}>
-                <span className={styles.star}>★</span> {rating.average.toFixed(1)} · {rating.count} {rating.count === 1 ? "rating" : "ratings"}
+                <AppIcon name="star" size={15} filled className={styles.star} /> {rating.average.toFixed(1)} · {rating.count} {rating.count === 1 ? "rating" : "ratings"}
               </span>
             ) : null}
             {promos.length ? <span className={`${styles.chip} ${styles.offerChip}`}>{promos.length === 1 ? "1 offer running" : `${promos.length} offers running`}</span> : null}
@@ -207,9 +207,7 @@ export function PlacePage({
             <div className={styles.reviews}>
               {rating.reviews.map((r) => (
                 <blockquote key={r.id} className={styles.review}>
-                  <p className={styles.reviewStars} aria-label={`${r.stars} out of 5`}>
-                    {stars(r.stars)}
-                  </p>
+                  <Stars value={r.stars} size={16} className={styles.reviewStars} />
                   <p>{r.text}</p>
                   <footer className={styles.small}>{r.author}</footer>
                 </blockquote>
