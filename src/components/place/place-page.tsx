@@ -20,11 +20,30 @@ const stars = (n: number) => "★★★★★".slice(0, Math.round(n)) + "☆☆
  * offers, the whole menu, hours, how to get there, what others say), all readable without the
  * app. The app is offered for what only it does (checking in, saving, liking, planning an order).
  */
-export function PlacePage({ place, promos, rating, moments }: { place: Place; promos: Promo[]; rating: { average: number; count: number; reviews: Review[] }; moments: Moment[] }) {
+const MENU_PREVIEW = 6;
+const distance = (m: number) => (m < 950 ? `${Math.max(50, Math.round(m / 50) * 50)} m` : `${(m / 1000).toFixed(1)} km`);
+
+export function PlacePage({
+  place,
+  promos,
+  rating,
+  moments,
+  nearby = [],
+}: {
+  place: Place;
+  promos: Promo[];
+  rating: { average: number; count: number; reviews: Review[] };
+  moments: Moment[];
+  nearby?: { place: Place; meters: number }[];
+}) {
   const hoursStatus = openStatus(place.hours);
   const status = place.closed ? { ...hoursStatus, open: false, label: "Permanently closed" } : hoursStatus;
   const sections = (place.menu?.sections ?? []).filter((s) => s.items.length);
   const menuCount = sections.reduce((n, s) => n + s.items.length, 0);
+  // A long menu shows its first sections (about six dishes); the rest opens in place, still in the page for search engines.
+  let shown = 0;
+  const firstSections = menuCount > MENU_PREVIEW + 3 ? sections.filter((s) => (shown < MENU_PREVIEW ? ((shown += s.items.length), true) : false)) : sections;
+  const restSections = sections.slice(firstSections.length);
   const c = place.contacts ?? {};
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${place.location.latitude},${place.location.longitude}`;
   // Places without photos of their own show Google's (credited below).
@@ -38,6 +57,30 @@ export function PlacePage({ place, promos, rating, moments }: { place: Place; pr
   const itemPhoto = new Map(sections.flatMap((sec) => sec.items).filter((it) => it.photo).map((it) => [it.id, it.photo as string]));
   const offerPhoto = (p: Promo) => p.photo ?? p.itemIds?.map((id) => itemPhoto.get(id)).find(Boolean);
   const meta = [place.subcategory || place.category, place.neighborhood, place.priceLevel ? "$".repeat(place.priceLevel) : null].filter(Boolean).join(" · ");
+
+  const menuSection = (s: (typeof sections)[number]) => (
+    <div key={s.id} className={styles.menuSection}>
+      <h3 className={styles.h3}>
+        {s.emoji ? <span aria-hidden>{s.emoji} </span> : null}
+        {s.name}
+      </h3>
+      <ul className={styles.items}>
+        {s.items.map((it) => (
+          <li key={it.id} className={`${styles.item} ${it.available ? "" : styles.unavailable}`}>
+            <div className={styles.itemText}>
+              <p className={styles.itemName}>{it.name}</p>
+              {it.description ? <p className={styles.muted}>{it.description}</p> : null}
+              <p className={styles.price}>
+                {it.price ? `${it.priceFrom ? "From " : ""}${money(it.price)}` : ""}
+                {it.available ? "" : " · Not available today"}
+              </p>
+            </div>
+            {it.photo ? <img className={styles.itemPhoto} src={it.photo} alt="" /> : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
     <SeoPageShell backHref="/places" backLabel="← Places on Hano" showFab={false}>
@@ -127,29 +170,13 @@ export function PlacePage({ place, promos, rating, moments }: { place: Place; pr
             <h2 className={styles.h2}>
               Menu <span className={styles.count}>{menuCount} items</span>
             </h2>
-            {sections.map((s) => (
-              <div key={s.id} className={styles.menuSection}>
-                <h3 className={styles.h3}>
-                  {s.emoji ? <span aria-hidden>{s.emoji} </span> : null}
-                  {s.name}
-                </h3>
-                <ul className={styles.items}>
-                  {s.items.map((it) => (
-                    <li key={it.id} className={`${styles.item} ${it.available ? "" : styles.unavailable}`}>
-                      <div className={styles.itemText}>
-                        <p className={styles.itemName}>{it.name}</p>
-                        {it.description ? <p className={styles.muted}>{it.description}</p> : null}
-                        <p className={styles.price}>
-                          {it.price ? `${it.priceFrom ? "From " : ""}${money(it.price)}` : ""}
-                          {it.available ? "" : " · Not available today"}
-                        </p>
-                      </div>
-                      {it.photo ? <img className={styles.itemPhoto} src={it.photo} alt="" /> : null}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {firstSections.map(menuSection)}
+            {restSections.length ? (
+              <details className={styles.moreMenu}>
+                <summary className={styles.moreMenuButton}>See the full menu ({menuCount} items)</summary>
+                {restSections.map(menuSection)}
+              </details>
+            ) : null}
             <OpenInApp slug={place.slug} className={styles.inlineCta}>
               Plan your order within budget in Hano <Arrow />
             </OpenInApp>
@@ -245,6 +272,27 @@ export function PlacePage({ place, promos, rating, moments }: { place: Place; pr
             </div>
           </div>
         </section>
+
+        {/* Where to go next, without leaving the web */}
+        {nearby.length ? (
+          <section className={styles.section}>
+            <h2 className={styles.h2}>Nearby</h2>
+            <ul className={styles.nearby}>
+              {nearby.map(({ place: p, meters }) => {
+                const photo = p.photos[0] ?? googleCover(p);
+                return (
+                  <li key={p.id}>
+                    <Link href={`/p/${p.slug}`} className={styles.nearbyCard}>
+                      {photo ? <img className={styles.nearbyPhoto} src={photo} alt="" loading="lazy" /> : <span className={`${styles.nearbyPhoto} ${styles.blank}`} />}
+                      <span className={styles.nearbyName}>{p.name}</span>
+                      <span className={styles.nearbyMeta}>{[p.subcategory || p.category, distance(meters)].filter(Boolean).join(" · ")}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ) : null}
 
         {/* Closing nudge */}
         <section className={styles.finalCta}>

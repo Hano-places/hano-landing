@@ -89,6 +89,23 @@ export async function listPlaces(): Promise<Place[]> {
   return res?.places ?? [];
 }
 
+const metersBetween = (a: Place["location"], b: Place["location"]) => {
+  const rad = Math.PI / 180;
+  const h = Math.sin(((b.latitude - a.latitude) * rad) / 2) ** 2 + Math.cos(a.latitude * rad) * Math.cos(b.latitude * rad) * Math.sin(((b.longitude - a.longitude) * rad) / 2) ** 2;
+  return 2 * 6_371_000 * Math.asin(Math.sqrt(h));
+};
+
+/** Places to go next from a place page: the closest ones with a photo (same kind of place first), within 5 km. */
+export async function getNearbyPlaces(place: Place, count = 6): Promise<{ place: Place; meters: number }[]> {
+  const all = await listPlaces();
+  return all
+    .filter((p) => p.id !== place.id && !p.closed && p.location && (p.photos.length || p.googlePlaceId))
+    .map((p) => ({ place: p, meters: metersBetween(place.location, p.location) }))
+    .filter((n) => n.meters <= 5_000)
+    .sort((a, b) => a.meters * (a.place.category === place.category ? 0.6 : 1) - b.meters * (b.place.category === place.category ? 0.6 : 1))
+    .slice(0, count);
+}
+
 /** Offers running now at this place (scheduled and ended ones are left out). */
 export async function getPlacePromos(place: Place): Promise<Promo[]> {
   const res = await get<Promo[] | { promos: Promo[] }>(`/promos?city=${encodeURIComponent(place.city.toLowerCase())}`);

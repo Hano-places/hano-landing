@@ -182,6 +182,47 @@
 .itemName { margin: 0; font-weight: 600; }
 .price { margin: 6px 0 0; font-weight: 700; font-size: 0.92rem; }
 .itemPhoto { width: 84px; height: 84px; border-radius: 14px; object-fit: cover; flex: none; }
+.moreMenu { display: grid; gap: 8px; }
+.moreMenu[open] > summary { display: none; }
+.moreMenuButton {
+  justify-self: start;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.moreMenuButton::-webkit-details-marker { display: none; }
+.moreMenuButton:focus-visible { outline: 3px solid var(--volt); outline-offset: 2px; }
+
+/* Nearby */
+.nearby {
+  list-style: none;
+  margin: 0 -16px;
+  padding: 0 16px 4px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(150px, 42%);
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.nearby::-webkit-scrollbar { display: none; }
+.nearby > li { scroll-snap-align: start; min-width: 0; }
+@media (min-width: 720px) {
+  .nearby { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 0; padding: 0; }
+}
+.nearbyCard { display: grid; gap: 4px; color: inherit; text-decoration: none; }
+.nearbyPhoto { width: 100%; aspect-ratio: 4 / 3; border-radius: 16px; object-fit: cover; background: var(--bone); display: block; transition: transform 160ms ease; }
+.nearbyCard:hover .nearbyPhoto { transform: translateY(-2px); }
+.nearbyCard:focus-visible { outline: 3px solid var(--volt); outline-offset: 3px; border-radius: 16px; }
+.nearbyName { margin-top: 4px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nearbyMeta { color: var(--muted); font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .nearbyPhoto { transition: none; } }
+
 .inlineCta {
   justify-self: start;
   font-weight: 700;
