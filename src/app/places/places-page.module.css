@@ -1,27 +1,39 @@
+/* Boxes like the homepage's: the intro, the directory, then every place. */
+.hero,
+.directorySection,
+.allSection {
+  margin: 0 var(--box-gutter);
+  border-radius: var(--box-radius);
+  background: #fbfcf6;
+}
+
 .hero {
-  padding: calc(var(--header-height) + 1rem) 0 2rem;
+  padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(2rem, 4vw, 3rem);
   background:
     radial-gradient(
       circle at top right,
       color-mix(in srgb, var(--foundation-primary-primary-100) 80%, transparent),
       transparent 55%
     ),
-    linear-gradient(
-      180deg,
-      var(--color-surface-green) 0%,
-      var(--color-bg) 100%
-    );
+    #fbfcf6;
 }
 
 .backLink {
   display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   margin-bottom: 1.25rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: #eef0e8;
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  transition: color var(--transition-fast);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .backLink:hover {
+  background: var(--foundation-primary-primary-100);
   color: var(--color-green-700);
 }
 
@@ -59,11 +71,12 @@
 }
 
 .directorySection {
-  padding: 0 0 var(--section-padding-y);
+  padding: clamp(1.25rem, 3vw, 2rem) 0 clamp(2rem, 4vw, 3rem);
 }
 
 .allSection {
-  padding: 1rem 0 4rem;
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
+  background: #fff;
 }
 
 .allTitle {

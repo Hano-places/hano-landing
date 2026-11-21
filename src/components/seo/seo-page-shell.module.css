@@ -1,15 +1,31 @@
+/* The page in one light rounded box, inset like the homepage's sections. */
+.box {
+  margin: 0 var(--box-gutter);
+  border-radius: var(--box-radius);
+  background: #fbfcf6;
+  min-height: 60vh;
+}
+
 .container {
-  padding-top: calc(var(--header-height) + 0.75rem);
+  padding-top: clamp(1.5rem, 4vw, 3rem);
   padding-bottom: var(--section-padding-y);
 }
 
 .backLink {
   display: inline-flex;
-  margin: 0 0 0.875rem;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 1.25rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: #eef0e8;
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .backLink:hover {
+  background: var(--foundation-primary-primary-100, #e8ffc2);
   color: var(--color-green-700);
 }

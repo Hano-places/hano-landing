@@ -1,10 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { MainWrapper } from "@/components/layout/main-wrapper";
-import { AppDownloadFab } from "@/components/layout/app-download-fab";
+import { SitePage } from "@/components/layout/site-page";
 import { PlacesDirectory } from "@/components/places/places-directory";
 import { Container } from "@/components/ui/container";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -61,8 +58,7 @@ export default async function PlacesPage() {
           buildItemListSchema(places, placesPage.headline, "/places"),
         ]}
       />
-      <Header />
-      <MainWrapper>
+      <SitePage showFab>
         <section className={styles.hero}>
           <Container>
             <Link href="/" className={styles.backLink}>
@@ -118,9 +114,7 @@ export default async function PlacesPage() {
             </Container>
           </section>
         ) : null}
-      </MainWrapper>
-      <Footer />
-      <AppDownloadFab />
+      </SitePage>
     </>
   );
 }

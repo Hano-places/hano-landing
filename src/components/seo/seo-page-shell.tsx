@@ -1,9 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { MainWrapper } from "@/components/layout/main-wrapper";
-import { AppDownloadFab } from "@/components/layout/app-download-fab";
+import { SitePage } from "@/components/layout/site-page";
 import { Container } from "@/components/ui/container";
 import styles from "./seo-page-shell.module.css";
 import { Arrow } from "@/components/ui/arrow";
@@ -16,6 +13,7 @@ type SeoPageShellProps = {
   showFab?: boolean;
 };
 
+/** A content page in the homepage's frame: the boxed bar, then the page in one light rounded box. */
 export function SeoPageShell({
   children,
   backHref = "/places",
@@ -23,18 +21,15 @@ export function SeoPageShell({
   showFab = true,
 }: SeoPageShellProps) {
   return (
-    <>
-      <Header />
-      <MainWrapper>
+    <SitePage showFab={showFab}>
+      <div className={styles.box}>
         <Container className={styles.container}>
           <Link href={backHref} className={styles.backLink}>
             <Arrow dir="left" /> {backLabel.replace(/^←\s*/, "")}
           </Link>
           {children}
         </Container>
-        <Footer />
-      </MainWrapper>
-      {showFab ? <AppDownloadFab /> : null}
-    </>
+      </div>
+    </SitePage>
   );
 }
