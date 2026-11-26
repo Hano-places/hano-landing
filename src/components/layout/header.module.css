@@ -96,17 +96,14 @@
   background-color: var(--foundation-green-green-500);
   border: 1px solid var(--foundation-green-green-500);
   border-radius: var(--radius-pill);
-  box-shadow: 0 6px 18px -8px rgba(0, 24, 20, 0.6);
   transition:
     background-color var(--transition-fast),
-    box-shadow var(--transition-fast),
     transform var(--transition-fast);
 }
 
 .ctaLink:hover {
   color: var(--foundation-primary-primary-500);
   background-color: color-mix(in srgb, var(--foundation-green-green-500) 88%, #ffffff);
-  box-shadow: 0 10px 24px -8px rgba(0, 24, 20, 0.7);
   transform: translateY(-1px);
 }
 
