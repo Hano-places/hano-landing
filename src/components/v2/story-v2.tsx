@@ -13,6 +13,47 @@ import styles from "./story-v2.module.css";
  * phones the cards simply follow each other.
  */
 export function StoryV2() {
+  const list = useRef<HTMLOListElement>(null);
+
+  // How far each card has gone back into the stack: 0 while it's in front, +1 for every card that
+  // has slid over it (fractions while one is sliding). Cards further back shrink and darken.
+  useEffect(() => {
+    const ol = list.current;
+    if (!ol || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const wide = window.matchMedia("(min-width: 900px)");
+    const cards = Array.from(ol.children) as HTMLElement[];
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!wide.matches) {
+        cards.forEach((c) => c.style.removeProperty("--depth"));
+        return;
+      }
+      // Where each card stops (its sticky top), and how far the next ones have come over it.
+      const over = cards.map((c) => {
+        const r = c.getBoundingClientRect();
+        const stop = parseFloat(getComputedStyle(c).top) || 0;
+        return Math.min(1, Math.max(0, 1 - (r.top - stop) / r.height));
+      });
+      cards.forEach((c, i) => {
+        let depth = 0;
+        for (let j = i + 1; j < cards.length; j++) depth += over[j];
+        c.style.setProperty("--depth", depth.toFixed(3));
+      });
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <section className={styles.box} aria-labelledby="story-heading">
       <div data-reveal className={styles.head}>
@@ -22,7 +63,7 @@ export function StoryV2() {
         <p className={styles.sub}>{storyV2.sub}</p>
       </div>
 
-      <ol className={styles.stack}>
+      <ol ref={list} className={styles.stack}>
         {stepsV2.map((s, i) => (
           <li key={s.id} className={styles.card} style={{ "--i": i } as React.CSSProperties}>
             <div className={styles.copy}>

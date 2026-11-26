@@ -165,6 +165,21 @@
     grid-template-columns: 1.1fr 1fr;
     align-items: center;
     height: min(30rem, calc(100vh - var(--header-height) - var(--lift) - 4rem));
+    /* Further back in the stack: a little narrower and darker, like cards going into the page. */
+    --d: min(var(--depth, 0), 3);
+    transform: scale(calc(1 - var(--d) * 0.045));
+    transform-origin: 50% 0;
+    background: color-mix(in srgb, #f4f6ef, #c9cdbf calc(min(var(--d), 1) * 55% + max(var(--d) - 1, 0) * 15%));
+    will-change: transform;
+  }
+
+  /* A covered card's phone fades as the next card comes over it, so phones never pile up. */
+  .card .media {
+    opacity: calc(1 - min(var(--d), 1));
+  }
+
+  .card .copy {
+    opacity: calc(1 - min(var(--d), 1) * 0.6);
   }
 
   .copy {
